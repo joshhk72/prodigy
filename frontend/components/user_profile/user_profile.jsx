@@ -9,7 +9,13 @@ class UserProfile extends React.Component {
     return (
       <div className="profile-grid-container">
         <div className="profile-banner"></div>
-        <div className="profile-column-2"></div>
+        <div className="profile-column-1">
+          <img id="profile-picture" src={this.props.user.image_url} />
+          <span className="profile-name">@{this.props.user.username}</span>
+          <button className="profile-edit-button"><i class="fas fa-pencil-alt"></i> Edit</button>
+          <span className="profile-description"></span>
+          <p id="profile-description"></p>
+        </div>
         <div className="profile-column-2"></div>
       </div>
     )
