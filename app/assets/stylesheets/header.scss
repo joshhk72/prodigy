@@ -1,20 +1,19 @@
 .page-header {
-  background-color: yellow;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  vertical-align: middle;
   box-sizing: border-box;
-  height: 40px;
+  height: 42px;
+  background-color: yellow;
   font-family: sans-serif;
-  position: relative;
 }
 
 .search-form {
   display: flex;
   background-color: white;
   padding: 0 4px;
-  line-height: 2;
+  line-height: 1.8;
   margin: 5px;
   width: 225px;
 }
@@ -27,12 +26,12 @@
   display: flex;
   align-items: center;
   height: 40px;
+  font-size: 13px;
 }
 
 .header-actions > a {
   padding: 10px;
   height: 40px;
-  font-size: 14px;
 }
 
 .header-actions > a:hover {

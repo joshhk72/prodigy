@@ -10,6 +10,7 @@ class SessionForm extends React.Component {
       email: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   componentDidMount() {
@@ -19,6 +20,12 @@ class SessionForm extends React.Component {
 
   componentWillUnmount() {
     document.body.classList.remove("body-session");
+  }
+
+  demoLogin(e) {
+    e.preventDefault();
+    const user = { username: "user1", password: "555555" }
+    this.props.submitForm(user);
   }
 
   handleSubmit(e) {
@@ -42,7 +49,10 @@ class SessionForm extends React.Component {
     //const altLinkUrl = this.props.formType === "login" ? "/signup" : "/login";
     //const altText = this.props.formType === "login" ? "Don't" : "Already";
 
-    const [ linkText, headText, buttonText, altLinkUrl, altText ] = this.props.formType === "login" ? [ "Sign up here.", "Sign In", "Login", "/signup", "Don't" ] : [ "Sign in here.", "Sign Up", "Create Account", "/login", "Already" ];
+    const [ linkText, headText, buttonText, altLinkUrl, altText ] 
+      = this.props.formType === "login" ? 
+      [ "Sign up here.", "Sign In", "Login", "/signup", "Don't" ] : 
+      [ "Sign in here.", "Sign Up", "Create Account", "/login", "Already" ];
       
 
     const errorLis = this.props.errors.map((error, i) => {
@@ -82,6 +92,8 @@ class SessionForm extends React.Component {
         <div id="alternative">
           <span>{altText} have an account? </span>
           <Link to={altLinkUrl}>{linkText}</Link>
+          <br></br>
+          {this.props.formType === "login" && <a className="demo" onClick={this.demoLogin}>Use a Demo Account Instead</a>}
         </div>
       </div>)
   }

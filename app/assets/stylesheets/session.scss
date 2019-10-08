@@ -66,6 +66,10 @@
   color: tint(#5492b8, 40%);
 }
 
+.demo:hover {
+  cursor: pointer;
+}
+
 #session-head-text {
   display: block;
   width: 150px;
