@@ -1,0 +1,113 @@
+.session-form-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.session-form {
+  background-color: $session-dark-gray;
+  width: 40%;
+  margin: 14px auto;
+  padding: 15px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 2px;
+  border-top: 1px solid $session-gray;
+}
+
+.session-form input {
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 15px;
+  background-color: $session-gray;
+  border: 1px solid $session-light-gray;
+  line-height: 1.8;
+  border-radius: 2px;
+}
+
+.session-form input:focus {
+  border: 1px solid $session-lightest-gray;
+}
+
+.session-form button {
+  padding: 5px 8px;
+  background-color: #2E2A29;
+  border: 1px solid $session-light-gray;
+  color: #F0DBD9;
+  border-radius: 2px;
+}
+
+.session-form button:hover {
+  background-color: tint(#2E2A29, 5%);
+  border: 1px solid tin($session-light-gray, 5%);
+  color: tint(#F0DBD9 , 30%);
+}
+
+.body-session {
+  background-color: black;
+}
+
+#alternative {
+  display: block;
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+  font-family: sans-serif;
+  font-size: 15px;
+}
+
+#alternative a {
+  color: #5492b8;
+}
+
+#alternative a:hover {
+  color: tint(#5492b8, 40%);
+}
+
+#session-head-text {
+  display: block;
+  width: 150px;
+  font-size: 32px;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  margin-top: 30px;
+  font-family: sans-serif;
+}
+
+.session-error-list-container {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+.session-error-list-container h3 {
+  background-color: red;
+  padding: 10px 0;
+  padding-left: 30px;
+  font-size: 14px;
+}
+
+.session-error-list-container p {
+  margin-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.session-error-list {
+  list-style-type: disc;
+  padding: 15px;
+  padding-left: 40px;
+}
+
+.session-error-list li {
+  margin-bottom: 10px;
+}
+
+.session-error-list li:last-of-type {
+  margin-bottom: 0;
+}

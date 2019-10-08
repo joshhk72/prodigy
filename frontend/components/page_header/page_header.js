@@ -11,8 +11,14 @@ const PageHeader = (props) => {
       <div className="page-header">
         <SearchForm />
         <Link to='/'><span id="logo">Prodigy</span></Link>
-        <p>Welcome {`${props.currentUser.username}`}!</p>
-        <button onClick={props.logout}>Logout</button>
+        <div className="header-actions">
+          <a href="#"><i class="fas fa-thumbtack"></i> Forums</a>
+          <a href="#"><i class="fas fa-flag"></i> Feed</a>
+          <a href="#"><i class="fas fa-bell"></i> Me</a>
+          <a href="#"><i class="fas fa-envelope"></i> Messages</a>
+          <a href="#"><i class="fas fa-brain"></i> Earn IQ</a>
+          <a onClick={props.logout}>Logout</a>
+        </div>
       </div>
     );
   } else {

@@ -12,6 +12,15 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    document.body.classList.add("body-session");
+    this.props.resetErrors();
+  }
+
+  componentWillUnmount() {
+    document.body.classList.remove("body-session");
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
@@ -27,8 +36,14 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    const linkUrl = this.props.formType === "login" ? "/signup" : "/login"
-    const linkText = this.props.formType === "login" ? "Sign up here." : "Sign in here." // just like Genius!
+    //const linkText = this.props.formType === "login" ? "Sign up here." : "Sign in here."; // just like Genius!
+    //const headText = this.props.formType === "login" ? "Sign In" : "Sign Up";
+    //const buttonText = this.props.formType === "login" ? "Login" : "Create Account";
+    //const altLinkUrl = this.props.formType === "login" ? "/signup" : "/login";
+    //const altText = this.props.formType === "login" ? "Don't" : "Already";
+
+    const [ linkText, headText, buttonText, altLinkUrl, altText ] = this.props.formType === "login" ? [ "Sign up here.", "Sign In", "Login", "/signup", "Don't" ] : [ "Sign in here.", "Sign Up", "Create Account", "/login", "Already" ];
+      
 
     const errorLis = this.props.errors.map((error, i) => {
       return (
@@ -38,29 +53,36 @@ class SessionForm extends React.Component {
 
     return (
       <div className='session-form-container'>
-        <h2>{this.props.formType}</h2>
-        {this.props.errors.length > 0 && 
-          <ul>
-            {errorLis}
-          </ul>
-        }
-        <form onSubmit={this.handleSubmit}>
+        <h2 id="session-head-text">{headText}</h2>
+        <form onSubmit={this.handleSubmit} className='session-form'>
+          {this.props.errors.length > 0 &&
+            <div className="session-error-list-container">
+              <h3>Whoops</h3>
+              <p>There must be some mistake</p>
+              <ul className="session-error-list">
+                {errorLis}
+              </ul>
+            </div>
+          }
           <label>
-            Username:
+            Genius Username
               <input type="text" value={this.state.username} onChange={this.update("username")} />
           </label>
           {this.props.formType === 'signup' &&
-            <label> Email:
+            <label> Email
               <input type="text" value={this.state.email} onChange={this.update("email")} />
             </label>
           }
           <label>
-            Password:
+            Password
               <input type="password" value={this.state.password} onChange={this.update("password")} />
           </label>
-          <button>{this.props.formType}</button>
-          <Link to={linkUrl}>{linkText}</Link>
+          <button>{buttonText}</button>
         </form>
+        <div id="alternative">
+          <span>{altText} have an account? </span>
+          <Link to={altLinkUrl}>{linkText}</Link>
+        </div>
       </div>)
   }
 }

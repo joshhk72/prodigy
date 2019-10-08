@@ -2,17 +2,51 @@
   background-color: yellow;
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  align-items: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  height: 40px;
+  font-family: sans-serif;
+  position: relative;
 }
 
 .search-form {
+  display: flex;
   background-color: white;
   padding: 0 4px;
   line-height: 2;
+  margin: 5px;
+  width: 225px;
+}
+
+.search-form input {
+  width: 200px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.header-actions > a {
+  padding: 10px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.header-actions > a:hover {
+  border-bottom: 5px solid red;
+  cursor: pointer;
 }
 
 #logo {
-  background-color: red;
   font-size: 28px;
+  color: yellow;
+  font-weight: 600;
+  text-shadow: -2px 2px black;
+  position: absolute;
+  top: 0px;
+  left: 45%;
 }
 

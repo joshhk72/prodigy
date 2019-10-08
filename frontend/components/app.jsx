@@ -6,12 +6,14 @@ import { Route } from 'react-router-dom';
 import { AuthRoute } from '../util/route_util';
 
 const App = () => (
-  <div>
+  <div className="app">
     <header>
       <PageHeaderContainer />
     </header>
-    <AuthRoute path="/login" component={LoginFormContainer} />
-    <AuthRoute path="/signup" component={SignupFormContainer} />
+    <article>
+      <AuthRoute path="/login" component={LoginFormContainer} />
+      <AuthRoute path="/signup" component={SignupFormContainer} />
+    </article>
   </div>
 );
 
