@@ -14,7 +14,9 @@ class PageHeader extends React.Component {
   handleOutsideClick (e) {
     if (!e.target.matches('.dropdown')) {
       const list = document.getElementById("dropdown-list");
-      list.classList.remove("show");
+      if (list !== null) {
+        list.classList.remove("show");
+      }
     };
     window.removeEventListener("click", this.handleOutsideClick);
   }

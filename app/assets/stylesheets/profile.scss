@@ -3,7 +3,7 @@
   display: grid;
   height: 650px;
   grid-template-columns: 10% 30% auto;
-  grid-template-rows: 40% auto;
+  grid-template-rows: 35% auto;
   position: relative;
   background-color: #E5E8F1;
 }
@@ -42,7 +42,7 @@
   font-size: 28px;
 }
 
-.profile-edit-button {
+.profile-button {
   margin: 0 auto;
   margin-bottom: 15px;
   background-color: transparent;
