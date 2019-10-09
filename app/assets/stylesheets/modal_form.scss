@@ -1,0 +1,44 @@
+.app {
+  position: relative;
+}
+
+.modal-screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color:black; opacity:0.85;
+  top: 0%;
+  z-index: 10;
+}
+
+.modal-hide {
+  display: none;
+}
+
+.profile-modal-form {
+  position: absolute;
+  width: 30%;
+  height: 420px;
+  background-color: red; opacity:1.0;
+  left: 35%;
+  top: 3%;
+  z-index: 10;
+  padding: 20px;
+  padding-right: 0;
+  font-family: sans-serif;
+}
+
+.profile-modal-form input, textarea {
+  width: 90%;
+  background-color: white;
+  line-height: 2;
+  border: 1px solid blue;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.profile-modal-form button {
+  padding: 8px;
+  border: 2px solid green;
+  color: green;
+}

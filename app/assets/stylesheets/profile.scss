@@ -1,11 +1,11 @@
 .profile-grid-container {
-  background-color: gray;
   width: 100%;
   display: grid;
   height: 650px;
   grid-template-columns: 10% 30% auto;
   grid-template-rows: 40% auto;
   position: relative;
+  background-color: #E5E8F1;
 }
 
 .profile-banner {
@@ -14,10 +14,10 @@
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
+  z-index: 1;
 }
 
 .profile-column-1 {
-  background-color: red;
   grid-column-start: 2;
   grid-row-start: 1;
   grid-row-end: 3;
@@ -29,9 +29,11 @@
   border-radius: 50%;
   justify-self: stretch;
   object-fit: cover;
-  width: 80%;
+  width: 70%;
   margin: 35px auto;
+  margin-bottom: 25px;
   border: 2px solid white;
+  z-index: 2;
 }
 
 .profile-name {
@@ -42,7 +44,8 @@
 
 .profile-edit-button {
   margin: 0 auto;
-  background-color: orange;
+  margin-bottom: 15px;
+  background-color: transparent;
   padding: 10px;
   border: 3px solid black;
   font-weight: 500;
@@ -50,8 +53,15 @@
   font-size: 17px;
 }
 
+#profile-description {
+  margin: 0 auto;
+  padding: 30px 10px;
+  background-color: white;
+  width: 80%;
+  border-radius: 1px;
+}
+
 .profile-column-2 {
-  background-color: green;
   grid-column-start: 3;
   grid-row-start: 2;
   grid-row-end: 3;
