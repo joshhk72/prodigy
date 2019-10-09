@@ -12,6 +12,10 @@ class UserProfile extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userId);
+    const image = document.getElementById('profile-picture');
+    image.onerror = function () {
+      this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    };
   }
 
   componentDidUpdate(prevProps) {
