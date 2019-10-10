@@ -34,14 +34,14 @@
   padding: 5px 8px;
   background-color: #2E2A29;
   border: 1px solid $session-light-gray;
-  color: #F0DBD9;
+  color: $session-button-white;
   border-radius: 2px;
 }
 
 .session-form button:hover {
   background-color: tint(#2E2A29, 5%);
   border: 1px solid tin($session-light-gray, 5%);
-  color: tint(#F0DBD9 , 30%);
+  color: tint($session-button-white, 30%);
 }
 
 #alternative {
@@ -55,11 +55,11 @@
 }
 
 #alternative a {
-  color: #5492b8;
+  color: $session-link-blue;
 }
 
 #alternative a:hover {
-  color: tint(#5492b8, 40%);
+  color: tint($session-link-blue, 40%);
 }
 
 .demo:hover {
@@ -83,10 +83,11 @@
   margin-bottom: 20px;
   box-sizing: border-box;
   font-size: 13px;
+  background-color: $error-form-gray;
 }
 
 .session-error-list-container h3 {
-  background-color: red;
+  background-color: $error-form-red;
   padding: 10px 0;
   padding-left: 30px;
   font-size: 14px;

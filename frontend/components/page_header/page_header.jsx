@@ -36,8 +36,8 @@ class PageHeader extends React.Component {
           <Link to='/'><span id="logo">Prodigy</span></Link>
           <div className="header-actions">
             <Link to="/tracks/new"><i className="fas fa-thumbtack"></i> Add Track</Link>
-            <a href="#"><i className="fas fa-bell"></i> Me</a>
-            <a href="#"><i className="fas fa-envelope"></i> Messages</a>
+            {/* <a href="#"><i className="fas fa-bell"></i> Me</a> */}
+            {/*<a href="#"><i className="fas fa-envelope"></i> Messages</a> */}
             <div className="dropdown-container">
               <a className="dropdown-btn dropdown" onClick={this.handleDropDown}>
                 <img src={this.props.currentUser.image_url} className="dropdown"></img>

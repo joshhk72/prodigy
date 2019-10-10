@@ -140,14 +140,14 @@
 .track-form-errors-container h3 {
   width: 97%;
   margin: 0 auto;
-  background-color: red;
+  background-color: $error-form-red;
   padding: 3px 20px;
 }
 
 .track-form-errors-list {
   width: 97%;
   margin: 0 auto;
-  background-color: #2b2626;
+  background-color: $error-form-gray;
   list-style-type: disc;
   padding: 10px 30px;
 }

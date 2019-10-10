@@ -6,7 +6,7 @@ import TrackFormContainer from './track_form/track_form_container';
 import UserProfileContainer from './user_profile/user_profile_container';
 import ProfileFormContainer from './user_profile/profile_form_container';
 import { Route } from 'react-router-dom';
-import { AuthRoute } from '../util/route_util';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
   <div className="app">
@@ -17,7 +17,7 @@ const App = () => (
       <AuthRoute path="/login" component={LoginFormContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
       <Route path="/users/:userId" component={UserProfileContainer}/>
-      <Route path="/tracks/new" component={TrackFormContainer} />
+      <ProtectedRoute path="/tracks/new" component={TrackFormContainer} />
     </article>
     <Route path="/users/:userId" component={ProfileFormContainer} />
   </div>
