@@ -20,7 +20,9 @@ class TrackForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.submitTrackForm(this.state);
+    this.props.submitTrackForm(this.state).then(
+      response => this.props.history.push(`tracks/${response.track.id}`)
+    );
   }
 
   update(field) {

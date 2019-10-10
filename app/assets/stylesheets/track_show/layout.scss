@@ -1,0 +1,18 @@
+.track-show-page {
+  background-color: $background-gray;
+  min-height: 1000px;
+}
+
+.track-show-header {
+  min-height: 300px;
+}
+
+.track-show-main {
+  background-color: white;
+  min-height: 400px;
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+

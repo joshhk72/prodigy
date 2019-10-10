@@ -43,12 +43,6 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    //const linkText = this.props.formType === "login" ? "Sign up here." : "Sign in here."; // just like Genius!
-    //const headText = this.props.formType === "login" ? "Sign In" : "Sign Up";
-    //const buttonText = this.props.formType === "login" ? "Login" : "Create Account";
-    //const altLinkUrl = this.props.formType === "login" ? "/signup" : "/login";
-    //const altText = this.props.formType === "login" ? "Don't" : "Already";
-
     const [ linkText, headText, buttonText, altLinkUrl, altText ] 
       = this.props.formType === "login" ? 
       [ "Sign up here.", "Sign In", "Login", "/signup", "Don't" ] : 

@@ -18,5 +18,5 @@ export const submitTrackForm = trackForm => dispatch => {
   return TrackFormAPIUtil.submitTrackForm(trackForm).then(
     track => dispatch(receiveTrack(track)),
     errors => dispatch(receiveTrackFormErrors(errors))
-  )
+  );
 };
