@@ -15,7 +15,7 @@ class SessionForm extends React.Component {
 
   componentDidMount() {
     document.body.classList.add("dark-body");
-    this.props.resetErrors();
+    this.props.resetSessionErrors();
   }
 
   componentWillUnmount() {

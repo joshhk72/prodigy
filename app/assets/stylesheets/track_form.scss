@@ -1,26 +1,35 @@
 .track-form-container {
   display: grid;
   grid-template-columns: 15% 35% 35% 15%;
-  grid-template-rows: 80px auto;
 }
 
-.track-form-container > small {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  justify-self: end;
-  align-self: end;
+.track-form-container small {
   color: white;
+  margin-top: auto;
+  margin-bottom: 5px
 }
 
-.track-form-container > h1 {
-  grid-row-start: 1;
-  grid-row-end: 2;
+.track-form-additional-div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+  margin-bottom: 10px;
+}
+
+#track-form-additional {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+
+.track-form-top {
+  display: block;
   grid-column-start: 2;
-  grid-column-end: 3;
-  justify-self: start;
-  align-self: center;
+  grid-column-end: 4;
+  margin-top: 20px;
+}
+
+.track-form-container h1 {
+  margin-left: 6px;
   font-family: sans-serif;
   font-weight: 600;
   font-size: 36px;
@@ -70,6 +79,7 @@
 
 .track-form textarea {
   width: 99%;
+  line-height: 1.2;
 }
 
 .track-form select {
@@ -112,4 +122,32 @@
   justify-self: center;
   align-self: start;
   border-radius: 8px;
+  margin-top: 70px;
+}
+
+.track-form-errors-container {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  color: white;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  box-sizing: border-box;
+  justify-self: center;
+}
+
+.track-form-errors-container h3 {
+  width: 97%;
+  margin: 0 auto;
+  background-color: red;
+  padding: 3px 20px;
+}
+
+.track-form-errors-list {
+  width: 97%;
+  margin: 0 auto;
+  background-color: #2b2626;
+  list-style-type: disc;
+  padding: 10px 30px;
 }

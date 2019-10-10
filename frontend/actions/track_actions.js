@@ -2,7 +2,7 @@ import * as TrackUtil from '../util/track_util';
 
 export const RECEIVE_TRACK = "RECEIVE_TRACK";
 
-const receiveTrack = track => ({
+export const receiveTrack = track => ({
   type: RECEIVE_TRACK,
   track
 });

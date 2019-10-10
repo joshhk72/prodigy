@@ -14,9 +14,10 @@
 
 class Track < ApplicationRecord
   validates :name, :lyrics, :length, presence: true
+
   before_validation :set_lyrics_length
 
-  belongs_to :album
+  belongs_to :album, optional: true
 
   has_many :track_artists
 

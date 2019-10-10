@@ -13,6 +13,6 @@ class Api::TrackFormsController < ApplicationController
   private
 
   def track_params
-    params.require(:track_form).permit(:name)
+    params.require(:track_form).permit(:artist, :name, :lyrics, :date, :album, featured: [], producers: [], writers: [])
   end
 end
