@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string
+#  email           :string
+#  password_digest :string
+#  session_token   :string
+#  description     :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  image_url       :string
+#
+
 require 'bcrypt'
 
 class User < ApplicationRecord
@@ -42,7 +57,7 @@ class User < ApplicationRecord
   private
 
   def ensure_session_token
-    self.session_token = User.generate_session_token
+    self.session_token ||= User.generate_session_token
   end
 
 end

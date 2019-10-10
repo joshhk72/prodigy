@@ -14,12 +14,12 @@ class SessionForm extends React.Component {
   }
 
   componentDidMount() {
-    document.body.classList.add("body-session");
+    document.body.classList.add("dark-body");
     this.props.resetErrors();
   }
 
   componentWillUnmount() {
-    document.body.classList.remove("body-session");
+    document.body.classList.remove("dark-body");
   }
 
   demoLogin(e) {

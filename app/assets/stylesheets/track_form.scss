@@ -1,0 +1,115 @@
+.track-form-container {
+  display: grid;
+  grid-template-columns: 15% 35% 35% 15%;
+  grid-template-rows: 80px auto;
+}
+
+.track-form-container > small {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  justify-self: end;
+  align-self: end;
+  color: white;
+}
+
+.track-form-container > h1 {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-self: start;
+  align-self: center;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  color: white;
+}
+
+.track-form {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-template-columns: 15% 35% 35% 15%;
+  grid-template-rows: 45% 55%;
+}
+
+.track-form label {
+  color: rgb(82, 121, 121)
+}
+
+.track-form h3 {
+  border: none;
+  width: auto;
+  padding: 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid white;
+  margin-bottom: 10px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.track-form input {
+  background-color: white;
+  margin: 10px auto;
+  margin-top: 3px;
+  border-radius: 3px;
+  width: 100%;
+  line-height: 1.8;
+}
+
+.form-lyrics-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.track-form textarea {
+  width: 99%;
+}
+
+.track-form select {
+  margin: 10px auto;
+}
+
+.form-primary-column {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding: 10px;
+}
+
+.form-secondary-column {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding: 10px;
+}
+
+.form-lyrics-column {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  padding: 10px;
+}
+
+.track-form button {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  background-color: gray;
+  color: white;
+  border: 1px solid white;
+  padding: 6px;
+  justify-self: center;
+  align-self: start;
+  border-radius: 8px;
+}

@@ -21,7 +21,6 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      login(@user)
       render :show
     else
       errors = @user.errors.full_messages
