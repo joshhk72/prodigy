@@ -6,7 +6,7 @@ import TrackFormContainer from './track_form/track_form_container';
 import TrackShowContainer from './track_show/track_show_container';
 import UserProfileContainer from './user_profile/user_profile_container';
 import ProfileFormContainer from './user_profile/profile_form_container';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
@@ -18,10 +18,12 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <Route path="/users/:userId" component={UserProfileContainer}/>
-      <ProtectedRoute exact path="/tracks/new" component={TrackFormContainer} />
+      <Switch>
+        <ProtectedRoute exact path="/tracks/new" component={TrackFormContainer} />
+        <Route path="/tracks/:trackId" component={TrackShowContainer} />
+      </Switch>
     </article>
     <Route path="/users/:userId" component={ProfileFormContainer} />
-    <Route path="/tracks/:trackId" component={TrackShowContainer} />
   </div>
 );
 
