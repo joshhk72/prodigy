@@ -4,9 +4,9 @@ class TrackForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      track: { name: "", lyrics: "", date: undefined },
+      track: { name: undefined, lyrics: undefined, date: undefined },
       artist: { name: "" },
-      album: { title: "", artist: "" }
+      album: { title: undefined }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -22,6 +22,7 @@ class TrackForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
+    console.log(window.innerWidth);
   }
 
   updateArtist(field) {
@@ -63,7 +64,7 @@ class TrackForm extends React.Component {
               </label>
               <label>TITLE *
                 <br />
-                <input type="text" onChange={this.updateTrack("name")} value={this.state.track.name} />
+                <input type="text" onChange={ this.updateTrack("name") } value={ this.state.track.name || "" } />
               </label>
             </div>
           </div>
@@ -72,7 +73,7 @@ class TrackForm extends React.Component {
             <h3>Lyrics *</h3>
             <div className="form-lyrics-container">
               <label>
-                <textarea onChange={this.updateTrack("lyrics")} value={this.state.track.lyrics} cols="40" rows="12" />
+                <textarea onChange={ this.updateTrack("lyrics") } value={ this.state.track.lyrics || "" } cols="40" rows="12" />
               </label>
             </div>
           </div>
@@ -93,12 +94,12 @@ class TrackForm extends React.Component {
               </label>
               <label>RELEASE DATE
                 <br />
-                <input onChange={this.updateTrack("date")} value={ this.state.track.date || "" } type="date"></input>
+                <input onChange={ this.updateTrack("date") } value={ this.state.track.date || "" } type="date"></input>
               </label>
               <br />
               <label>ALBUM
                 <br />
-                <input type="text" />
+                <input type="text" onChange={ this.updateAlbum("title") } value= { this.state.album.title || "" }/>
               </label>
             </div>
           </div>

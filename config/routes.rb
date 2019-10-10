@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :tracks, only:[:create, :show, :update]
     resources :albums, only:[:create, :show]
     resources :artists, only:[:create, :show]
+    resource :track_form, only:[:create]
   end
 end
