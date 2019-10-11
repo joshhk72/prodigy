@@ -10,6 +10,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  date       :date
+#  image_url  :string
 #
 
 require 'test_helper'

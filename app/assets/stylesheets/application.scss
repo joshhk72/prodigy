@@ -23,7 +23,9 @@
 @import "session";
 @import "dropdown";
 @import "profile";
-@import "modal_form";
+@import "modals/modal";
+@import "modals/profile_modal";
+@import "modals/track_modal";
 @import "track_form";
 @import "track_show/layout";
 @import "track_show/header";

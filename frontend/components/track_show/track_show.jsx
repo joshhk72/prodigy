@@ -15,6 +15,10 @@ class TrackShow extends React.Component {
       .then(res => {
         this.setState({ lyrics: res.track.lyrics });
         this.props.fetchTrackArtists(res.track.id);
+        const image = document.getElementById('track-show-image');
+        image.onerror = function () {
+          this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+        };
       });
   }
 
@@ -63,7 +67,7 @@ class TrackShow extends React.Component {
       <section className="track-show-page">
         <header className="track-show-header">
           <div className="track-show-image-container">
-            <img id="track-show-image" src="https://f4.bcbits.com/img/a1710413326_10.jpg" />
+            <img id="track-show-image" src={this.props.currentTrack.image_url || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"  } />
           </div>
           <div className="track-show-header-info-container">
             <h1>{ this.props.currentTrack.name }</h1>
