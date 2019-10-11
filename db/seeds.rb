@@ -39,8 +39,7 @@ albums = Album.create([
   { title: "Semper Femina", artist_id: artists[2].id, date: Date.new(2017, 3, 10)}
 ])
 
-lyrics_1 = %Q(
-[Verse 1]
+lyrics_1 = %Q([Verse 1]
 I got so fucking romantic
 I apologize
 Lemme light your cigarette
@@ -119,8 +118,7 @@ Casting demons
 Asked one what its name was
 )
 
-lyrics_2 = %Q(
-[Verse 1]
+lyrics_2 = %Q([Verse 1]
 The meadowlark and the chim-choo-ree and the sparrow
 Set to the sky in a flying spree, for the sport of the pharaoh
 Little while later the Pharisees dragged a comb through the meadow
@@ -229,8 +227,7 @@ And the meteoroid’s a bone thrown from the void
 That lies quiet and offering to thee
 )
 
-lyrics_3 = %Q(
-You're holding bits of styrofoam
+lyrics_3 = %Q(You're holding bits of styrofoam
 With your face painted on to your friends
 You listen to them whine and moan
 About everything you can't understand

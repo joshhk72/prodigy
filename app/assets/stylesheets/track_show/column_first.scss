@@ -1,5 +1,16 @@
 .track-show-column-first {
   background-color: red;
-  padding: 10px;
+  padding: 15px;
 }
 
+.track-show-column-first button {
+  padding: 8px;
+  border: 2px solid black;
+  margin-bottom: 40px;
+}
+
+.track-show-column-first p {
+  font-size: 17px;
+  line-height: 1.8;
+  font-family: sans-serif;
+}

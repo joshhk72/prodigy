@@ -1,4 +1,13 @@
 class Api::ArtistsController < ApplicationController
+
+  def index
+    if params[:track_id]
+      @track = Track.find(params[:track_id])
+      @artists = @track.artists.includes(:track_artists)
+      render :track
+    end
+  end
+
   def show
     @artist = Artist.includes(:tracks, :albums).find(params[:id])
     render :show

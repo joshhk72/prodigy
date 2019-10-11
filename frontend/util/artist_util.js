@@ -5,6 +5,13 @@ export const fetchArtist = id => {
   });
 };
 
+export const fetchTrackArtists = (track_id) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/artists?track_id=${track_id}`
+  });
+};
+
 export const createArtist = artist => {
   return $.ajax({
     method: "POST",
