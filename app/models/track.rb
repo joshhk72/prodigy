@@ -25,8 +25,8 @@ class Track < ApplicationRecord
     through: :track_artists,
     source: :artist
 
-  def primary_artists
-    self.artists.where(ord: 1)
+  def primary_artist
+    self.artists.where("track_artists.ord = 1").first
   end
 
   def featured_artists # may add other types later, but these two are it for now

@@ -1,4 +1,4 @@
-import { RECEIVE_TRACK, CLEAR_TRACKS } from '../actions/track_actions';
+import { RECEIVE_TRACK, CLEAR_TRACKS, RECEIVE_TRACKS } from '../actions/track_actions';
 
 const tracksReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -7,6 +7,8 @@ const tracksReducer = (state = {}, action) => {
       return Object.assign({}, state, { [action.track.id]: action.track });
     case CLEAR_TRACKS:
       return {};
+    case RECEIVE_TRACKS:
+      return Object.assign({}, state, action.tracks)
     default:
       return state;
   }

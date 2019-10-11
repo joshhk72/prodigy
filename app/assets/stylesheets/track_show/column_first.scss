@@ -7,10 +7,17 @@
   padding: 8px;
   border: 2px solid black;
   margin-bottom: 40px;
+  margin-right: 10px;
 }
 
-.track-show-column-first p {
+.track-show-column-first p, #edit-textarea {
   font-size: 17px;
   line-height: 1.8;
   font-family: sans-serif;
+}
+
+#edit-textarea {
+  resize: none;
+  overflow: none;
+  width: 98%;
 }

@@ -1,4 +1,9 @@
 class Api::TracksController < ApplicationController
+  def index
+    @tracks = Track.all
+    render :index
+  end
+
   def show
     @track = Track.includes(:artists).find(params[:id])
     render :show
@@ -11,6 +16,17 @@ class Api::TracksController < ApplicationController
       render :show
     else
       errors = @track.errors.full_messsages
+      render json: errors, status: 422
+    end
+  end
+
+  def update
+    @track = Track.find(params[:id])
+
+    if @track.update(track_params)
+      render :show
+    else
+      errors = @track.errors.full_messages
       render json: errors, status: 422
     end
   end

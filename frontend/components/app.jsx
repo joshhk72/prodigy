@@ -1,5 +1,6 @@
 import React from "react";
-import PageHeaderContainer from './page_header/page_header_container'
+import PageHeaderContainer from './page_header/page_header_container';
+import HomePageContainer from './home_page/home_container';
 import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/signup_form_container';
 import TrackFormContainer from './track_form/track_form_container';
@@ -17,6 +18,7 @@ const App = () => (
     <article>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
+      <Route exact path="/" component={HomePageContainer} />
       <Route path="/users/:userId" component={UserProfileContainer}/>
       <Switch>
         <ProtectedRoute exact path="/tracks/new" component={TrackFormContainer} />
