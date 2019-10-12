@@ -14,25 +14,13 @@
 #
 
 class Track < ApplicationRecord
-  validates :name, :lyrics, :length, presence: true
+  validates :name, :lyrics, :length, :artist_id, presence: true
 
   before_validation :set_lyrics_length
 
   belongs_to :album, optional: true
 
-  has_many :track_artists
-
-  has_many :artists,
-    through: :track_artists,
-    source: :artist
-
-  def primary_artist
-    self.artists.where("track_artists.ord = 1").first
-  end
-
-  def featured_artists # may add other types later, but these two are it for now
-    self.artists.where(ord: 2)
-  end
+  belongs_to :artist
 
   def set_lyrics_length
     self.length = self.lyrics.length

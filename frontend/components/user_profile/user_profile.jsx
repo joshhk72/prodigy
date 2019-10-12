@@ -24,14 +24,10 @@ class UserProfile extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("click", this.handleOtherClick);
-  }
-
   handleModal(e) {
     e.preventDefault();
     const modal = document.getElementsByClassName("modal-hide");
-
+    console.log(modal);
     Array.from(modal).forEach(ele => {
       ele.classList.remove("modal-hide");
     })

@@ -5,7 +5,7 @@ const artistsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ARTIST:
-      return Object.assign({}, state, { [action.artist.id]: action.artist });
+      return merge({}, state, { [action.artist.id]: action.artist });
     case RECEIVE_ARTISTS:
       const artists = {};
       action.artists.forEach(artist => artists[artist.id] = artist);

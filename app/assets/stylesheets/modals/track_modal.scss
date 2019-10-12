@@ -1,0 +1,85 @@
+.track-modal-form {
+  position: relative;
+  min-height: 500px;
+  width: 60%;
+  min-width: 420px;
+  background-color: $background-gray; opacity:1.0;
+  top: 360px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  padding: 20px;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.track-modal-form button {
+  padding: 8px;
+  border: 2px solid indigo;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.track-modal-tab {
+  border-bottom: 2px solid indigo;
+  color: indigo;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.track-modal-tab:hover {
+  cursor: pointer;
+}
+
+#subform-1 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 33% auto 33%;
+}
+
+.track-modal-subform input {
+  background-color: white;
+  width: 100%;
+  margin: 10px 0;
+  line-height: 2;
+  border: 2px solid lightgray;
+  border-radius: 2px;
+}
+
+.subform-1-input:nth-child(1) {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.subform-1-input:nth-child(2) {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  width: calc(100% - 20px);
+}
+
+.subform-1-input:nth-child(3) {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  width: calc(100% - 20px);
+}
+
+.subform-1-input:nth-child(4) {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.subform-1-input:nth-child(5) {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}

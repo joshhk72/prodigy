@@ -5,6 +5,7 @@ import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/signup_form_container';
 import TrackFormContainer from './track_form/track_form_container';
 import TrackShowContainer from './track_show/track_show_container';
+import TrackEditFormContainer from './track_show/track_edit_form_container';
 import UserProfileContainer from './user_profile/user_profile_container';
 import ProfileFormContainer from './user_profile/profile_form_container';
 import { Route, Switch } from 'react-router-dom';
@@ -19,13 +20,14 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <Route exact path="/" component={HomePageContainer} />
-      <Route path="/users/:userId" component={UserProfileContainer}/>
+      <Route exact path="/users/:userId" component={UserProfileContainer}/>
       <Switch>
         <ProtectedRoute exact path="/tracks/new" component={TrackFormContainer} />
         <Route path="/tracks/:trackId" component={TrackShowContainer} />
       </Switch>
+      <Route exact path="/users/:userId" component={ProfileFormContainer} />
+      <ProtectedRoute exact path="/tracks/:trackId/edit" component={TrackEditFormContainer} />
     </article>
-    <Route path="/users/:userId" component={ProfileFormContainer} />
   </div>
 );
 

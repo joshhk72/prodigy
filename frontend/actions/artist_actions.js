@@ -23,11 +23,6 @@ export const fetchArtist = id => dispatch => {
     .then(artist => dispatch(receiveArtist(artist)));
 };
 
-export const fetchTrackArtists = trackId => dispatch => { // data looks like { track_id: 1, artist_ids: [1,2,3] }
-  return ArtistUtil.fetchTrackArtists(trackId)
-    .then(artists => dispatch(receiveArtists(artists)));
-};
-
 export const createArtist = artist => dispatch => {
   return ArtistUtil.createArtist(artist)
     .then(newArtist => dispatch(receiveArtist(newArtist)));

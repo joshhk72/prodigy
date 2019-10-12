@@ -12,9 +12,5 @@ class Artist < ApplicationRecord
   validates :name, presence: true
 
   has_many :albums
-  has_many :track_artists
-
-  has_many :tracks,
-    through: :track_artists,
-    source: :track
+  has_many :tracks
 end

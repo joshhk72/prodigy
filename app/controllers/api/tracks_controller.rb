@@ -5,7 +5,7 @@ class Api::TracksController < ApplicationController
   end
 
   def show
-    @track = Track.includes(:artists).find(params[:id])
+    @track = Track.find(params[:id])
     render :show
   end
 
@@ -34,6 +34,6 @@ class Api::TracksController < ApplicationController
   private
 
   def track_params
-    params.require(:track).permit(:name, :lyrics, :album_id, :date, :image_url, artists: {})
+    params.require(:track).permit(:name, :lyrics, :album_id, :date, :image_url, :artist_id)
   end
 end

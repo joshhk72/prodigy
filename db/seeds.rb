@@ -10,7 +10,6 @@ User.destroy_all
 Artist.destroy_all
 Album.destroy_all
 Track.destroy_all
-TrackArtist.destroy_all
 
 # ActiveRecord::Base.connection.reset_pk_sequence!('users') # this resets the id
 ActiveRecord::Base.connection.tables.each do |t|
@@ -278,14 +277,7 @@ Before you know it your life has run away
 )
 
 tracks = Track.create([
-  { name: "Cute Thing", lyrics: lyrics_1, album_id: albums[0].id, date: albums[0].date, image_url: "https://e-cdns-images.dzcdn.net/images/cover/19af256a3e05dd7b640dd1140bd97b6e/500x500-000000-80-0-0.jpg" },
-  { name: "Emily", lyrics: lyrics_2, album_id: albums[2].id, date: albums[2].date, image_url: "https://nofoodjustwax.files.wordpress.com/2018/10/img_9126.jpg?w=560" },
-  { name: "Darkness Descends", lyrics: lyrics_3, album_id: albums[4].id, date: albums[4].date, image_url: "http://simg.mysound.jp/img/disc/657/120_EMI5099962781657.jpg" }
-])
-
-track_artists = TrackArtist.create([
-  { track_id: tracks[0].id, artist_id: artists[0].id, ord: 1 },
-  { track_id: tracks[1].id, artist_id: artists[1].id, ord: 1 },
-  { track_id: tracks[2].id, artist_id: artists[2].id, ord: 1 }
-
+  { name: "Cute Thing", artist_id: artists[0].id, lyrics: lyrics_1, album_id: albums[0].id, date: albums[0].date, image_url: "https://e-cdns-images.dzcdn.net/images/cover/19af256a3e05dd7b640dd1140bd97b6e/500x500-000000-80-0-0.jpg" },
+  { name: "Emily", artist_id: artists[1].id, lyrics: lyrics_2, album_id: albums[2].id, date: albums[2].date, image_url: "https://nofoodjustwax.files.wordpress.com/2018/10/img_9126.jpg?w=560" },
+  { name: "Darkness Descends", artist_id: artists[2].id, lyrics: lyrics_3, album_id: albums[4].id, date: albums[4].date, image_url: "http://simg.mysound.jp/img/disc/657/120_EMI5099962781657.jpg" }
 ])
