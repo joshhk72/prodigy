@@ -90,20 +90,23 @@ class TrackShow extends React.Component {
           <button onClick={this.editButton}>Cancel</button>
         </div>
       ) : <div />
+    
+    const { features, producers, writers, album, name, artist, image_url } = this.props.currentTrack
 
     return (
       <section className="track-show-page">
         <header className="track-show-header">
           <div className="track-show-image-container">
-            <img id="track-show-image" onError={this.handleImageError} src={this.props.currentTrack.image_url || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"  } />
+            <img id="track-show-image" onError={this.handleImageError} src={ image_url || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"  } />
           </div>
           <div className="track-show-header-info-container">
-            <h1>{ this.props.currentTrack.name }</h1>
-            <h2>{ this.props.currentTrack.artist }</h2>
+            <h1>{ name }</h1>
+            <h2>{ artist }</h2>
             <div className="track-show-header-additional">
-              {/*<h3>Featuring <span>Big Freedia, cupcakKe, Brooke Candy</span></h3>*/}
-              {/*<h3>Produced by <span>Nömak, A. G. Cook</span></h3>*/}
-              <h3>Album <span>{this.props.currentTrack.album}</span></h3>
+              { features && <h3>Featuring <span>{features.length > 2 ? features.join(", ") : features.join(" & ") }</span></h3> }
+              { producers && <h3>Produced by <span>{producers.length > 2 ? producers.join(", ") : producers.join(" & ")}</span></h3> }
+              { writers && <h3>Written by <span>{writers.length > 2 ? writers.join(", ") : writers.join(" & ")}</span></h3> }
+              { album && <h3>Album <span>{album}</span></h3> }
             </div>
           </div>
         </header>

@@ -10,6 +10,9 @@ User.destroy_all
 Artist.destroy_all
 Album.destroy_all
 Track.destroy_all
+TrackFeature.destroy_all
+TrackProducer.destroy_all
+TrackWriter.destroy_all
 
 # ActiveRecord::Base.connection.reset_pk_sequence!('users') # this resets the id
 ActiveRecord::Base.connection.tables.each do |t|
@@ -281,3 +284,10 @@ tracks = Track.create([
   { name: "Emily", youtube_url: "https://www.youtube.com/watch?v=UGoNCvoZuYA", artist_id: artists[1].id, lyrics: lyrics_2, album_id: albums[2].id, date: albums[2].date, image_url: "https://nofoodjustwax.files.wordpress.com/2018/10/img_9126.jpg?w=560" },
   { name: "Darkness Descends", youtube_url: "https://www.youtube.com/watch?v=rKQzY3HYFhE", artist_id: artists[2].id, lyrics: lyrics_3, album_id: albums[4].id, date: albums[4].date, image_url: "http://simg.mysound.jp/img/disc/657/120_EMI5099962781657.jpg" }
 ])
+
+tracks[0].producers.create(name: "Will Toledo");
+will = tracks[0].producers.find_by(name: "Will Toledo")
+tracks[0].writers = [will]
+tracks[0].featured_artists.create(name: "Testing1")
+tracks[0].featured_artists.create(name: "Testing2")
+tracks[0].featured_artists.create(name: "Testing3")

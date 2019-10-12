@@ -15,13 +15,21 @@ class TrackEditForm extends React.Component {
 
   componentDidMount() {
     this.props.fetchTrack(this.props.match.params.trackId)
-      .then(res => this.setState(res.track))
+      .then(res => {
+        this.setState(res.track)
+      })
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.updateTrackForm(this.state)
-    this.hideModal();
+    const submission = Object.assign({}, this.state);
+    submission.features = submission.features.join(', ')
+    submission.producers = submission.producers.join(', ')
+    submission.writers = submission.writers.join(', ')
+    console.log(submission)
+    this.props.updateTrackForm(submission).then(() => {
+      this.hideModal();
+    })
   }
 
   hideModal() {
@@ -30,7 +38,7 @@ class TrackEditForm extends React.Component {
     const form = document.getElementById("modal-form");
     container.classList.add("modal-hide");
     screen.classList.add("modal-hide");
-    form.classList.add("modal-hide");  
+    form.classList.add("modal-hide");
   }
 
   update(field) {
@@ -39,8 +47,14 @@ class TrackEditForm extends React.Component {
     }
   }
 
+  updateArtists(field) {
+    return e => {
+      this.setState({ [field]: e.target.value.split(', ') })
+    }
+  }
+
   render() {
-    const form = this.props.loggedIn ? 
+    const form = this.props.loggedIn ?
     (
       <div className="modal-container modal-hide" id="track-modal-container">
         <div onClick={this.hideModal} className="modal-screen modal-hide" id="modal-screen" />
@@ -55,17 +69,17 @@ class TrackEditForm extends React.Component {
               <br />
               <input type="text" onChange={ this.update("artist") } value={ this.state.artist || "" }/>
             </label>
-            <label className="subform-1-input">FEATURING
+            <label className="subform-1-input">FEATURING (SEPARATE WITH COMMA AND SPACE)
               <br />
-              <input type="text" />
+              <input type="text" onChange={ this.updateArtists("features") } value={ this.state.features ? this.state.features.join(', ') : "" } />
             </label>
-            <label className="subform-1-input">WRITTEN BY
+              <label className="subform-1-input">WRITTEN BY (SEPARATE WITH COMMA AND SPACE)
               <br />
-              <input type="text" />
+                <input type="text" onChange={ this.updateArtists("writers") } value={this.state.writers ? this.state.writers.join(', ') : "" } />
             </label>
-            <label className="subform-1-input">PRODUCED BY
+              <label className="subform-1-input">PRODUCED BY (SEPARATE WITH COMMA AND SPACE)
               <br />
-              <input type="text" />
+                <input type="text" onChange={ this.updateArtists("producers") } value={ this.state.producers ? this.state.producers.join(', ') : "" }/>
             </label>
           </div>
           <div className="track-modal-tab">AUDIO, VIDEO & IMAGES</div>
@@ -90,7 +104,8 @@ class TrackEditForm extends React.Component {
         </form>
       </div>
     ) : <div></div>
-    return form
+
+    return (this.state.id !== undefined) ? form : <div />
   }
 }
 

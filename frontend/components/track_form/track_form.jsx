@@ -4,7 +4,7 @@ import TrackFormErrorsList from './track_form_errors_list';
 class TrackForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { artist: undefined, name: undefined, lyrics: undefined, featured: [], producers: [], writers: [], date: undefined, album: undefined, track: undefined };
+    this.state = { artist: undefined, name: undefined, lyrics: undefined, features: undefined, producers: undefined, writers: undefined, date: undefined, album: undefined, track: undefined };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -69,17 +69,17 @@ class TrackForm extends React.Component {
               <small>* required</small>
             </div> 
             <div>
-              <label>FEATURING
+              <label>FEATURING (SEPARATE WITH COMMA AND SPACE)
                 <br />
-                <input type="text" />
+                <input type="text" onChange={ this.update("features") } value={ this.state.features || '' }/>
               </label>
-              <label>PRODUCED BY
+              <label>PRODUCED BY (SEPARATE WITH COMMA AND SPACE)
                 <br />
-                <input type="text" />
+                <input type="text" onChange={this.update("producers")} value={ this.state.producers || '' } />
               </label>
-              <label>WRITTEN BY
+              <label>WRITTEN BY (SEPARATE WITH COMMA AND SPACE)
                 <br />
-                <input type="text" />
+                <input type="text" onChange={this.update("writers")} value={ this.state.writers || '' } />
               </label>
               <label>RELEASE DATE
                 <br />

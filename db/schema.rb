@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_12_031057) do
+ActiveRecord::Schema.define(version: 2019_10_12_060922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,36 @@ ActiveRecord::Schema.define(version: 2019_10_12_031057) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "track_features", force: :cascade do |t|
+    t.integer "track_id", null: false
+    t.integer "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_track_features_on_artist_id"
+    t.index ["track_id", "artist_id"], name: "index_track_features_on_track_id_and_artist_id", unique: true
+    t.index ["track_id"], name: "index_track_features_on_track_id"
+  end
+
+  create_table "track_producers", force: :cascade do |t|
+    t.integer "track_id", null: false
+    t.integer "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_track_producers_on_artist_id"
+    t.index ["track_id", "artist_id"], name: "index_track_producers_on_track_id_and_artist_id", unique: true
+    t.index ["track_id"], name: "index_track_producers_on_track_id"
+  end
+
+  create_table "track_writers", force: :cascade do |t|
+    t.integer "track_id", null: false
+    t.integer "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_track_writers_on_artist_id"
+    t.index ["track_id", "artist_id"], name: "index_track_writers_on_track_id_and_artist_id", unique: true
+    t.index ["track_id"], name: "index_track_writers_on_track_id"
   end
 
   create_table "tracks", force: :cascade do |t|

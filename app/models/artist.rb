@@ -13,4 +13,19 @@ class Artist < ApplicationRecord
 
   has_many :albums
   has_many :tracks
+  has_many :track_features
+  has_many :track_producers
+  has_many :track_writers
+
+  has_many :featured_tracks,
+    through: :track_features,
+    source: :track
+
+  has_many :produced_tracks,
+    through: :track_producers,
+    source: :track
+
+  has_many :written_tracks,
+    through: :track_writers,
+    source: :track
 end

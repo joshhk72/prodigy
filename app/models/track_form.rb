@@ -1,7 +1,7 @@
 class TrackForm
   include ActiveModel::Model
   
-  attr_accessor :image_url, :youtube_url, :artist, :name, :lyrics, :featured, :producers, :writers, :date, :album, :track
+  attr_accessor :id, :image_url, :youtube_url, :artist, :name, :lyrics, :features, :producers, :writers, :date, :album, :track
 
   validates :artist, :name, :lyrics, presence: true
 
@@ -11,7 +11,7 @@ class TrackForm
     ActiveRecord::Base.transaction do # save everything in the form, or nothing
       @track = new_track
 
-      artist = find_or_create_artist
+      artist = find_or_create_artist(self.artist)
 
       if artist.tracks.to_a.any? { |track| track.name == self.name }
         errors.add(:track, "already exists")
@@ -29,6 +29,21 @@ class TrackForm
       @track.image_url = self.image_url if self.image_url
       @track.youtube_url = self.youtube_url if self.youtube_url
       @track.save!
+
+      if self.features
+        features = self.features.split(',').map { |name| find_or_create_artist(name) }
+        @track.featured_artists = features
+      end
+
+      if self.producers
+        producers = self.producers.split(',').map { |name| find_or_create_artist(name) }
+        @track.producers = producers
+      end
+
+      if self.writers
+        writers = self.writers.split(',').map { |name| find_or_create_artist(name) }
+        @track.writers = writers
+      end
       
       true # returning true for easier logic using TrackForm.save in the future
 
@@ -42,9 +57,9 @@ class TrackForm
     return false if invalid? # in case I add custom errors for tracks/albums/artists
 
     ActiveRecord::Base.transaction do # save everything in the form, or nothing
-      @track = track
+      @track = Track.find(self.id)
 
-      artist = find_or_create_artist
+      artist = find_or_create_artist(self.artist)
       @track.artist_id = artist.id
 
       if self.album != ""
@@ -61,6 +76,21 @@ class TrackForm
 
       @track.save!
 
+      if self.features
+        features = self.features.split(',').map { |name| find_or_create_artist(name) }
+        @track.featured_artists = features
+      end
+
+      if self.producers
+        producers = self.producers.split(',').map { |name| find_or_create_artist(name) }
+        @track.producers = producers
+      end
+
+      if self.writers
+        writers = self.writers.split(',').map { |name| find_or_create_artist(name) }
+        @track.writers = writers
+      end
+
       # have to erase & create some associations here!
 
       true
@@ -75,16 +105,16 @@ class TrackForm
   private
 
   def new_track
-    Track.new(name: self.name, lyrics: self.lyrics, date: self.date)
+    Track.new(name: self.name.strip, lyrics: self.lyrics, date: self.date)
   end
 
   def find_or_create_album(artist)
-    Album.find_by(title: self.album, artist_id: artist.id) || Album.create!(title: self.album, artist_id: artist.id, date: self.date)
+    Album.find_by(title: self.album.strip, artist_id: artist.id) || Album.create!(title: self.album.strip, artist_id: artist.id, date: self.date)
   end
 
-  def find_or_create_artist
-    unless artist = Artist.find_by(name: self.artist)
-      artist = Artist.create!(name: self.artist)
+  def find_or_create_artist(name)
+    unless artist = Artist.find_by(name: name.strip)
+      artist = Artist.create!(name: name.strip)
     end
     artist
   end

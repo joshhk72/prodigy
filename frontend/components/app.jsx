@@ -27,7 +27,10 @@ const App = () => (
       </Switch>
     </article>
     <Route exact path="/users/:userId" component={ProfileFormContainer} />
-    <Route exact path="/tracks/:trackId/" component={TrackEditFormContainer} />
+    <Switch>
+      <Route exact path="/tracks/new/" component={() => <div />} />
+      <Route exact path="/tracks/:trackId/" component={TrackEditFormContainer} />
+    </Switch>
   </div>
 );
 
