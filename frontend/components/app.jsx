@@ -25,9 +25,9 @@ const App = () => (
         <ProtectedRoute exact path="/tracks/new" component={TrackFormContainer} />
         <Route path="/tracks/:trackId" component={TrackShowContainer} />
       </Switch>
-      <Route exact path="/users/:userId" component={ProfileFormContainer} />
-      <ProtectedRoute exact path="/tracks/:trackId/edit" component={TrackEditFormContainer} />
     </article>
+    <Route exact path="/users/:userId" component={ProfileFormContainer} />
+    <Route exact path="/tracks/:trackId/" component={TrackEditFormContainer} />
   </div>
 );
 

@@ -79,6 +79,17 @@ class TrackShow extends React.Component {
     
     const spacedLyrics = this.props.currentTrack.lyrics.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i}/>), []);
     const editArea = (< textarea onChange={this.update("lyrics")} style={{height: spacedLyrics.length * 17.3}} id = "edit-textarea" rows = "10" value = { this.state.lyrics } />);
+    const lyricsButtons = this.props.loggedIn ? 
+      (!this.state.editLyrics ?
+        <div>
+          <button onClick={this.editButton}>Edit Lyrics</button>
+          <button onClick={this.handleModal}>Edit Song Facts</button>
+        </div> :
+        <div>
+          <button onClick={this.submitLyrics}>Save</button>
+          <button onClick={this.editButton}>Cancel</button>
+        </div>
+      ) : <div />
 
     return (
       <section className="track-show-page">
@@ -90,25 +101,16 @@ class TrackShow extends React.Component {
             <h1>{ this.props.currentTrack.name }</h1>
             <h2>{ this.props.currentTrack.artist }</h2>
             <div className="track-show-header-additional">
-              {/*<h3>Featuring Big Freedia, cupcakKe, Brooke Candy</h3>*/}
-              {/*<h3>Produced by Nömak, A. G. Cook</h3>*/}
-              {/*<h3>Album Charli(Japanese Version)</h3>*/}
+              {/*<h3>Featuring <span>Big Freedia, cupcakKe, Brooke Candy</span></h3>*/}
+              {/*<h3>Produced by <span>Nömak, A. G. Cook</span></h3>*/}
+              <h3>Album <span>{this.props.currentTrack.album}</span></h3>
             </div>
           </div>
         </header>
         <main className="track-show-main">
           <div className="track-show-column-first">
             <section className="track-show-lyrics-container">
-              {!this.state.editLyrics ? 
-                <div>
-                  <button onClick={this.editButton}>Edit Lyrics</button>
-                  <button onClick={this.handleModal}>Edit Song Facts</button>
-                </div> :
-                <div>
-                  <button onClick={this.submitLyrics}>Save</button>
-                  <button onClick={this.editButton}>Cancel</button>
-                </div>
-              }
+              { lyricsButtons }
               { !this.state.editLyrics ? 
                 <p>{spacedLyrics}</p> : 
                 editArea 

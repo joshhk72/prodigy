@@ -4,7 +4,6 @@ class TrackForm
   attr_accessor :image_url, :youtube_url, :artist, :name, :lyrics, :featured, :producers, :writers, :date, :album, :track
 
   validates :artist, :name, :lyrics, presence: true
-  validate :unique_track_for_artist
 
   def save
     return false if invalid? # in case I add custom errors for tracks/albums/artists
@@ -13,6 +12,11 @@ class TrackForm
       @track = new_track
 
       artist = find_or_create_artist
+
+      if artist.tracks.to_a.any? { |track| track.name == self.name }
+        errors.add(:track, "already exists")
+      end
+
       @track.artist_id = artist.id
 
       # the album is an optional field, so it is either found or created if included in the form (albums can have same names, so artist_id is also given).
@@ -38,18 +42,23 @@ class TrackForm
     return false if invalid? # in case I add custom errors for tracks/albums/artists
 
     ActiveRecord::Base.transaction do # save everything in the form, or nothing
+      @track = track
 
       artist = find_or_create_artist
-      track.artist_id = artist.id
+      @track.artist_id = artist.id
 
-      if self.album
+      if self.album != ""
         album = find_or_create_album(artist)
         @track.album_id = album.id
+      else
+        @track.album_id = nil
       end
 
-      @track.date = self.date if self.date
-      @track.image_url = self.image_url if self.image_url
-      @track.youtube_url = self.youtube_url if self.youtube_url
+
+      @track.date = self.date != "" ? self.date : nil
+      @track.image_url = self.image_url != "" ? self.image_url : nil
+      @track.youtube_url = self.youtube_url != "" ? self.youtube_url : nil
+
       @track.save!
 
       # have to erase & create some associations here!
@@ -79,13 +88,4 @@ class TrackForm
     end
     artist
   end
-
-  def unique_track_for_artist
-    if artist = Artist.find_by(name: self.artist)
-      if artist.tracks.to_a.any? { |track| track.name == self.name }
-        errors.add(:track, "already exists")
-      end
-    end
-  end
-  
 end

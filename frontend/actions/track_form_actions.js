@@ -20,3 +20,10 @@ export const submitTrackForm = trackForm => dispatch => {
     errors => dispatch(receiveTrackFormErrors(errors))
   );
 };
+
+export const updateTrackForm = trackForm => dispatch => {
+  return TrackFormAPIUtil.updateTrackForm(trackForm).then(
+    track => dispatch(receiveTrack(track)),
+    errors => dispatch(receiveTrackFormErrors(errors))
+  );
+}

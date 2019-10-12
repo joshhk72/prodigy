@@ -5,7 +5,8 @@ import { fetchTrack, clearTracks, updateTrack } from '../../actions/track_action
 import { clearArtists } from '../../actions/artist_actions';
 
 const mapStateToProps = (state, ownProps) => ({
-  currentTrack: state.entities.tracks[ownProps.match.params.trackId]
+  currentTrack: state.entities.tracks[ownProps.match.params.trackId],
+  loggedIn: Boolean(state.session.id)
 });
 
 const mapDispatchToProps = dispatch => ({

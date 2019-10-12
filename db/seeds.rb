@@ -277,7 +277,7 @@ Before you know it your life has run away
 )
 
 tracks = Track.create([
-  { name: "Cute Thing", artist_id: artists[0].id, lyrics: lyrics_1, album_id: albums[0].id, date: albums[0].date, image_url: "https://e-cdns-images.dzcdn.net/images/cover/19af256a3e05dd7b640dd1140bd97b6e/500x500-000000-80-0-0.jpg" },
-  { name: "Emily", artist_id: artists[1].id, lyrics: lyrics_2, album_id: albums[2].id, date: albums[2].date, image_url: "https://nofoodjustwax.files.wordpress.com/2018/10/img_9126.jpg?w=560" },
-  { name: "Darkness Descends", artist_id: artists[2].id, lyrics: lyrics_3, album_id: albums[4].id, date: albums[4].date, image_url: "http://simg.mysound.jp/img/disc/657/120_EMI5099962781657.jpg" }
+  { name: "Cute Thing", youtube_url: "https://www.youtube.com/watch?v=fj8H_ZXLgio", artist_id: artists[0].id, lyrics: lyrics_1, album_id: albums[0].id, date: albums[0].date, image_url: "https://e-cdns-images.dzcdn.net/images/cover/19af256a3e05dd7b640dd1140bd97b6e/500x500-000000-80-0-0.jpg" },
+  { name: "Emily", youtube_url: "https://www.youtube.com/watch?v=UGoNCvoZuYA", artist_id: artists[1].id, lyrics: lyrics_2, album_id: albums[2].id, date: albums[2].date, image_url: "https://nofoodjustwax.files.wordpress.com/2018/10/img_9126.jpg?w=560" },
+  { name: "Darkness Descends", youtube_url: "https://www.youtube.com/watch?v=rKQzY3HYFhE", artist_id: artists[2].id, lyrics: lyrics_3, album_id: albums[4].id, date: albums[4].date, image_url: "http://simg.mysound.jp/img/disc/657/120_EMI5099962781657.jpg" }
 ])
