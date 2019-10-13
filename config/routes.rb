@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :albums, only:[:create, :show]
     resources :artists, only:[:create, :show, :index]
     resources :track_forms, only:[:create, :update]
+    resources :annotations
   end
 end

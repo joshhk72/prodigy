@@ -1,0 +1,1 @@
+json.extract! @annotation, :id, :track_id, :start_idx, :end_idx, :body
