@@ -83,6 +83,10 @@ class TrackShow extends React.Component {
     this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
   };
 
+  renderAnnotations() {
+    
+  }
+
   submitLyrics() {
     const track = { id: this.props.currentTrack.id, lyrics: this.state.lyrics }
 
@@ -99,7 +103,7 @@ class TrackShow extends React.Component {
   render() {
     if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { return <div>Loading...</div>};
     
-    const spacedLyrics = this.props.currentTrack.lyrics.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i}/>), []);
+    const spacedLyrics = AnnotateUtil.lineBreakLyrics(this.props.currentTrack.lyrics);
     const editArea = (< textarea onChange={this.update("lyrics")} style={{height: spacedLyrics.length * 17.3}} id = "edit-textarea" rows = "10" value = { this.state.lyrics } />);
     const lyricsButtons = this.props.loggedIn ? 
       (!this.state.editLyrics ?

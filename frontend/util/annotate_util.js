@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const onlyLyricsSelected = () => {
   const highStart = window.getSelection().baseNode
   const highEnd = window.getSelection().extentNode
@@ -8,3 +10,8 @@ export const onlyLyricsSelected = () => {
   };
   return false;
 }
+
+export const lineBreakLyrics = (lyricsStr) => {
+  const lyricsArr = lyricsStr.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i} />), []);
+  return lyricsArr
+};
