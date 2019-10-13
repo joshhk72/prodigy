@@ -1,4 +1,4 @@
-import * as ArtistUtil from '../util/artist_util';
+import * as ArtistUtil from '../util/artist_api_util';
 
 export const RECEIVE_ARTIST = "RECEIVE_ARTIST";
 export const RECEIVE_ARTISTS = "RECEIVE_ARTISTS";

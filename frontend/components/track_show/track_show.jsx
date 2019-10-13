@@ -1,4 +1,5 @@
 import React from 'react';
+import * as AnnotateUtil from '../../util/annotate_util';
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -11,6 +12,7 @@ class TrackShow extends React.Component {
     this.editButton = this.editButton.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.submitLyrics = this.submitLyrics.bind(this);
+    this.handleHighlight = this.handleHighlight.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +51,26 @@ class TrackShow extends React.Component {
     this.setState({ editLyrics });
   }
 
+  handleHighlight(e) {
+    const highStart = window.getSelection().baseNode
+    const highEnd = window.getSelection().extentNode
+    const lyricsContainer = document.getElementById("lyrics-container");
+    if (AnnotateUtil.onlyLyricsSelected()) {
+      const i = Array.prototype.indexOf.call(lyricsContainer.childNodes, highStart);
+      const j = Array.prototype.indexOf.call(lyricsContainer.childNodes, highEnd);
+      console.log("Only lyrics are selected");
+      // console.log(highStart);
+      // console.log(i);
+      // console.log(highEnd);
+      // console.log(j);
+    };
+
+    // console.log(`String: ${selection.toString()}`);
+    // console.log(`Type: ${selection.type}`);
+    // console.log(`Start Offset: ${selection.getRangeAt(0).startOffset}`)
+    // console.log(`Start Offset: ${selection.getRangeAt(0).endOffset}`)
+  }
+
   handleModal() {
     const modal = document.getElementsByClassName("modal-hide");
 
@@ -84,6 +106,7 @@ class TrackShow extends React.Component {
         <div>
           <button onClick={this.editButton}>Edit Lyrics</button>
           <button onClick={this.handleModal}>Edit Song Facts</button>
+          <button onClick={this.handleHighlight}>Test Button</button>
         </div> :
         <div>
           <button onClick={this.submitLyrics}>Save</button>
@@ -115,7 +138,7 @@ class TrackShow extends React.Component {
             <section className="track-show-lyrics-container">
               { lyricsButtons }
               { !this.state.editLyrics ? 
-                <p>{spacedLyrics}</p> : 
+                <p id="lyrics-container">{spacedLyrics}</p> : 
                 editArea 
               }
             </section>
