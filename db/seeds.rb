@@ -13,6 +13,7 @@ Track.destroy_all
 TrackFeature.destroy_all
 TrackProducer.destroy_all
 TrackWriter.destroy_all
+Annotation.destroy_all
 
 # ActiveRecord::Base.connection.reset_pk_sequence!('users') # this resets the id
 ActiveRecord::Base.connection.tables.each do |t|
@@ -291,3 +292,8 @@ tracks[0].writers = [will]
 tracks[0].featured_artists.create(name: "Testing1")
 tracks[0].featured_artists.create(name: "Testing2")
 tracks[0].featured_artists.create(name: "Testing3")
+
+annotations = Annotation.create([
+  { track_id: tracks[0].id, start_idx: 10, end_idx: 46, body: "Will got too romantic, so he apologizes." },
+  { track_id: tracks[0].id, start_idx: 48, end_idx: 73, body: "He will light your cigarette." },
+])
