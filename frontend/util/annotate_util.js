@@ -51,9 +51,11 @@ export const getIndices = (container) => {
       j2 = 0
     } else {
       i2 = selection.extentOffset - 2;
-      console.dir(container);
-      console.dir(container.childNodes[i2]);
-      j2 = container.childNodes[i2].data.length;
+      if (container.childNodes[i2].nodeValue !== null) {
+        j2 = container.childNodes[i2].nodeValue.length;
+      } else {
+        j2 = 0;
+      }
     }
   }
   return { i1, i2, j1, j2 };
