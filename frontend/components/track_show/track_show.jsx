@@ -1,5 +1,8 @@
 import React from 'react';
 import * as AnnotateUtil from '../../util/annotate_util';
+import InfoColumnContainer from './info_column_container';
+import { Route, Switch } from 'react-router-dom';
+import AnnotationShow from './annotation_show';
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -8,17 +11,20 @@ function handleImageError() {
 class TrackShow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { editLyrics: false, lyrics: "" }
+    this.state = { annotationPrompt: false, editLyrics: false, lyrics: "", startIdx: undefined, endIdx: undefined }
     this.editButton = this.editButton.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.submitLyrics = this.submitLyrics.bind(this);
     this.handleHighlight = this.handleHighlight.bind(this);
+    this.handleTest = this.handleTest.bind(this);
+    this.closeAnnotationPrompt = this.closeAnnotationPrompt.bind(this);
   }
 
   componentDidMount() {
     this.props.clearTracks();
     this.props.clearArtists();
     this.props.clearAlbums();
+    document.addEventListener("mousedown", this.closeAnnotationPrompt);
     this.props.fetchTrack(this.props.match.params.trackId)
       .then(res => {
         this.setState({ lyrics: res.track.lyrics });
@@ -47,38 +53,54 @@ class TrackShow extends React.Component {
     this.props.clearTracks();
     this.props.clearArtists();
     this.props.clearAlbums();
+    document.removeEventListener("mousedown", this.closeAnnotationPrompt);
   }
 
   editButton() {
+    this.setState({ annotationPrompt: false });
     const editLyrics = !this.state.editLyrics;
     this.setState({ editLyrics });
   }
 
+  showAnnotationPrompt(startIdx, endIdx) {
+    if (startIdx === endIdx) { 
+      this.setState({ annotationPrompt: false }) 
+    } else {
+      this.setState( { annotationPrompt: true } )
+    }
+  }
+
+  closeAnnotationPrompt(e) {
+    if (e) {
+      if (e.target.id === "annotation-prompt-button") {
+        return
+      } else {
+        this.setState({ annotationPrompt: false });
+      }
+    } else {
+      this.setState({ annotationPrompt: false });
+    }
+  }
+
+  handleTest() {
+    const selection = window.getSelection();
+    const baseNode = window.getSelection().baseNode;
+    console.log(this.state);
+  }
+
   handleHighlight() {
-    
     const annotationNodes = document.getElementsByClassName('annotated-lyrics');
-    if (AnnotateUtil.annotationsNotSelected(annotationNodes)) {
+    if (AnnotateUtil.annotationsNotSelected(annotationNodes) && this.props.loggedIn) {
 
       const lyricsContainer = document.getElementById("lyrics-container");
-      const indices = AnnotateUtil.getIndices(lyricsContainer);
-      const { i1, i2, j1, j2 } = indices;
+      const { i1, i2, j1, j2 } = AnnotateUtil.getIndices(lyricsContainer);
       const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
-      const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, indices);
+      const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, { i1, i2, j1, j2 });
       console.log(`start: ${startIdx}, end: ${endIdx}`);
-
-      const range = document.createRange();
-      const newParent = document.createElement('span');
-      if (i1 < i2) {
-        range.setStart(lyricsContainer.childNodes[i1], j1);
-        range.setEnd(lyricsContainer.childNodes[i2], j2);
-      } else if (i1 > i2) {
-        range.setStart(lyricsContainer.childNodes[i2], j2);    
-        range.setEnd(lyricsContainer.childNodes[i1], j1);
-      } else {
-        range.setStart(lyricsContainer.childNodes[i1], Math.min(j1, j2));
-        range.setEnd(lyricsContainer.childNodes[i2], Math.max(j1, j2));
-      }
-      range.surroundContents(newParent);
+      //const range = AnnotateUtil.rearrangeRange({ i1, i2, j1, j2 });
+      this.setState({ startIdx, endIdx });
+      this.showAnnotationPrompt(startIdx, endIdx);
+      //this.props.createTempAnnotation({id: "temp-5", start_idx: startIdx, end_idx: endIdx, body: "", track_id: this.props.currentTrack.id })
     };
   }
 
@@ -117,8 +139,8 @@ class TrackShow extends React.Component {
     // we want annotations in REVERSE ORDER!
 
     let lyricsHTML
-    if (currentTrack.annotations !== undefined) {
-      const annotations = Object.values(currentTrack.annotations).sort((a, b) => b.start_idx - a.start_idx);
+    if (this.props.annotations !== undefined) {
+      const annotations = Object.values(this.props.annotations).sort((a, b) => b.start_idx - a.start_idx);
       const annotatedLyrics = AnnotateUtil.annotateLyrics(currentTrack.lyrics, annotations);
       lyricsHTML = AnnotateUtil.lineBreakLyrics(annotatedLyrics);
     } else {
@@ -133,7 +155,7 @@ class TrackShow extends React.Component {
         <div>
           <button onClick={this.editButton}>Edit Lyrics</button>
           <button onClick={this.handleModal}>Edit Song Facts</button>
-          <button onClick={this.handleHighlight}>Test Button</button>
+          <button onClick={this.handleTest}>Test Button</button>
         </div> :
         <div>
           <button onClick={this.submitLyrics}>Save</button>
@@ -144,7 +166,7 @@ class TrackShow extends React.Component {
     const { features, producers, writers, album, name, artist, image_url } = this.props.currentTrack
 
     return (
-      <section className="track-show-page" onMouseUp={this.handleHighlight}>
+      <section className="track-show-page">
         <header className="track-show-header">
           <div className="track-show-image-container">
             <img id="track-show-image" onError={handleImageError.bind(this)} src={ image_url } />
@@ -161,7 +183,7 @@ class TrackShow extends React.Component {
           </div>
         </header>
         <main className="track-show-main">
-          <div className="track-show-column-first" >
+          <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
             <section className="track-show-lyrics-container">
               { lyricsButtons }
               { !this.state.editLyrics ? 
@@ -170,7 +192,20 @@ class TrackShow extends React.Component {
               }
             </section>
           </div>
-          <div className="track-show-column-second"></div>
+          <div className="track-show-column-second" id="second-col">
+            <Switch>
+              <Route 
+                exact path="/tracks/:trackId" 
+                render={ props => <InfoColumnContainer {...props} 
+                  closeAnnotationPrompt={this.closeAnnotationPrompt}
+                  startIdx={this.state.startIdx}
+                  endIdx={this.state.endIdx}
+                  currentTrack={this.props.currentTrack}
+                  annotationPrompt={this.state.annotationPrompt}/> 
+                } />
+              <Route path="/tracks/:trackId/:annotationId" component={AnnotationShow} />
+            </Switch>
+          </div>
         </main>
         <footer className="track-show-footer"></footer>
       </section>

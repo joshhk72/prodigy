@@ -13,6 +13,18 @@
 
 class Annotation < ApplicationRecord
   validates :track_id, :start_idx, :end_idx, :body, presence: true
+  before_validation :check_for_spaces
 
   belongs_to :track
+
+  def check_for_spaces
+    track = Track.find(self.track_id)
+    lyrics = track.lyrics
+    while lyrics[self.start_idx] ~= /\s/
+      self.start_idx += 1;
+    end
+    while lyrics[self.end_idx] ~= /\s/
+      self.end_idx -= 1;
+    end
+  end
 end

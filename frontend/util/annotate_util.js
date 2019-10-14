@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const annotationsNotSelected = (annotationNodes) => {
   return !Object.values(annotationNodes)
     .some(node => window.getSelection().containsNode(node, true))
@@ -69,3 +67,19 @@ export const getStartAndEndIndices = (mappedNodeList, indices) => {
   const twoIndex = prevTwo + j2;
   return { startIdx: Math.min(oneIndex, twoIndex) , endIdx: Math.max(oneIndex, twoIndex) };
 };
+
+export const rearrangeRange = ({ i1, i2, j1, j2 }) => {
+  const range = document.createRange();
+  const lyricsContainer = document.getElementById("lyrics-container");
+  if (i1 < i2) {
+    range.setStart(lyricsContainer.childNodes[i1], j1);
+    range.setEnd(lyricsContainer.childNodes[i2], j2);
+  } else if (i1 > i2) {
+    range.setStart(lyricsContainer.childNodes[i2], j2);
+    range.setEnd(lyricsContainer.childNodes[i1], j1);
+  } else {
+    range.setStart(lyricsContainer.childNodes[i1], Math.min(j1, j2));
+    range.setEnd(lyricsContainer.childNodes[i2], Math.max(j1, j2));
+  }
+  return range;
+}

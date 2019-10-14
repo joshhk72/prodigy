@@ -10,12 +10,28 @@ class Api::AnnotationsController < ApplicationController
   end
 
   def create
+    track = Track.find(annotation_params[:track_id])
+    @annotation = track.annotations.new(annotation_params)
+    @annotation.id = nil
+
+    if @annotation.save
+      render :show
+    else
+      errors = @annotation.errors.full_messages
+      render json: errors, status: 422
+    end
   end
 
   def update
   end
 
   def destroy
+  end
+
+  private
+
+  def annotation_params
+    params.require(:annotation).permit(:id, :body, :end_idx, :start_idx, :track_id)
   end
 
 end
