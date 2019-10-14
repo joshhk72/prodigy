@@ -32,10 +32,13 @@ class TrackShow extends React.Component {
     if (this.props.match.params.trackId !== prevProps.match.params.trackId) {
       this.props.clearTracks();
       this.props.clearArtists();
-
+      this.props.clearAlbums();
       this.props.fetchTrack(this.props.match.params.trackId)
         .then(res => {
-          this.setState({ editLyrics: false, lyrics: res.track.lyrics });
+          this.setState({ lyrics: res.track.lyrics });
+          if (res.track.album_id) {
+            this.props.fetchAlbum(res.track.album_id);
+          };
         });
     }
   }
@@ -83,10 +86,6 @@ class TrackShow extends React.Component {
     this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
   };
 
-  renderAnnotations() {
-    
-  }
-
   submitLyrics() {
     const track = { id: this.props.currentTrack.id, lyrics: this.state.lyrics }
 
@@ -102,10 +101,26 @@ class TrackShow extends React.Component {
 
   render() {
     if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { return <div>Loading...</div>};
+
+    const { currentTrack, loggedIn } = this.props;
+
+    const lyricsLines = currentTrack.lyrics.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i} />), []).length - 1;
+    // we have to order the annotations since they are ordered by id, not start_idx right now
+    // we want annotations in REVERSE ORDER!
+
+    let lyricsHTML
+    if (currentTrack.annotations !== undefined) {
+      const annotations = Object.values(currentTrack.annotations).sort((a, b) => b.start_idx - a.start_idx);
+      const annotatedLyrics = AnnotateUtil.annotateLyrics(currentTrack.lyrics, annotations);
+      lyricsHTML = AnnotateUtil.lineBreakLyrics(annotatedLyrics);
+    } else {
+      lyricsHTML = AnnotateUtil.lineBreakLyrics(currentTrack.lyrics);
+    }
     
-    const spacedLyrics = AnnotateUtil.lineBreakLyrics(this.props.currentTrack.lyrics);
-    const editArea = (< textarea onChange={this.update("lyrics")} style={{height: spacedLyrics.length * 17.3}} id = "edit-textarea" rows = "10" value = { this.state.lyrics } />);
-    const lyricsButtons = this.props.loggedIn ? 
+    const lyricsContainer = (<p dangerouslySetInnerHTML={{__html: lyricsHTML}} id='lyrics-container'></p>)
+
+    const editArea = (< textarea onChange={this.update("lyrics")} style={{height: lyricsLines * 17}} id = "edit-textarea" rows = "10" value = { this.state.lyrics } />);
+    const lyricsButtons = loggedIn ? 
       (!this.state.editLyrics ?
         <div>
           <button onClick={this.editButton}>Edit Lyrics</button>
@@ -142,7 +157,7 @@ class TrackShow extends React.Component {
             <section className="track-show-lyrics-container">
               { lyricsButtons }
               { !this.state.editLyrics ? 
-                <p id="lyrics-container">{spacedLyrics}</p> : 
+                lyricsContainer : 
                 editArea 
               }
             </section>

@@ -11,7 +11,16 @@ export const onlyLyricsSelected = () => {
   return false;
 }
 
-export const lineBreakLyrics = (lyricsStr) => {
-  const lyricsArr = lyricsStr.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i} />), []);
-  return lyricsArr
+export const annotateLyrics = (lyrics, annotations) => {
+  let annotated = lyrics.split("");
+  annotations.forEach(annotation => {
+    annotated.splice(annotation.end_idx, 0, "</span>")
+    annotated.splice(annotation.start_idx, 0, `<span class='annotated-lyrics' id=${annotation.id}>`)
+  })
+
+  return annotated.join("");
+};
+
+export const lineBreakLyrics = lyricsStr => {
+  return lyricsStr.split(/\r?\n/).join('<br>');
 };
