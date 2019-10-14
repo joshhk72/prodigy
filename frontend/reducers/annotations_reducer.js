@@ -1,5 +1,5 @@
 import { RECEIVE_TRACK } from '../actions/track_actions';
-import { RECEIVE_ANNOTATION, REMOVE_ANNOTATION } from '../actions/annotation_actions';
+import { RECEIVE_ANNOTATION, REMOVE_ANNOTATION, CLEAR_ANNOTATIONS } from '../actions/annotation_actions';
 import { merge } from 'lodash';
 
 const annotationsReducer = (state = {}, action) => {
@@ -13,6 +13,8 @@ const annotationsReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_ANNOTATION:
       return merge({}, state, { [action.tempAnnotation.id]: action.tempAnnotation });
+    case CLEAR_ANNOTATIONS:
+      return {};
     default:
       return state;
   }

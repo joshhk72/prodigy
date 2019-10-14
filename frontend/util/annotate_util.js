@@ -33,6 +33,10 @@ export const getIndices = (container) => {
   const selection = window.getSelection();
   const { baseNode, extentNode } = window.getSelection();
   let i1, i2, j1, j2;
+
+  if (!container) { return { i1: 0, i2: 0, j1: 0, j2: 0 } }
+  if (!baseNode) { return { i1: 0, i2: 0, j1: 0, j2: 0 } }
+  if (!extentNode) { return { i1: 0, i2: 0, j1: 0, j2: 0 } }
   
   i1 = Array.prototype.indexOf.call(container.childNodes, selection.baseNode);
   i2 = Array.prototype.indexOf.call(container.childNodes, selection.extentNode);
@@ -67,19 +71,3 @@ export const getStartAndEndIndices = (mappedNodeList, indices) => {
   const twoIndex = prevTwo + j2;
   return { startIdx: Math.min(oneIndex, twoIndex) , endIdx: Math.max(oneIndex, twoIndex) };
 };
-
-export const rearrangeRange = ({ i1, i2, j1, j2 }) => {
-  const range = document.createRange();
-  const lyricsContainer = document.getElementById("lyrics-container");
-  if (i1 < i2) {
-    range.setStart(lyricsContainer.childNodes[i1], j1);
-    range.setEnd(lyricsContainer.childNodes[i2], j2);
-  } else if (i1 > i2) {
-    range.setStart(lyricsContainer.childNodes[i2], j2);
-    range.setEnd(lyricsContainer.childNodes[i1], j1);
-  } else {
-    range.setStart(lyricsContainer.childNodes[i1], Math.min(j1, j2));
-    range.setEnd(lyricsContainer.childNodes[i2], Math.max(j1, j2));
-  }
-  return range;
-}

@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 import TrackShow from './track_show';
 import { fetchAlbum, clearAlbums } from '../../actions/album_actions';
 import { fetchTrack, clearTracks, updateTrack } from '../../actions/track_actions';
 import { clearArtists } from '../../actions/artist_actions';
-import { receiveAnnotation } from '../../actions/annotation_actions';
+import { receiveAnnotation, clearAnnotations } from '../../actions/annotation_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   currentTrack: state.entities.tracks[ownProps.match.params.trackId],
@@ -17,11 +18,12 @@ const mapDispatchToProps = dispatch => ({
   clearTracks: () => dispatch(clearTracks()),
   clearArtists: () => dispatch(clearArtists()),
   clearAlbums: () => dispatch(clearAlbums()),
+  clearAnnotations: () => dispatch(clearAnnotations()),
   updateTrack: track => dispatch(updateTrack(track)),
   createTempAnnotation: annotation => dispatch(receiveAnnotation(annotation))
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(TrackShow);
+)(TrackShow));

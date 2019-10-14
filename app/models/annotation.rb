@@ -20,11 +20,14 @@ class Annotation < ApplicationRecord
   def check_for_spaces
     track = Track.find(self.track_id)
     lyrics = track.lyrics
-    while lyrics[self.start_idx] ~= /\s/
-      self.start_idx += 1;
+
+    while lyrics[self.start_idx].match(/\s/)
+      self.start_idx += 1
     end
-    while lyrics[self.end_idx] ~= /\s/
+
+    while lyrics[self.end_idx - 1].match(/\s/)
       self.end_idx -= 1;
     end
   end
+
 end

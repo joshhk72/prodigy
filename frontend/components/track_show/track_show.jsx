@@ -17,13 +17,12 @@ class TrackShow extends React.Component {
     this.submitLyrics = this.submitLyrics.bind(this);
     this.handleHighlight = this.handleHighlight.bind(this);
     this.handleTest = this.handleTest.bind(this);
+    this.handleSpanClick = this.handleSpanClick.bind(this);
     this.closeAnnotationPrompt = this.closeAnnotationPrompt.bind(this);
   }
 
   componentDidMount() {
-    this.props.clearTracks();
-    this.props.clearArtists();
-    this.props.clearAlbums();
+    this.clearInfo()
     document.addEventListener("mousedown", this.closeAnnotationPrompt);
     this.props.fetchTrack(this.props.match.params.trackId)
       .then(res => {
@@ -32,13 +31,12 @@ class TrackShow extends React.Component {
           this.props.fetchAlbum(res.track.album_id);
         };
       });
+    document.addEventListener("click", this.handleSpanClick);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.trackId !== prevProps.match.params.trackId) {
-      this.props.clearTracks();
-      this.props.clearArtists();
-      this.props.clearAlbums();
+      this.clearInfo()
       this.props.fetchTrack(this.props.match.params.trackId)
         .then(res => {
           this.setState({ lyrics: res.track.lyrics });
@@ -50,10 +48,16 @@ class TrackShow extends React.Component {
   }
 
   componentWillUnmount() {
+    this.clearInfo()
+    document.removeEventListener("mousedown", this.closeAnnotationPrompt);
+    document.removeEventListener("click", this.handleSpanClick);
+  }
+
+  clearInfo() {
     this.props.clearTracks();
     this.props.clearArtists();
     this.props.clearAlbums();
-    document.removeEventListener("mousedown", this.closeAnnotationPrompt);
+    this.props.clearAnnotations();
   }
 
   editButton() {
@@ -85,10 +89,23 @@ class TrackShow extends React.Component {
   handleTest() {
     const selection = window.getSelection();
     const baseNode = window.getSelection().baseNode;
-    console.log(this.state);
+  }
+
+  handleSpanClick(e) {
+    if (e.target.className.match(/annotation-submit/)) { return }
+    if (e.target.localName === "button") { return };
+    
+    if (e.target.className === "annotated-lyrics") { 
+      this.props.history.push(`/tracks/${this.props.currentTrack.id}/${e.target.id}`);
+    } else {
+      this.props.history.push(`/tracks/${this.props.currentTrack.id}`);
+    }
   }
 
   handleHighlight() {
+    const selection = window.getSelection();
+    if (!selection.extentNode || !selection.baseNode) { return };
+    if (selection.extentNode.nodeName !== "#text" || selection.baseNode.nodeName !== "#text") { return };
     const annotationNodes = document.getElementsByClassName('annotated-lyrics');
     if (AnnotateUtil.annotationsNotSelected(annotationNodes) && this.props.loggedIn) {
 
@@ -96,11 +113,8 @@ class TrackShow extends React.Component {
       const { i1, i2, j1, j2 } = AnnotateUtil.getIndices(lyricsContainer);
       const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
       const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, { i1, i2, j1, j2 });
-      console.log(`start: ${startIdx}, end: ${endIdx}`);
-      //const range = AnnotateUtil.rearrangeRange({ i1, i2, j1, j2 });
       this.setState({ startIdx, endIdx });
       this.showAnnotationPrompt(startIdx, endIdx);
-      //this.props.createTempAnnotation({id: "temp-5", start_idx: startIdx, end_idx: endIdx, body: "", track_id: this.props.currentTrack.id })
     };
   }
 
@@ -135,6 +149,7 @@ class TrackShow extends React.Component {
     const { currentTrack, loggedIn } = this.props;
 
     const lyricsLines = currentTrack.lyrics.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i} />), []).length - 1;
+    
     // we have to order the annotations since they are ordered by id, not start_idx right now
     // we want annotations in REVERSE ORDER!
 
@@ -193,18 +208,12 @@ class TrackShow extends React.Component {
             </section>
           </div>
           <div className="track-show-column-second" id="second-col">
-            <Switch>
-              <Route 
-                exact path="/tracks/:trackId" 
-                render={ props => <InfoColumnContainer {...props} 
-                  closeAnnotationPrompt={this.closeAnnotationPrompt}
-                  startIdx={this.state.startIdx}
-                  endIdx={this.state.endIdx}
-                  currentTrack={this.props.currentTrack}
-                  annotationPrompt={this.state.annotationPrompt}/> 
-                } />
-              <Route path="/tracks/:trackId/:annotationId" component={AnnotationShow} />
-            </Switch>
+            <InfoColumnContainer
+              closeAnnotationPrompt={this.closeAnnotationPrompt}
+              startIdx={this.state.startIdx}
+              endIdx={this.state.endIdx}
+              currentTrack={this.props.currentTrack}
+              annotationPrompt={this.state.annotationPrompt}/> 
           </div>
         </main>
         <footer className="track-show-footer"></footer>

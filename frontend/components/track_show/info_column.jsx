@@ -1,6 +1,8 @@
 import React from 'react';
 import * as AnnotateUtil from '../../util/annotate_util';
+import AnnotationShow from './annotation_show';
 import AnnotationForm from './annotation_form';
+import { Route } from 'react-router-dom';
 
 class InfoColumn extends React.Component {
   constructor(props) {
@@ -12,7 +14,7 @@ class InfoColumn extends React.Component {
 
   destroyForm(id) {
     this.setState(prevState => {
-      const forms = prevState.forms.filter(form => form.props.annotation.id !== id);
+      const forms = prevState.forms.filter(form => form.props.path.split('/')[3] !== id);
       return {
         forms
       }
@@ -25,23 +27,30 @@ class InfoColumn extends React.Component {
     // Create form
     const temp = { id: `temp-${this.state.formNo}`, start_idx: this.props.startIdx, end_idx: this.props.endIdx, body: "", track_id: this.props.currentTrack.id };
     this.props.createTempAnnotation(temp);
-    const form = <AnnotationForm 
-      key={this.state.formNo} 
-      removeAnnotation={this.props.removeAnnotation}
-      destroyForm={this.destroyForm}
-      annotation={temp}/>
+
+    const routedForm = <Route
+      path={`/tracks/:trackId/${temp.id}`}
+      render={props => <AnnotationForm {...props}
+        key={this.state.formNo}
+        removeAnnotation={this.props.removeAnnotation}
+        createAnnotation={this.props.createAnnotation}
+        destroyForm={this.destroyForm}
+        annotation={temp} />
+      } />
 
     this.setState(prevState => ({
       formNo: prevState.formNo + 1,
-      forms: prevState.forms.concat([form])
+      forms: prevState.forms.concat([routedForm])
     }));
+    this.props.history.push(`/tracks/${this.props.currentTrack.id}/${temp.id}`);
   }
 
   render() {
     return (
       <div id="info-column">
         { this.props.annotationPrompt && <button id="annotation-prompt-button" onClick={ this.createAnnotationForm }>Start the Genius Annotation</button> }
-        { !this.props.annotationPropmpt && this.state.forms }  
+        { !this.props.annotationPrompt && this.state.forms }
+        { !this.props.annotationPrompt && <Route path="/tracks/:trackId/:annotationId" component={AnnotationShow}/>}
       </div>
     );
   }
