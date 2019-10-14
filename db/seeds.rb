@@ -295,5 +295,5 @@ tracks[0].featured_artists.create(name: "Testing3")
 
 annotations = Annotation.create([
   { track_id: tracks[0].id, start_idx: 10, end_idx: 47, body: "Will got too romantic, so he apologizes." },
-  { track_id: tracks[0].id, start_idx: 48, end_idx: 74, body: "He will light your cigarette." },
+  { track_id: tracks[0].id, start_idx: 48, end_idx: 74, body: "He will light your cigarette." }
 ])

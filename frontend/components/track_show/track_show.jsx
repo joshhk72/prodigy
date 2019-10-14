@@ -54,24 +54,25 @@ class TrackShow extends React.Component {
     this.setState({ editLyrics });
   }
 
-  handleHighlight(e) {
-    const highStart = window.getSelection().baseNode
-    const highEnd = window.getSelection().extentNode
-    const lyricsContainer = document.getElementById("lyrics-container");
-    if (AnnotateUtil.onlyLyricsSelected()) {
-      const i = Array.prototype.indexOf.call(lyricsContainer.childNodes, highStart);
-      const j = Array.prototype.indexOf.call(lyricsContainer.childNodes, highEnd);
-      console.log("Only lyrics are selected");
-      // console.log(highStart);
-      // console.log(i);
-      // console.log(highEnd);
-      // console.log(j);
-    };
+  handleHighlight() {
+    
+    const annotationNodes = document.getElementsByClassName('annotated-lyrics');
+    if (AnnotateUtil.annotationsNotSelected(annotationNodes)) {
+      
+      // const range = window.getSelection().getRangeAt(0);
+      // const rangeNodes = range.cloneContents();
+      // if (rangeNodes.firstChild && rangeNodes.firstChild.nodeName === "BR") {
+      //   const start = range.endOffset;
+      //   const startContainer = range.startContainer;
+      // }
 
-    // console.log(`String: ${selection.toString()}`);
-    // console.log(`Type: ${selection.type}`);
-    // console.log(`Start Offset: ${selection.getRangeAt(0).startOffset}`)
-    // console.log(`Start Offset: ${selection.getRangeAt(0).endOffset}`)
+      const lyricsContainer = document.getElementById("lyrics-container");
+      const indices = AnnotateUtil.getIndices(lyricsContainer);
+      const { i1, i2, j1, j2 } = indices;
+      const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
+      const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, indices);
+      console.log(`start: ${startIdx}, end: ${endIdx}`);
+    };
   }
 
   handleModal() {
@@ -117,7 +118,7 @@ class TrackShow extends React.Component {
       lyricsHTML = AnnotateUtil.lineBreakLyrics(currentTrack.lyrics);
     }
     
-    const lyricsContainer = (<p dangerouslySetInnerHTML={{__html: lyricsHTML}} id='lyrics-container'></p>)
+    const lyricsContainer = (<p onMouseUp={ this.handleHighlight } dangerouslySetInnerHTML={{ __html: lyricsHTML }} id='lyrics-container'></p>)
 
     const editArea = (< textarea onChange={this.update("lyrics")} style={{height: lyricsLines * 17}} id = "edit-textarea" rows = "10" value = { this.state.lyrics } />);
     const lyricsButtons = loggedIn ? 
@@ -139,7 +140,7 @@ class TrackShow extends React.Component {
       <section className="track-show-page">
         <header className="track-show-header">
           <div className="track-show-image-container">
-            <img id="track-show-image" onError={this.handleImageError} src={ image_url || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"  } />
+            <img id="track-show-image" onError={handleImageError.bind(this)} src={ image_url } />
           </div>
           <div className="track-show-header-info-container">
             <h1>{ name }</h1>
@@ -153,7 +154,7 @@ class TrackShow extends React.Component {
           </div>
         </header>
         <main className="track-show-main">
-          <div className="track-show-column-first">
+          <div className="track-show-column-first" >
             <section className="track-show-lyrics-container">
               { lyricsButtons }
               { !this.state.editLyrics ? 
