@@ -28,6 +28,10 @@ class User < ApplicationRecord
     class_name: :Annotation,
     foreign_key: :author_id
   
+  has_many :comments,
+    class_name: :Comment,
+    foreign_key: :author_id
+  
   attr_reader :password
 
   def self.find_by_credentials(username, password)

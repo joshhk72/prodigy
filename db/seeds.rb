@@ -14,8 +14,9 @@ TrackFeature.destroy_all
 TrackProducer.destroy_all
 TrackWriter.destroy_all
 Annotation.destroy_all
+Comment.destroy_all
 
-# ActiveRecord::Base.connection.reset_pk_sequence!('users') # this resets the id
+# ActiveRecord::Base.connection.reset_pk_sequence!('users') # this resets the id during every new seed
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
@@ -296,4 +297,9 @@ tracks[0].featured_artists.create(name: "Testing3")
 annotations = Annotation.create([
   { track_id: tracks[0].id, start_idx: 10, end_idx: 47, body: "Will got too romantic, so he apologizes.", author_id: users[0].id },
   { track_id: tracks[0].id, start_idx: 48, end_idx: 74, body: "He will light your cigarette.", author_id: users[0].id }
+])
+
+comments = Comment.create([
+  { track_id: tracks[0].id, author_id: users[0].id, body: "This song sucks." },
+  { track_id: tracks[0].id, author_id: users[1].id, body: "This song rocks." }
 ])

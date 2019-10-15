@@ -26,6 +26,7 @@ class Track < ApplicationRecord
   has_many :track_producers
   has_many :track_writers
   has_many :annotations
+  has_many :comments
 
   has_many :featured_artists,
     through: :track_features,

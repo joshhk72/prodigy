@@ -1,6 +1,7 @@
 import React from 'react';
 import * as AnnotateUtil from '../../util/annotate_util';
 import InfoColumnContainer from './second_column/info_column_container';
+import CommentColumnContainer from './comments/column_container';
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -199,18 +200,20 @@ class TrackShow extends React.Component {
                 editArea 
               }
             </section>
+            <CommentColumnContainer currentTrack={this.props.currentTrack} />
           </div>
           <div className="track-show-column-second" id="second-col">
             <InfoColumnContainer
               closeAnnotationPrompt={this.closeAnnotationPrompt}
+              annotationPrompt={this.state.annotationPrompt}
               startIdx={this.state.startIdx}
               endIdx={this.state.endIdx}
               currentTrack={this.props.currentTrack}
-              top={this.state.top}
-              annotationPrompt={this.state.annotationPrompt}/> 
+              top={this.state.top} /> 
           </div>
         </main>
-        <footer className="track-show-footer"></footer>
+        <footer className="track-show-footer">
+        </footer>
       </section>
     )
   }

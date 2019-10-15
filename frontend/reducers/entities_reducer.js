@@ -4,11 +4,13 @@ import artistsReducer from './artists_reducer';
 import albumsReducer from './albums_reducer';
 import tracksReducer from './tracks_reducer';
 import annotationsReducer from './annotations_reducer';
+import commentsReducer from './comments_reducer';
 
 export default combineReducers({
   users: usersReducer,
   tracks: tracksReducer,
   albums: albumsReducer,
   artists: artistsReducer,
-  annotations: annotationsReducer
+  annotations: annotationsReducer,
+  comments: commentsReducer
 });

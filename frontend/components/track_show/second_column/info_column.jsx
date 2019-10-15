@@ -30,8 +30,8 @@ class InfoColumn extends React.Component {
 
     const routedForm = <Route
       path={`/tracks/:trackId/${temp.id}`}
+      key={temp.id}
       render={props => <AnnotationForm {...props}
-        key={temp.id}
         removeAnnotation={this.props.removeAnnotation}
         createAnnotation={this.props.createAnnotation}
         destroyForm={this.destroyForm}
