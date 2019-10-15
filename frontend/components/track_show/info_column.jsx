@@ -50,13 +50,14 @@ class InfoColumn extends React.Component {
     const style = { marginTop: `${this.props.top}px` };
     return (
       <div id="info-column">
-        { this.props.annotationPrompt && <div style={style} className="annotation-prompt-container"><button id="annotation-prompt-button" onClick={ this.createAnnotationForm }>Start the Genius Annotation</button></div> }
+        { this.props.annotationPrompt && <div style={style} className="annotation-prompt-container"><button id="annotation-prompt-button" onClick={ this.createAnnotationForm }>Start the Prodigy Annotation</button></div> }
         { !this.props.annotationPrompt && this.state.forms }
         { !this.props.annotationPrompt && 
           <Route path="/tracks/:trackId/:annotationId" 
             render={props => <AnnotationShow {...props}
-              annotations = {this.props.annotations}
-              deleteAnnotation = {this.props.deleteAnnotation}
+              annotations={this.props.annotations}
+              top={this.props.top}
+              deleteAnnotation={this.props.deleteAnnotation}
             />}
         /> } 
       </div>

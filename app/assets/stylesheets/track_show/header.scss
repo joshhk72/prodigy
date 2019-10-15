@@ -1,7 +1,36 @@
+@mixin dark-overlay{
+  &:after{
+    content: "";
+    width: 100%;
+    max-width: 960px;
+    height: auto;
+    position: absolute;
+    top: 0;
+	  right: auto;
+	  left: auto;
+    bottom: 0;
+    z-index: -1;
+  }
+}
+
 .track-show-header {
   background-color: blue;
   display: flex;
   justify-content: center;
+}
+
+#hero-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  @include dark-overlay;
+  z-index: 1;
+}
+
+#hero-image:after {
+  background:rgba(0, 0, 0, 0.50)
 }
 
 .track-show-image-container {
@@ -20,7 +49,7 @@
 
 .track-show-header-info-container {
   box-sizing: border-box;
-  height: 300px;
+  background: transparent;
   width: 400px;
   font-family: sans-serif;
   margin-right: 30%;

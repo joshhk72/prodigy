@@ -4,9 +4,9 @@ export const RECEIVE_ANNOTATION = "RECEIVE_ANNOTATION";
 export const REMOVE_ANNOTATION = "REMOVE_ANNOTATION";
 export const CLEAR_ANNOTATIONS = "CLEAR_ANNOTATIONS";
 
-export const receiveAnnotation = tempAnnotation => ({
+export const receiveAnnotation = annotation => ({
   type: RECEIVE_ANNOTATION,
-  tempAnnotation
+  annotation
 });
 
 export const removeAnnotation = id => ({

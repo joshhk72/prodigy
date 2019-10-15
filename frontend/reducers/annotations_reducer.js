@@ -12,7 +12,7 @@ const annotationsReducer = (state = {}, action) => {
       delete newState[action.id];
       return newState;
     case RECEIVE_ANNOTATION:
-      return merge({}, state, { [action.tempAnnotation.id]: action.tempAnnotation });
+      return merge({}, state, { [action.annotation.id]: action.annotation });
     case CLEAR_ANNOTATIONS:
       return {};
     default:

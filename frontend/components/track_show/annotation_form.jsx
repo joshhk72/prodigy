@@ -18,9 +18,10 @@ class AnnotationForm extends React.Component {
   handleSave(e) {
     e.preventDefault();
     this.props.createAnnotation(this.state)
-      .then(() => {
+      .then((res) => {
         this.props.removeAnnotation(this.state.id);
         this.props.destroyForm(this.state.id);
+        this.props.history.push(`/tracks/${this.props.match.params.trackId}/${res.annotation.id}`)
       });
   }
 
@@ -38,7 +39,7 @@ class AnnotationForm extends React.Component {
     if (span) {
       const top1 = lyricsContainer.getBoundingClientRect().top;
       const top2 = span.getBoundingClientRect().top;
-      style = { marginTop: `${Math.max(top2 - top1 + 10, 0)}px` };
+      style = { marginTop: `${Math.max(top2 - top1, 0)}px` };
     } else {
       style = { marginTop: `${this.top}px` };
     }

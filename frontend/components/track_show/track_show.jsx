@@ -14,7 +14,6 @@ class TrackShow extends React.Component {
     this.handleModal = this.handleModal.bind(this);
     this.submitLyrics = this.submitLyrics.bind(this);
     this.handleHighlight = this.handleHighlight.bind(this);
-    this.handleTest = this.handleTest.bind(this);
     this.handleSpanClick = this.handleSpanClick.bind(this);
     this.closeAnnotationPrompt = this.closeAnnotationPrompt.bind(this);
   }
@@ -84,11 +83,6 @@ class TrackShow extends React.Component {
     }
   }
 
-  handleTest() {
-    const selection = window.getSelection();
-    const baseNode = window.getSelection().baseNode;
-  }
-
   handleSpanClick(e) {
     if (e.target.className.match(/annotation-submit/)) { return }
     if (e.target.localName === "button") { return };
@@ -145,7 +139,6 @@ class TrackShow extends React.Component {
     if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { return <div>Loading...</div>};
 
     const { currentTrack, loggedIn } = this.props;
-
     const lyricsLines = currentTrack.lyrics.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i} />), []).length - 1;
     
     // we have to order the annotations since they are ordered by id, not start_idx right now
@@ -168,7 +161,6 @@ class TrackShow extends React.Component {
         <div>
           <button onClick={this.editButton}>Edit Lyrics</button>
           <button onClick={this.handleModal}>Edit Song Facts</button>
-          <button onClick={this.handleTest}>Test Button</button>
         </div> :
         <div>
           <button onClick={this.submitLyrics}>Save</button>
@@ -177,10 +169,13 @@ class TrackShow extends React.Component {
       ) : <div />
     
     const { features, producers, writers, album, name, artist, image_url } = this.props.currentTrack
+    const heroStyle = {
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image_url})`
+    };
 
     return (
-      <section className="track-show-page">
-        <header className="track-show-header">
+      <section className="track-show-page" onClick={this.handleSpanClick}>
+        <header className="track-show-header" id="hero-image" style={heroStyle}>
           <div className="track-show-image-container">
             <img id="track-show-image" onError={handleImageError.bind(this)} src={ image_url } />
           </div>
@@ -188,16 +183,16 @@ class TrackShow extends React.Component {
             <h1>{ name }</h1>
             <h2>{ artist }</h2>
             <div className="track-show-header-additional">
-              { features && <h3>Featuring <span>{features.length > 2 ? features.join(", ") : features.join(" & ") }</span></h3> }
-              { producers && <h3>Produced by <span>{producers.length > 2 ? producers.join(", ") : producers.join(" & ")}</span></h3> }
-              { writers && <h3>Written by <span>{writers.length > 2 ? writers.join(", ") : writers.join(" & ")}</span></h3> }
+              { features.length > 0 && <h3>Featuring <span>{features.length > 2 ? features.join(", ") : features.join(" & ") }</span></h3> }
+              { producers.length > 0 && <h3>Produced by <span>{producers.length > 2 ? producers.join(", ") : producers.join(" & ")}</span></h3> }
+              { writers.length > 0 && <h3>Written by <span>{writers.length > 2 ? writers.join(", ") : writers.join(" & ")}</span></h3> }
               { album && <h3>Album <span>{album}</span></h3> }
             </div>
           </div>
         </header>
         <main className="track-show-main">
           <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
-            <section id="lyrics-rect" className="track-show-lyrics-container" onClick={this.handleSpanClick}>
+            <section id="lyrics-rect" className="track-show-lyrics-container">
               { lyricsButtons }
               { !this.state.editLyrics ? 
                 lyricsContainer : 
