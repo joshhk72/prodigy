@@ -13,7 +13,7 @@ json.writers @track.writers.map(&:name)
 json.annotations do
   @track.annotations.each do |annotation|
     json.set! annotation.id do 
-      json.extract! annotation, :id, :track_id, :start_idx, :end_idx, :body
+      json.extract! annotation, :id, :track_id, :start_idx, :end_idx, :body, :author_id
     end
   end
 end

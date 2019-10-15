@@ -1,9 +1,10 @@
 import React from 'react';
+import { merge } from 'lodash';
 
 class AnnotationForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.annotation;
+    this.state = merge({}, this.props.annotation, { author_id: this.props.authorId });
     this.top = this.props.top;
     this.handleCancel = this.handleCancel.bind(this);
     this.handleSave = this.handleSave.bind(this);
@@ -39,9 +40,9 @@ class AnnotationForm extends React.Component {
     if (span) {
       const top1 = lyricsContainer.getBoundingClientRect().top;
       const top2 = span.getBoundingClientRect().top;
-      style = { marginTop: `${Math.max(top2 - top1, 0)}px` };
+      style = { marginTop: `${Math.max(top2 - top1 - 50, 0)}px` };
     } else {
-      style = { marginTop: `${this.top}px` };
+      style = { marginTop: `${this.top - 50}px` };
     }
     const placeholdText = "Don't just put the lyric in your own words-drop some knowledge!";
     return (

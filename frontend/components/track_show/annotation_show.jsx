@@ -29,12 +29,16 @@ class AnnotationShow extends React.Component {
     }
 
     if (!this.props.annotations[annotationId]) { return (<div></div>)};
+    const annotation = this.props.annotations[annotationId];
+
+    console.log(this.props.currentUserId);
+    console.log(annotation.author_id);
 
     return show ? 
       (<div className="annotation-show-container" style={style}>
         <h3>Prodigy Annotation</h3>
-        <p>{this.props.annotations[annotationId].body}</p>
-        <button className="annotation-delete" onClick={this.deleteButton}>Delete</button>
+        <p>{annotation.body}</p>
+        {this.props.currentUserId === annotation.author_id && <button className="annotation-delete" onClick={this.deleteButton}>Delete</button>}
       </div>) 
       : (<div></div>)
   }

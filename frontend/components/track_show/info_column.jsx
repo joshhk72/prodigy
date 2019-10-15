@@ -36,6 +36,7 @@ class InfoColumn extends React.Component {
         createAnnotation={this.props.createAnnotation}
         destroyForm={this.destroyForm}
         top={this.props.top}
+        authorId={this.props.currentUserId}
         annotation={temp} />
       } />
 
@@ -57,6 +58,7 @@ class InfoColumn extends React.Component {
             render={props => <AnnotationShow {...props}
               annotations={this.props.annotations}
               top={this.props.top}
+              currentUserId={this.props.currentUserId}
               deleteAnnotation={this.props.deleteAnnotation}
             />}
         /> } 

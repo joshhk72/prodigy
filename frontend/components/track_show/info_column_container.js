@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { receiveAnnotation, removeAnnotation, createAnnotation, deleteAnnotation } from '../../actions/annotation_actions';
 
 const mapStateToProps = state => ({
-  annotations: state.entities.annotations
+  annotations: state.entities.annotations,
+  currentUserId: state.session.id
 });
 
 const mapDispatchToProps = dispatch => ({
