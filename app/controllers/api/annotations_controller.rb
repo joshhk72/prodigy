@@ -31,7 +31,7 @@ class Api::AnnotationsController < ApplicationController
       @annotation.destroy
       render :show
     else
-      render json: { success: false }
+      render json: ["Annotation does not exist"]
     end
   end
 

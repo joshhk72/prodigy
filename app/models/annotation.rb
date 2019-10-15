@@ -16,6 +16,7 @@ class Annotation < ApplicationRecord
   validates :track_id, :start_idx, :end_idx, :body, presence: true
   before_validation :check_for_spaces
 
+  has_many :upvotes, as: :upvotable  
   belongs_to :track
   belongs_to :author,
     class_name: :User,

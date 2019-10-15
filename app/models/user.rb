@@ -17,11 +17,13 @@ require 'bcrypt'
 
 class User < ApplicationRecord
 
-  validates :username, :password_digest, :email, presence: true
-  validates :username, :email, uniqueness: true
+  validates :username, :email, presence: true
+  validates :password_digest, presence: { message: 'Password can\'t be blank' }
   validates :password, length: { minimum: 6, allow_nil: true }
+  validates :username, :email, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   
+  attr_reader :password
   after_initialize :ensure_session_token
 
   has_many :annotations,
@@ -32,7 +34,6 @@ class User < ApplicationRecord
     class_name: :Comment,
     foreign_key: :author_id
   
-  attr_reader :password
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
@@ -48,7 +49,8 @@ class User < ApplicationRecord
     SecureRandom.base64(16)
   end
 
-  def password=(password) 
+  def password=(password)
+    @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
 
