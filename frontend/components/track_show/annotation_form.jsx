@@ -4,12 +4,9 @@ class AnnotationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.annotation;
+    this.top = this.props.top;
     this.handleCancel = this.handleCancel.bind(this);
     this.handleSave = this.handleSave.bind(this);
-  }
-
-  componentDidMount() {
-    console.log(this.props.top);
   }
 
   handleCancel(e) {
@@ -34,9 +31,20 @@ class AnnotationForm extends React.Component {
   }
 
   render() {
+    const span = document.getElementById(this.state.id);
+    const lyricsContainer = document.getElementById("lyrics-rect");
+
+    let style;
+    if (span) {
+      const top1 = lyricsContainer.getBoundingClientRect().top;
+      const top2 = span.getBoundingClientRect().top;
+      style = { marginTop: `${Math.max(top2 - top1 + 10, 0)}px` };
+    } else {
+      style = { marginTop: `${this.top}px` };
+    }
     const placeholdText = "Don't just put the lyric in your own words-drop some knowledge!";
     return (
-      <div className="annotation-form-container annotation-submit">
+      <div style={style} className="annotation-form-container annotation-submit">
         <form className="annotation-form annotation-submit" >
           <textarea className="annotation-submit" placeholder={placeholdText} onChange={this.update("body")} value={this.state.body} />
           <button className="save-annotation" onClick={this.handleSave}>Save</button>

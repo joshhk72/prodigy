@@ -78,11 +78,9 @@ class TrackShow extends React.Component {
         return
       } else {
         this.setState({ annotationPrompt: false });
-        console.dir(e.target);
       }
     } else {
       this.setState({ annotationPrompt: false });
-      console.log('second');
     }
   }
 
@@ -105,10 +103,9 @@ class TrackShow extends React.Component {
   handleHighlight() {
     const selection = window.getSelection();
     if (!selection.extentNode || !selection.baseNode) { return };
-    if (selection.extentNode.nodeName !== "#text" || selection.baseNode.nodeName !== "#text") { return };
+    //if (selection.extentNode.nodeName !== "#text" || selection.baseNode.nodeName !== "#text") { return };
     const annotationNodes = document.getElementsByClassName('annotated-lyrics');
     if (AnnotateUtil.annotationsNotSelected(annotationNodes) && this.props.loggedIn) {
-
       const lyricsContainer = document.getElementById("lyrics-container");
       const { i1, i2, j1, j2 } = AnnotateUtil.getIndices(lyricsContainer);
       const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
@@ -200,7 +197,7 @@ class TrackShow extends React.Component {
         </header>
         <main className="track-show-main">
           <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
-            <section className="track-show-lyrics-container" onClick={this.handleSpanClick}>
+            <section id="lyrics-rect" className="track-show-lyrics-container" onClick={this.handleSpanClick}>
               { lyricsButtons }
               { !this.state.editLyrics ? 
                 lyricsContainer : 
