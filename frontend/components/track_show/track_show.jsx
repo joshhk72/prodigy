@@ -163,7 +163,7 @@ class TrackShow extends React.Component {
           <button onClick={this.handleModal}>Edit Song Facts</button>
         </div> :
         <div>
-          <button onClick={this.submitLyrics}>Save</button>
+          <button id="lyrics-edit-save-button" onClick={this.submitLyrics}>Save</button>
           <button onClick={this.editButton}>Cancel</button>
         </div>
       ) : <div />
