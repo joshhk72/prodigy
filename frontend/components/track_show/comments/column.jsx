@@ -1,5 +1,6 @@
 import React from 'react';
 import CommentListItem from './list_item';
+import CommentForm from './form';
 
 class CommentColumn extends React.Component {
   constructor(props) {
@@ -12,13 +13,17 @@ class CommentColumn extends React.Component {
   }
 
   render() {
-    console.dir(this.props.comments);
     const commentLis = Object.values(this.props.comments).map(comment => {
       return <CommentListItem comment={comment} key={comment.id} />
     });
 
     return (
       <div className="comments-column">
+        <CommentForm 
+          trackId={this.props.currentTrack.id}
+          author={this.props.currentUser}
+          submitComment={this.props.createComment}
+        />
         <ul className="comments-list">
           {commentLis}
         </ul>

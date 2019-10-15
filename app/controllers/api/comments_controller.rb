@@ -12,13 +12,13 @@ class Api::CommentsController < ApplicationController
   end
 
   def show
-    @annotation = Annotation.find(params[:id])
+    @comment = Comment.find(params[:id])
     render :show
   end
 
   def create
-    track = Track.find(annotation_params[:track_id])
-    @annotation = track.comments.new(comment_params)
+    track = Track.find(comment_params[:track_id])
+    @comment = track.comments.new(comment_params)
 
     if @comment.save
       render :show
@@ -28,9 +28,19 @@ class Api::CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id]) 
+    if @comment
+      @comment.destroy
+      render :show
+    else
+      render json: { success: false }
+    end
+  end
+
   private
 
-  def annotation_params
+  def comment_params
     params.require(:comment).permit(:body, :track_id, :author_id)
   end
 

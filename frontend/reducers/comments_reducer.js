@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { RECEIVE_COMMENTS, CLEAR_COMMENTS } from '../actions/comment_actions';
+import { RECEIVE_COMMENTS, CLEAR_COMMENTS, RECEIVE_COMMENT } from '../actions/comment_actions';
 
 const commentsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -8,6 +8,10 @@ const commentsReducer = (state = {}, action) => {
       return {};
     case RECEIVE_COMMENTS:
       return merge({}, state, action.comments);
+    case RECEIVE_COMMENT:
+      const newState =  merge({}, state);
+      newState[action.comment.id] = action.comment;
+      return newState;
     default:
       return state;
   }

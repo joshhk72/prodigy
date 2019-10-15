@@ -1,6 +1,7 @@
 import * as CommentAPIUtil from '../util/comment_api_util';
 
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
+export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 export const CLEAR_COMMENTS = "CLEAR_COMMENTS";
 
 const receiveComments = comments => ({
@@ -8,11 +9,21 @@ const receiveComments = comments => ({
   comments
 });
 
+const receiveComment = comment => ({
+  type: RECEIVE_COMMENT,
+  comment
+});
+
 export const clearComments = () => ({
   type: CLEAR_COMMENTS
 });
 
 export const fetchTrackComments = trackId => dispatch => {
-  CommentAPIUtil.fetchTrackComments(trackId)
+  return CommentAPIUtil.fetchTrackComments(trackId)
     .then(comments => dispatch(receiveComments(comments)));
+};
+
+export const createComment = comment => dispatch => {
+  return CommentAPIUtil.createComment(comment)
+    .then(comment => dispatch(receiveComment(comment)));
 };
