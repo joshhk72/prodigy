@@ -26,6 +26,13 @@ class Api::AnnotationsController < ApplicationController
   end
 
   def destroy
+    @annotation = Annotation.find(params[:id]) 
+    if @annotation
+      @annotation.destroy
+      render :show
+    else
+      render json: { success: false }
+    end
   end
 
   private

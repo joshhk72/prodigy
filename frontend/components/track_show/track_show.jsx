@@ -1,8 +1,6 @@
 import React from 'react';
 import * as AnnotateUtil from '../../util/annotate_util';
 import InfoColumnContainer from './info_column_container';
-import { Route, Switch } from 'react-router-dom';
-import AnnotationShow from './annotation_show';
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';

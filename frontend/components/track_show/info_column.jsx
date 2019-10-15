@@ -31,7 +31,7 @@ class InfoColumn extends React.Component {
     const routedForm = <Route
       path={`/tracks/:trackId/${temp.id}`}
       render={props => <AnnotationForm {...props}
-        key={this.state.formNo}
+        key={temp.id}
         removeAnnotation={this.props.removeAnnotation}
         createAnnotation={this.props.createAnnotation}
         destroyForm={this.destroyForm}
@@ -50,7 +50,13 @@ class InfoColumn extends React.Component {
       <div id="info-column">
         { this.props.annotationPrompt && <button id="annotation-prompt-button" onClick={ this.createAnnotationForm }>Start the Genius Annotation</button> }
         { !this.props.annotationPrompt && this.state.forms }
-        { !this.props.annotationPrompt && <Route path="/tracks/:trackId/:annotationId" component={AnnotationShow}/>}
+        { !this.props.annotationPrompt && 
+          <Route path="/tracks/:trackId/:annotationId" 
+            render={props => <AnnotationShow {...props}
+              annotations = {this.props.annotations}
+              deleteAnnotation = {this.props.deleteAnnotation}
+            />}
+        /> } 
       </div>
     );
   }
