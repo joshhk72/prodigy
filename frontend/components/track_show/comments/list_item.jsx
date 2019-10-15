@@ -2,7 +2,11 @@ import React from 'react';
 
 const CommentListItem = props => {
 
-  const { username, body, profile_img, date } = props.comment
+  const { username, body, profile_img, date, id, author_id } = props.comment
+
+  const deleteButton = props.currentUser.id === author_id ? 
+    <a onClick={() => props.deleteComment(id)}>
+      <i className="fas fa-trash-alt" /></a> : <div></div>;
 
   return (
     <li className="comments-list-li">
@@ -18,6 +22,10 @@ const CommentListItem = props => {
           <span className="comment-date">{date}</span>
         </div>
         <p className="comment-body">{body}</p>
+        <div className="comment-bottom">
+          <div></div>
+          { deleteButton }
+        </div>
       </div>
     </li>
   )

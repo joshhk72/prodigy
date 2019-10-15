@@ -80,3 +80,12 @@
   padding: 8px;
   border: 2px solid $save-button-green;
 }
+
+.comment-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-bottom a {
+  cursor: pointer;
+}

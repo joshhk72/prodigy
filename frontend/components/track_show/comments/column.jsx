@@ -14,7 +14,11 @@ class CommentColumn extends React.Component {
 
   render() {
     const commentLis = Object.values(this.props.comments).map(comment => {
-      return <CommentListItem comment={comment} key={comment.id} />
+      return <CommentListItem 
+        comment={comment}
+        currentUser={this.props.currentUser}
+        deleteComment={this.props.deleteComment}
+        key={comment.id} />
     });
 
     return (
