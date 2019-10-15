@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import InfoColumn from './info_column';
 import { withRouter } from 'react-router-dom';
-import { receiveAnnotation, removeAnnotation, createAnnotation, deleteAnnotation } from '../../actions/annotation_actions';
+import { receiveAnnotation, removeAnnotation, createAnnotation, deleteAnnotation } from '../../../actions/annotation_actions';
 
 const mapStateToProps = state => ({
   annotations: state.entities.annotations,

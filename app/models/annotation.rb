@@ -9,6 +9,7 @@
 #  body       :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  author_id  :integer          not null
 #
 
 class Annotation < ApplicationRecord
@@ -16,6 +17,9 @@ class Annotation < ApplicationRecord
   before_validation :check_for_spaces
 
   belongs_to :track
+  belongs_to :author,
+    class_name: :User,
+    foreign_key: :author_id
 
   def check_for_spaces
     track = Track.find(self.track_id)

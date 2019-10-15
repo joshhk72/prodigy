@@ -23,6 +23,10 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   
   after_initialize :ensure_session_token
+
+  has_many :annotations,
+    class_name: :Annotation,
+    foreign_key: :author_id
   
   attr_reader :password
 

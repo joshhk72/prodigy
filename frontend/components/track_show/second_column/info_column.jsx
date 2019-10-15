@@ -1,5 +1,5 @@
 import React from 'react';
-import * as AnnotateUtil from '../../util/annotate_util';
+import * as AnnotateUtil from '../../../util/annotate_util';
 import AnnotationShow from './annotation_show';
 import AnnotationForm from './annotation_form';
 import { Route } from 'react-router-dom';
