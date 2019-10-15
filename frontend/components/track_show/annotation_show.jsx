@@ -19,10 +19,10 @@ class AnnotationShow extends React.Component {
     if (!this.props.annotations[annotationId]) { return (<div></div>)};
 
     return show ? 
-      (<div>
+      (<div className="annotation-show-container">
         <h3>Prodigy Annotation</h3>
         <p>{this.props.annotations[annotationId].body}</p>
-        <button onClick={this.deleteButton}>Delete</button>
+        <button className="annotation-delete" onClick={this.deleteButton}>Delete</button>
       </div>) 
       : (<div></div>)
   }

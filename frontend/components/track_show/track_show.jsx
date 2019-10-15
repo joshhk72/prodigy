@@ -9,7 +9,7 @@ function handleImageError() {
 class TrackShow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { annotationPrompt: false, editLyrics: false, lyrics: "", startIdx: undefined, endIdx: undefined }
+    this.state = { top: 0, annotationPrompt: false, editLyrics: false, lyrics: "", startIdx: undefined, endIdx: undefined }
     this.editButton = this.editButton.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.submitLyrics = this.submitLyrics.bind(this);
@@ -29,7 +29,7 @@ class TrackShow extends React.Component {
           this.props.fetchAlbum(res.track.album_id);
         };
       });
-    document.addEventListener("click", this.handleSpanClick);
+    //document.addEventListener("click", this.handleSpanClick);
   }
 
   componentDidUpdate(prevProps) {
@@ -48,7 +48,7 @@ class TrackShow extends React.Component {
   componentWillUnmount() {
     this.clearInfo()
     document.removeEventListener("mousedown", this.closeAnnotationPrompt);
-    document.removeEventListener("click", this.handleSpanClick);
+    //document.removeEventListener("click", this.handleSpanClick);
   }
 
   clearInfo() {
@@ -78,9 +78,11 @@ class TrackShow extends React.Component {
         return
       } else {
         this.setState({ annotationPrompt: false });
+        console.dir(e.target);
       }
     } else {
       this.setState({ annotationPrompt: false });
+      console.log('second');
     }
   }
 
@@ -111,7 +113,8 @@ class TrackShow extends React.Component {
       const { i1, i2, j1, j2 } = AnnotateUtil.getIndices(lyricsContainer);
       const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
       const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, { i1, i2, j1, j2 });
-      this.setState({ startIdx, endIdx });
+      const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 330;
+      this.setState({ startIdx, endIdx, top });
       this.showAnnotationPrompt(startIdx, endIdx);
     };
   }
@@ -197,7 +200,7 @@ class TrackShow extends React.Component {
         </header>
         <main className="track-show-main">
           <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
-            <section className="track-show-lyrics-container">
+            <section className="track-show-lyrics-container" onClick={this.handleSpanClick}>
               { lyricsButtons }
               { !this.state.editLyrics ? 
                 lyricsContainer : 
@@ -211,6 +214,7 @@ class TrackShow extends React.Component {
               startIdx={this.state.startIdx}
               endIdx={this.state.endIdx}
               currentTrack={this.props.currentTrack}
+              top={this.state.top}
               annotationPrompt={this.state.annotationPrompt}/> 
           </div>
         </main>

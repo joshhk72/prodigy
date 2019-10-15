@@ -35,6 +35,7 @@ class InfoColumn extends React.Component {
         removeAnnotation={this.props.removeAnnotation}
         createAnnotation={this.props.createAnnotation}
         destroyForm={this.destroyForm}
+        top={this.props.top}
         annotation={temp} />
       } />
 
@@ -46,9 +47,10 @@ class InfoColumn extends React.Component {
   }
 
   render() {
+    const style = { marginTop: `${this.props.top}px` };
     return (
       <div id="info-column">
-        { this.props.annotationPrompt && <button id="annotation-prompt-button" onClick={ this.createAnnotationForm }>Start the Genius Annotation</button> }
+        { this.props.annotationPrompt && <div style={style} className="annotation-prompt-container"><button id="annotation-prompt-button" onClick={ this.createAnnotationForm }>Start the Genius Annotation</button></div> }
         { !this.props.annotationPrompt && this.state.forms }
         { !this.props.annotationPrompt && 
           <Route path="/tracks/:trackId/:annotationId" 

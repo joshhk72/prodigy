@@ -8,6 +8,10 @@ class AnnotationForm extends React.Component {
     this.handleSave = this.handleSave.bind(this);
   }
 
+  componentDidMount() {
+    console.log(this.props.top);
+  }
+
   handleCancel(e) {
     e.preventDefault();
     this.props.removeAnnotation(this.state.id);
