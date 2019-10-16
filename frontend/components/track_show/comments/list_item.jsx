@@ -1,4 +1,5 @@
 import React from 'react';
+import * as UpvoteUtil from '../../../util/upvote_util';
 
 class CommentListItem extends React.Component {
   constructor(props) {
@@ -34,62 +35,24 @@ class CommentListItem extends React.Component {
   }
 
   handleNothing() {
-
   }
 
   render() {
     const { username, body, profile_img, date, id, author_id } = this.props.comment
+    const { currentUser, deleteComment, upvotes } = this.props;
 
-    const deleteButton = this.props.currentUser && this.props.currentUser.id === author_id ? 
-      <a onClick={() => this.props.deleteComment(id)}>
+    const deleteButton = currentUser && currentUser.id === author_id ? 
+      <a onClick={() => deleteComment(id)}>
         <i className="fas fa-trash-alt" /></a> 
       : <div></div>;
-    const commentUpvotes = this.props.upvotes.filter(upvote => {
-      return upvote.upvotable_type === "Comment" && upvote.upvotable_id === this.props.comment.id;
-    });
-    const upvoteCount = commentUpvotes.reduce((acc, upvote) => acc + upvote.value, 0);
 
-    let sign;
-    if (upvoteCount === 1) {
-      sign = "+";
-    } else if (upvoteCount === -1) {
-      sign = "";
-    } else {
-      sign = " "; 
-    }
+    const commentUpvotes = UpvoteUtil.commentUpvotes(upvotes, id);
+    const upvoteCount = UpvoteUtil.count(commentUpvotes);
+    const sign = UpvoteUtil.determineSign(upvoteCount);
+    this.currentUpvote = UpvoteUtil.currentUpvote(commentUpvotes, currentUser);
+    const [leftCb, rightCb] = UpvoteUtil.determineCallbacks(this.currentUpvote, currentUser, this.upvote, this.downvote, this.deleteUpvote, this.reverseUpvote, this.handleNothing);
+    const [leftClass, rightClass] = UpvoteUtil.determineClasses(this.currentUpvote);
 
-    const upvoted = commentUpvotes.some(upvote => this.props.currentUser && upvote.user_id === this.props.currentUser.id);
-    if (upvoted) {
-      this.currentUpvote = commentUpvotes.find(upvote => upvote.user_id === this.props.currentUser.id);
-    } else {
-      this.currentUpvote = undefined;
-    }
-    
-    let leftCb, rightCb, leftClass, rightClass
-    if (this.currentUpvote) {
-      if (this.currentUpvote.value === 1) {
-        leftCb = this.deleteUpvote;
-        rightCb = this.reverseUpvote;
-        leftClass = "green-up";
-        rightClass = "";
-      } else {
-        leftCb = this.reverseUpvote;
-        rightCb = this.deleteUpvote;
-        leftClass = "";
-        rightClass = "red-down"    
-      }
-    } else if (this.props.currentUser) {
-      leftCb = this.upvote;
-      rightCb = this.downvote;
-      leftClass = "";
-      rightClass = "";
-    } else {
-      leftCb = this.handleNothing;
-      rightCb = this.handleNothing;
-      leftClass = "";
-      rightClass = "";
-    }
-    
     return (
       <li className="comments-list-li">
         <div className="comment-container">
