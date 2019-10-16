@@ -14,6 +14,24 @@ class AnnotationShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchAnnotationUpvotes(this.props.match.params.annotationId);
+    const span = document.getElementById(this.props.match.params.annotationId);
+    if (span) { span.classList.add("active-annotation") };
+  }
+
+  componentWillUnmount() {
+    const span = document.getElementById(this.props.match.params.annotationId);
+    if (span) { span.classList.remove("active-annotation") };
+  }
+
+  componentDidUpdate(prevProps) {
+    const currId = this.props.match.params.annotationId;
+    const prevId = prevProps.match.params.annotationId;
+    if (currId !== prevId) {
+      const prevSpan = document.getElementById(prevId);
+      const currSpan = document.getElementById(currId);
+      prevSpan.classList.remove("active-annotation");
+      currSpan.classList.add("active-annotation");
+    }
   }
 
   deleteButton() {
