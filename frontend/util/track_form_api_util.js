@@ -12,4 +12,4 @@ export const updateTrackForm = track_form => {
     url: `api/track_forms/${track_form.id}`,
     data: { track_form }
   })
-}
+};

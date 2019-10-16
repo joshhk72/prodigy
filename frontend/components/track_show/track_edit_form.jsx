@@ -23,10 +23,10 @@ class TrackEditForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const submission = Object.assign({}, this.state);
-    submission.features = submission.features.join(', ')
-    submission.producers = submission.producers.join(', ')
-    submission.writers = submission.writers.join(', ')
-    console.log(submission)
+    submission.id = this.props.currentTrack.id;
+    submission.features = submission.features.join(', ');
+    submission.producers = submission.producers.join(', ');
+    submission.writers = submission.writers.join(', ');
     this.props.updateTrackForm(submission).then(() => {
       this.hideModal();
     })

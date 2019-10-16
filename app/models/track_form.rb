@@ -62,17 +62,17 @@ class TrackForm
       artist = find_or_create_artist(self.artist)
       @track.artist_id = artist.id
 
-      if self.album != ""
+      unless self.album == "" || self.album == nil
         album = find_or_create_album(artist)
         @track.album_id = album.id
       else
         @track.album_id = nil
       end
 
-
-      @track.date = self.date != "" ? self.date : nil
-      @track.image_url = self.image_url != "" ? self.image_url : nil
-      @track.youtube_url = self.youtube_url != "" ? self.youtube_url : nil
+      @track.date = self.date != "" && self.date != nil || self.date ? self.date : nil
+      @track.image_url = self.image_url != "" && self.image_url != nil ? self.image_url : nil
+      @track.youtube_url = self.youtube_url != "" && self.youtube_url != nil ? self.youtube_url : nil
+      @track.name = self.name
 
       @track.save!
 

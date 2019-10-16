@@ -10,5 +10,5 @@ export const deleteAnnotation = id => {
   return $.ajax({
     method: "DELETE",
     url: `api/annotations/${id}`
-  })
+  });
 };
