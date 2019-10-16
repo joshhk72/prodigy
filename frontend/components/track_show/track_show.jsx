@@ -56,6 +56,8 @@ class TrackShow extends React.Component {
     this.props.clearArtists();
     this.props.clearAlbums();
     this.props.clearAnnotations();
+    this.props.clearUpvotes();
+    this.props.clearComments();
   }
 
   editButton() {

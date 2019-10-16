@@ -6,6 +6,7 @@ import { fetchTrack, clearTracks, updateTrack } from '../../actions/track_action
 import { clearArtists } from '../../actions/artist_actions';
 import { clearUpvotes } from '../../actions/upvote_actions';
 import { receiveAnnotation, clearAnnotations } from '../../actions/annotation_actions';
+import { clearComments } from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   currentTrack: state.entities.tracks[ownProps.match.params.trackId],
@@ -21,6 +22,7 @@ const mapDispatchToProps = dispatch => ({
   clearAlbums: () => dispatch(clearAlbums()),
   clearAnnotations: () => dispatch(clearAnnotations()),
   clearUpvotes: () => dispatch(clearUpvotes()),
+  clearComments: () => dispatch(clearComments()),
   updateTrack: track => dispatch(updateTrack(track)),
   createTempAnnotation: annotation => dispatch(receiveAnnotation(annotation))
 });
