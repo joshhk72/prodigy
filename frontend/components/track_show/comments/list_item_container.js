@@ -13,8 +13,7 @@ const mapDispatchToProps = dispatch => ({
   createUpvote: upvote => dispatch(createUpvote(upvote)),
   reverseUpvote: id => dispatch(reverseUpvote(id)),
   deleteUpvote: id => dispatch(deleteUpvote(id)),
-  fetchCommentUpvotes: commentId => dispatch(fetchCommentUpvotes(commentId)),
-  clearUpvotes: () => dispatch(clearUpvotes)
+  fetchCommentUpvotes: commentId => dispatch(fetchCommentUpvotes(commentId))
 });
 
 export default connect(

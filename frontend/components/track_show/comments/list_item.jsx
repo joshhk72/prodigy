@@ -46,6 +46,8 @@ class CommentListItem extends React.Component {
         <i className="fas fa-trash-alt" /></a> 
       : <div></div>;
 
+    // For handling upvotes. This is streamlined since upvotes are implemented
+    // for many things across Prodigy (and also Genius). 
     const commentUpvotes = UpvoteUtil.commentUpvotes(upvotes, id);
     const upvoteCount = UpvoteUtil.count(commentUpvotes);
     const sign = UpvoteUtil.determineSign(upvoteCount);
@@ -69,9 +71,9 @@ class CommentListItem extends React.Component {
           <p className="comment-body">{body}</p>
           <div className="comment-bottom">
             <div>
-              <a onClick={leftCb}><i className={`far fa-thumbs-up ${leftClass}`} /></a>
+              <a onClick={leftCb} className="upvote-link"><i className={`far fa-thumbs-up ${leftClass}`} /></a>
               <span className="upvote-count">{sign}{upvoteCount}</span>
-              <a onClick={rightCb}><i className={`far fa-thumbs-down fa-flip-horizontal ${rightClass}`} /></a>
+              <a onClick={rightCb} className="upvote-link"><i className={`far fa-thumbs-down fa-flip-horizontal ${rightClass}`} /></a>
             </div>
             { deleteButton }
           </div>

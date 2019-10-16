@@ -308,5 +308,7 @@ comments = Comment.create([
 upvotes = Upvote.create!([
   { value: 1, user_id: users[1].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
   { value: -1, user_id: users[2].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
-  { value: 1, user_id: users[0].id, upvotable_id: comments[1].id, upvotable_type: "Comment" }
+  { value: 1, user_id: users[0].id, upvotable_id: comments[1].id, upvotable_type: "Comment" },
+  { value: 1, user_id: users[1].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" },
+  { value: 1, user_id: users[2].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" }
 ])

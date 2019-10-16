@@ -3,6 +3,11 @@ export const commentUpvotes = (upvotes, commentId) => {
     upvote.upvotable_type === "Comment" && upvote.upvotable_id === commentId))
 };
 
+export const annotationUpvotes = (upvotes, annotationId) => {
+  return upvotes.filter(upvote => (
+    upvote.upvotable_type === "Annotation" && upvote.upvotable_id === annotationId))
+};
+
 export const determineSign = upvoteCount => {
   let sign;
   if (upvoteCount === 1) {

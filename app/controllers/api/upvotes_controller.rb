@@ -9,6 +9,7 @@ class Api::UpvotesController < ApplicationController
     end
     render :index
   end
+  
   def create
     @upvote = Upvote.new(upvote_params)
 
