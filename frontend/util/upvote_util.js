@@ -10,9 +10,9 @@ export const annotationUpvotes = (upvotes, annotationId) => {
 
 export const determineSign = upvoteCount => {
   let sign;
-  if (upvoteCount === 1) {
+  if (upvoteCount > 0) {
     sign = "+";
-  } else if (upvoteCount === -1) {
+  } else if (upvoteCount < 0) {
     sign = "";
   } else {
     sign = " ";
