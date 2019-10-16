@@ -1,6 +1,6 @@
 import React from 'react';
 import * as AnnotateUtil from '../../../util/annotate_util';
-import AnnotationShow from './annotation_show';
+import AnnotationShowContainer from './annotation_show_container';
 import AnnotationForm from './annotation_form';
 import { Route } from 'react-router-dom';
 
@@ -55,7 +55,7 @@ class InfoColumn extends React.Component {
         { !this.props.annotationPrompt && this.state.forms }
         { !this.props.annotationPrompt && 
           <Route path="/tracks/:trackId/:annotationId" 
-            render={props => <AnnotationShow {...props}
+            render={props => <AnnotationShowContainer {...props}
               annotations={this.props.annotations}
               top={this.props.top}
               currentUserId={this.props.currentUserId}

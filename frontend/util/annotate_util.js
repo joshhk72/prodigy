@@ -71,3 +71,24 @@ export const getStartAndEndIndices = (mappedNodeList, indices) => {
   const twoIndex = prevTwo + j2;
   return { startIdx: Math.min(oneIndex, twoIndex) , endIdx: Math.max(oneIndex, twoIndex) };
 };
+
+export const displayHeightStyle = (annotationId, top) => {
+  const lyricsContainer = document.getElementById("lyrics-rect");
+  const span = document.getElementById(annotationId);
+
+  // "top" comes from when the form is made, but is not ideal for the display
+  // since the user might scroll in between submitting the form and looking at
+  // the annotation-show
+
+  let style
+  if (span) {
+    const top1 = lyricsContainer.getBoundingClientRect().top;
+    const top2 = span.getBoundingClientRect().top;
+    style = { marginTop: `${Math.max(top2 - top1, 0)}px` };
+    // It'll probably never be 0px on the current page setup, but just in case...
+  } else {
+    style = { marginTop: `${top}px` };
+  }
+
+  return style;
+};
