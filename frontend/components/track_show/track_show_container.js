@@ -4,6 +4,7 @@ import TrackShow from './track_show';
 import { fetchAlbum, clearAlbums } from '../../actions/album_actions';
 import { fetchTrack, clearTracks, updateTrack } from '../../actions/track_actions';
 import { clearArtists } from '../../actions/artist_actions';
+import { clearUpvotes } from '../../actions/upvote_actions';
 import { receiveAnnotation, clearAnnotations } from '../../actions/annotation_actions';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -19,6 +20,7 @@ const mapDispatchToProps = dispatch => ({
   clearArtists: () => dispatch(clearArtists()),
   clearAlbums: () => dispatch(clearAlbums()),
   clearAnnotations: () => dispatch(clearAnnotations()),
+  clearUpvotes: () => dispatch(clearUpvotes()),
   updateTrack: track => dispatch(updateTrack(track)),
   createTempAnnotation: annotation => dispatch(receiveAnnotation(annotation))
 });

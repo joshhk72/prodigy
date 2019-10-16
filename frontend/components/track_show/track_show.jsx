@@ -75,7 +75,7 @@ class TrackShow extends React.Component {
   closeAnnotationPrompt(e) {
     if (e) {
       if (e.target.id === "annotation-prompt-button") {
-        return
+        return;
       } else {
         this.setState({ annotationPrompt: false });
       }

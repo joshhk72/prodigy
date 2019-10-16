@@ -73,9 +73,9 @@ class AnnotationShow extends React.Component {
             onClick={this.deleteButton}
           >Delete</button>}
         <div className="annotation-show-bottom annotation-show">
-          <a className="upvote-link" onClick={leftCb}><i className={`far fa-thumbs-up annotation-show ${leftClass}`} /></a>
+          <a className="upvote-link" onClick={leftCb}><i className={`far fa-thumbs-up ${leftClass} annotation-show`} /></a>
           <span className="upvote-count annotation-show">{sign}{upvoteCount}</span>
-          <a className="upvote-link" onClick={rightCb}><i className={`far fa-thumbs-down annotation-show fa-flip-horizontal ${rightClass}`} /></a>
+          <a className="upvote-link" onClick={rightCb}><i className={`far fa-thumbs-down fa-flip-horizontal ${rightClass} annotation-show`} /></a>
         </div>
       </div>
       ) : (<div></div>)
