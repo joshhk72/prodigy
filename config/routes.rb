@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     resources :track_forms, only:[:create, :update]
     resources :annotations
     resources :comments
-    resources :upvotes, only:[:create, :update, :destroy]
+    resources :upvotes, only:[:index, :create, :update, :destroy]
   end
 end

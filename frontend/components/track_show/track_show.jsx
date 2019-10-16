@@ -90,6 +90,8 @@ class TrackShow extends React.Component {
     
     if (e.target.className === "annotated-lyrics") { 
       this.props.history.push(`/tracks/${this.props.currentTrack.id}/${e.target.id}`);
+    } else if (e.target.className.match(/annotation-show$/)) {
+      return;
     } else {
       this.props.history.push(`/tracks/${this.props.currentTrack.id}`);
     }

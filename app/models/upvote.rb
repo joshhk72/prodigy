@@ -13,12 +13,14 @@
 
 class Upvote < ApplicationRecord
   validates :value, :user_id, :upvotable_id, :upvotable_type, presence: true
-  validates :upvotable_type, inclusion: { in: [Comment, Annotation] }
+  validates :upvotable_type, inclusion: { in: ["Comment", "Annotation"] }
+  validates :user_id, uniqueness: { scope: [:upvotable_id, :upvotable_type] }
 
   belongs_to :upvotable, polymorphic: true
+  belongs_to :user
 
   def reverse!
-    self.value *= self.value
+    self.value *= -1
     self.save!
   end
 end

@@ -15,6 +15,7 @@ TrackProducer.destroy_all
 TrackWriter.destroy_all
 Annotation.destroy_all
 Comment.destroy_all
+Upvote.destroy_all
 
 # ActiveRecord::Base.connection.reset_pk_sequence!('users') # this resets the id during every new seed
 ActiveRecord::Base.connection.tables.each do |t|
@@ -302,4 +303,10 @@ annotations = Annotation.create([
 comments = Comment.create([
   { track_id: tracks[0].id, author_id: users[0].id, body: "This song sucks." },
   { track_id: tracks[0].id, author_id: users[1].id, body: "This song rocks." }
+])
+
+upvotes = Upvote.create!([
+  { value: 1, user_id: users[1].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
+  { value: -1, user_id: users[2].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
+  { value: 1, user_id: users[0].id, upvotable_id: comments[1].id, upvotable_type: "Comment" }
 ])

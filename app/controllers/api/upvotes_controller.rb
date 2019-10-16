@@ -1,4 +1,14 @@
 class Api::UpvotesController < ApplicationController
+  def index
+    if params[:comment_id]
+      comment = Comment.find(params[:comment_id])
+      @upvotes = comment.upvotes.includes(:user)
+    elsif params[:annotation_id]
+      annotation = Annotation.find(params[:annotation_id])
+      @upvotes = annotation.upvotes.includes(:user)
+    end
+    render :index
+  end
   def create
     @upvote = Upvote.new(upvote_params)
 

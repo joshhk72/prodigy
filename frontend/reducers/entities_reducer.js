@@ -5,6 +5,7 @@ import albumsReducer from './albums_reducer';
 import tracksReducer from './tracks_reducer';
 import annotationsReducer from './annotations_reducer';
 import commentsReducer from './comments_reducer';
+import upvotesReducer from './upvotes_reducer';
 
 export default combineReducers({
   users: usersReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   albums: albumsReducer,
   artists: artistsReducer,
   annotations: annotationsReducer,
-  comments: commentsReducer
+  comments: commentsReducer,
+  upvotes: upvotesReducer
 });

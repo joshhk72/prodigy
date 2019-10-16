@@ -21,11 +21,11 @@ class CommentColumn extends React.Component {
 
     return (
       <div className="comments-column">
-        <CommentForm 
+        { this.props.currentUser && <CommentForm 
           trackId={this.props.currentTrack.id}
           author={this.props.currentUser}
           submitComment={this.props.createComment}
-        />
+        /> }
         <ul className="comments-list">
           {commentLis}
         </ul>
