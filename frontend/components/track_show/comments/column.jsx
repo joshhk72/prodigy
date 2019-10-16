@@ -1,5 +1,5 @@
 import React from 'react';
-import CommentListItem from './list_item';
+import CommentListItemContainer from './list_item_container';
 import CommentForm from './form';
 
 class CommentColumn extends React.Component {
@@ -14,10 +14,8 @@ class CommentColumn extends React.Component {
 
   render() {
     const commentLis = Object.values(this.props.comments).map(comment => {
-      return <CommentListItem 
+      return <CommentListItemContainer 
         comment={comment}
-        currentUser={this.props.currentUser}
-        deleteComment={this.props.deleteComment}
         key={comment.id} />
     });
 
