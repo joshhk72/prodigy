@@ -12,6 +12,13 @@ export const fetchTracks = () => {
   });
 };
 
+export const fetchRecentTracks = () => {
+  return $.ajax({
+    method: "GET",
+    url: "api/tracks?recent=true"
+  })
+};
+
 export const createTrack = track => {
   return $.ajax({
     method: "POST",

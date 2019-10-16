@@ -32,8 +32,9 @@
 @import "track_show/column_first";
 @import "track_show/column_second";
 @import "track_show/comments";
-@import "annotations.scss";
-@import "upvotes.scss";
+@import "annotations";
+@import "upvotes";
+@import "home";
 
 .dark-body {
   background-color: black;

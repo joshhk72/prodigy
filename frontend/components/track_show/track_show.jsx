@@ -160,7 +160,7 @@ class TrackShow extends React.Component {
     
     const lyricsContainer = (<p dangerouslySetInnerHTML={{ __html: lyricsHTML }} id='lyrics-container'></p>)
 
-    const editArea = (< textarea onChange={this.update("lyrics")} style={{height: lyricsLines * 17}} id = "edit-textarea" rows = "10" value = { this.state.lyrics } />);
+    const editArea = (< textarea onChange={this.update("lyrics")} style={{minHeight: "150px", height: lyricsLines * 17}} id = "edit-textarea" rows = "10" value = { this.state.lyrics } />);
     const lyricsButtons = loggedIn ? 
       (!this.state.editLyrics ?
         <div>

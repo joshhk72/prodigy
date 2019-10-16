@@ -29,8 +29,8 @@ class AnnotationShow extends React.Component {
     if (currId !== prevId) {
       const prevSpan = document.getElementById(prevId);
       const currSpan = document.getElementById(currId);
-      prevSpan.classList.remove("active-annotation");
-      currSpan.classList.add("active-annotation");
+      if (prevSpan) { prevSpan.classList.remove("active-annotation") };
+      if (currSpan) { currSpan.classList.add("active-annotation") };
     }
   }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import TrackPanel from './track_panel';
 
 class HomePage extends React.Component {
 
@@ -17,16 +17,15 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const trackLis = this.props.tracks.map((track, i) => {
-      return (<li key={i}><Link to={`/tracks/${track.id}`}>{track.name}</Link></li>)
-    })
+    const trackLis = this.props.tracks.map((track, i) => <TrackPanel key={track.id} track={track} num={i + 1} />);
     return (
-      <section>
-        <div>Hello! Click to check tracks below</div>
-        <br />
-        <ul>
-          {trackLis}
-        </ul>
+      <section className="home">
+        <div className="home-track-list-container">
+          <div><h2>Recent Songs</h2></div>
+          <ul className="home-track-list">
+            {trackLis}
+          </ul>
+        </div>
       </section>
     )
   }

@@ -28,6 +28,11 @@ export const fetchTracks = () => dispatch => {
     .then(tracks => dispatch(receiveTracks(tracks)));
 };
 
+export const fetchRecentTracks = () => dispatch => {
+  return TrackUtil.fetchRecentTracks()
+    .then(tracks => dispatch(receiveTracks(tracks)));
+};
+
 export const createTrack = track => dispatch => {
   return TrackUtil.createTrack(track)
     .then(newTrack => dispatch(receiveTrack(newTrack)));

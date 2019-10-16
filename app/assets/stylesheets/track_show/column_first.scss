@@ -20,6 +20,10 @@
   font-family: sans-serif;
 }
 
+.track-show-column-first p {
+  word-wrap: break-word;
+}
+
 #edit-textarea {
   background-color: $lyrics-edit-gray;
 }
