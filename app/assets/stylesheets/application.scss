@@ -17,22 +17,14 @@
   @return mix(white, $color, $percentage);
 } 
 
-@import "base/reset.scss";
-@import "base/colors.scss";
+@import "base/*";
 @import "header";
 @import "session";
 @import "dropdown";
 @import "profile";
-@import "modals/modal";
-@import "modals/profile_modal";
-@import "modals/track_modal";
-@import "track_form/form";
-@import "track_form/suggestions";
-@import "track_show/layout";
-@import "track_show/header";
-@import "track_show/column_first";
-@import "track_show/column_second";
-@import "track_show/comments";
+@import "modals/*";
+@import "track_form/*";
+@import "track_show/*";
 @import "annotations";
 @import "upvotes";
 @import "home";
