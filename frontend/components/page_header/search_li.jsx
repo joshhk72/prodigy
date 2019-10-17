@@ -5,7 +5,7 @@ const HeaderSearchLi = props => {
   const { image_url, name, artist, id } = props.track;
   return (
     <li className="header-search-li">
-      <Link to={`/tracks/${id}`}>
+      <Link onClick={props.clear} to={`/tracks/${id}`}>
         <img src={ image_url }/>
         <div>
           <h3>{name}</h3>

@@ -36,9 +36,9 @@ class TrackEditForm extends React.Component {
     const container = document.getElementById("track-modal-container");
     const screen = document.getElementById("modal-screen");
     const form = document.getElementById("modal-form");
-    container.classList.add("modal-hide");
-    screen.classList.add("modal-hide");
-    form.classList.add("modal-hide");
+    if (container) { container.classList.add("modal-hide") };
+    if (screen) { screen.classList.add("modal-hide") };
+    if (form) { form.classList.add("modal-hide") };
   }
 
   update(field) {

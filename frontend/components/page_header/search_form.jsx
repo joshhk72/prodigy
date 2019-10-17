@@ -11,12 +11,17 @@ class SearchForm extends React.Component {
     };
     this.clicked = this.clicked.bind(this);
     this.unclicked = this.unclicked.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({ term: undefined });
     };
+  }
+
+  clear() {
+    this.setState({ term: undefined, focus: false });
   }
 
   clicked() {
@@ -40,7 +45,7 @@ class SearchForm extends React.Component {
 
   render() {
     const searchLis = this.props.searchedTracks.map(result => (
-      <HeaderSearchLi key={result.id} track={result}/>
+      <HeaderSearchLi key={result.id} clear={this.clear} track={result}/>
     ));
 
     return (
