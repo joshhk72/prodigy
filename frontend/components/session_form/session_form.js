@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BrowserHistory } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -20,18 +21,21 @@ class SessionForm extends React.Component {
 
   componentWillUnmount() {
     document.body.classList.remove("dark-body");
+    this.props.resetSessionErrors();
   }
 
   demoLogin(e) {
     e.preventDefault();
     const user = { username: "user1", password: "555555" }
-    this.props.submitForm(user);
+    this.props.submitForm(user)
+      .then(() => this.props.history.goBack());
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.submitForm(user);
+    this.props.submitForm(user)
+      .then(() => this.props.history.goBack());
   }
 
   update(field) {

@@ -3,8 +3,6 @@ import SessionForm from './session_form';
 import { signup, resetSessionErrors } from '../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
 
-
-
 const mapStateToProps = state => ({
   errors: state.errors.session,
   formType: 'signup'
