@@ -3,6 +3,7 @@ import * as AnnotateUtil from '../../util/annotate_util';
 import InfoColumnContainer from './second_column/info_column_container';
 import CommentColumnContainer from './comments/column_container';
 import FadeIn from 'react-fade-in';
+import ReactLoading from "react-loading";
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -36,13 +37,14 @@ class TrackShow extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.match.params.trackId !== prevProps.match.params.trackId) {
       this.clearInfo()
+      this.setState({ done: false });
       this.props.fetchTrack(this.props.match.params.trackId)
         .then(res => {
-          this.setState({ lyrics: res.track.lyrics });
+          this.setState({ done: true, lyrics: res.track.lyrics });
           if (res.track.album_id) {
             this.props.fetchAlbum(res.track.album_id);
           };
-        });
+        }, err => this.setState({ done: true }));
     }
   }
 
@@ -139,7 +141,7 @@ class TrackShow extends React.Component {
 
   render() {
     if (!this.state.done) { 
-      return <div>Loading...</div> 
+      return <ReactLoading type={"bars"} color={"white"} />;
     } else if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { 
       return <div className="no-tracks-shown"><h2>Error!</h2><p>The song you are looking for does not exist!</p></div>
     };
