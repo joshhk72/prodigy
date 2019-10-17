@@ -11,6 +11,10 @@ class PageHeader extends React.Component {
     this.handleDropDown = this.handleDropDown.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearSearch();
+  }
+
   handleOutsideClick (e) {
     if (!e.target.matches('.dropdown')) {
       const list = document.getElementById("dropdown-list");

@@ -58,7 +58,7 @@ class ProfileForm extends React.Component {
                   <input type="text" onChange={this.update("image_url")} value={this.state.image_url} />
             </label>
             <label>Change Bio</label>
-            <textarea cols="30" rows="5" onChange={this.update("description")} value={this.state.description}/>
+            <textarea cols="30" rows="5" onChange={this.update("description")} value={this.state.description || ''}/>
             <label>Change Email
                   <input type="text" onChange={this.update("email")} value={this.state.email}/>
             </label>

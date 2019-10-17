@@ -1,6 +1,6 @@
 import React from 'react';
-import * as searchAPIUtil from '../../util/search_api_util';
 import HeaderSearchLi from './search_li';
+import { withRouter } from 'react-router-dom';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -11,6 +11,12 @@ class SearchForm extends React.Component {
     };
     this.clicked = this.clicked.bind(this);
     this.unclicked = this.unclicked.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.setState({ term: undefined });
+    };
   }
 
   clicked() {
@@ -40,20 +46,20 @@ class SearchForm extends React.Component {
     return (
       <div className="header-search-form-container">
         <form className="header-search-form">
-          <input className="header-search-input" type="text" onFocus={this.clicked} onBlur={this.unclicked} onChange={ this.update("term") } value={ this.state.term }placeholder="Search songs & more"/>
+          <input className="header-search-input" type="text" onFocus={this.clicked} onBlur={this.unclicked} onChange={ this.update("term") } value={ this.state.term || '' }placeholder="Search songs & more"/>
           <button><i className="fas fa-search"></i></button>
         </form>
-        {this.state.focus && (
+        { (this.state.focus && this.state.term) && (
           <div className="header-results-container">
             <h3>SEARCH RESULTS</h3>
             <ul className="header-results-list">
               {this.props.searchedTracks.length > 0 ? searchLis : <div className="header-no-results header-search"><span>No Results</span></div>}
             </ul>
           </div>
-        )}
+        ) }
       </div>
     );
   }
 };
 
-export default SearchForm;
+export default withRouter(SearchForm);

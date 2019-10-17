@@ -27,7 +27,6 @@ class UserProfile extends React.Component {
   handleModal(e) {
     e.preventDefault();
     const modal = document.getElementsByClassName("modal-hide");
-    console.log(modal);
     Array.from(modal).forEach(ele => {
       ele.classList.remove("modal-hide");
     })
