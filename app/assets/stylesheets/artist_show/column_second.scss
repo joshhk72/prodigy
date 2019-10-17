@@ -23,25 +23,37 @@
 .artist-show-song-panel {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 7px;
   background-color: red;
-  height: 330px;
-}
-
-.artist-show-song-panel li {
-  background-color: white;
 }
 
 .artist-show-album-panel {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   grid-gap: 7px;
   background-color: red;
-  height: 300px;
 }
 
 .artist-show-album-panel li {
   background-color: white;
+  height: 70px;
+}
+
+.artist-track-li a {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  background-color: white;
+  width: 227px;
+}
+.artist-track-li span {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.artist-track-panel-image {
+  height: 55px;
+  width: 55px;
+  margin-right: 10px;
 }

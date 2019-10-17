@@ -35,6 +35,7 @@ class SuggestedInput extends React.Component {
       this.setState({ term: formArray.join(', ') + ', ', open: false });
       this.namedInput.focus();
     }
+    this.props.update({ target: { value: value }});
   }
 
   update(e) {
@@ -49,7 +50,7 @@ class SuggestedInput extends React.Component {
         this.props.search(searchTerm);
       });
     }
-    this.props.update(e)
+    this.props.update(e);
   }
 
   render() {
