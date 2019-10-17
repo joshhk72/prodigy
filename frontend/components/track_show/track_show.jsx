@@ -2,6 +2,7 @@ import React from 'react';
 import * as AnnotateUtil from '../../util/annotate_util';
 import InfoColumnContainer from './second_column/info_column_container';
 import CommentColumnContainer from './comments/column_container';
+import FadeIn from 'react-fade-in';
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -10,7 +11,7 @@ function handleImageError() {
 class TrackShow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { top: 0, annotationPrompt: false, editLyrics: false, lyrics: "", startIdx: undefined, endIdx: undefined }
+    this.state = { done: false, top: 0, annotationPrompt: false, editLyrics: false, lyrics: "", startIdx: undefined, endIdx: undefined }
     this.editButton = this.editButton.bind(this);
     this.submitLyrics = this.submitLyrics.bind(this);
     this.handleHighlight = this.handleHighlight.bind(this);
@@ -24,11 +25,11 @@ class TrackShow extends React.Component {
     document.addEventListener("mousedown", this.closeAnnotationPrompt);
     this.props.fetchTrack(this.props.match.params.trackId)
       .then(res => {
-        this.setState({ lyrics: res.track.lyrics });
+        this.setState({ done: true, lyrics: res.track.lyrics });
         if (res.track.album_id) {
           this.props.fetchAlbum(res.track.album_id);
         };
-      });
+      }, err => this.setState({ done: true }));
     //document.addEventListener("click", this.handleSpanClick);
   }
 
@@ -137,7 +138,11 @@ class TrackShow extends React.Component {
   }
 
   render() {
-    if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { return <div className="no-tracks-shown"><h2>Error!</h2><p>The song you are looking for does not exist!</p></div>};
+    if (!this.state.done) { 
+      return <div>Loading...</div> 
+    } else if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { 
+      return <div className="no-tracks-shown"><h2>Error!</h2><p>The song you are looking for does not exist!</p></div>
+    };
 
     const { currentTrack, loggedIn } = this.props;
     const lyricsLines = currentTrack.lyrics.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i} />), []).length - 1;
@@ -175,46 +180,48 @@ class TrackShow extends React.Component {
     };
 
     return (
-      <section className="track-show-page" onClick={this.handleSpanClick}>
-        <header className="track-show-header" id="hero-image" style={heroStyle}>
-          <div className="track-show-image-container">
-            <img id="track-show-image" onError={handleImageError.bind(this)} src={ image_url } />
-          </div>
-          <div className="track-show-header-info-container">
-            <h1>{ name }</h1>
-            <h2>{ artist }</h2>
-            <div className="track-show-header-additional">
-              { features.length > 0 && <h3>Featuring <span>{features.length > 2 ? features.join(", ") : features.join(" & ") }</span></h3> }
-              { producers.length > 0 && <h3>Produced by <span>{producers.length > 2 ? producers.join(", ") : producers.join(" & ")}</span></h3> }
-              { writers.length > 0 && <h3>Written by <span>{writers.length > 2 ? writers.join(", ") : writers.join(" & ")}</span></h3> }
-              { album && <h3>Album <span>{album}</span></h3> }
+      <FadeIn>
+        <section className="track-show-page" onClick={this.handleSpanClick}>
+          <header className="track-show-header" id="hero-image" style={heroStyle}>
+            <div className="track-show-image-container">
+              <img id="track-show-image" onError={handleImageError.bind(this)} src={ image_url } />
             </div>
-          </div>
-        </header>
-        <main className="track-show-main">
-          <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
-            <section id="lyrics-rect" className="track-show-lyrics-container">
-              { lyricsButtons }
-              { !this.state.editLyrics ? 
-                lyricsContainer : 
-                editArea 
-              }
-            </section>
-            <CommentColumnContainer currentTrack={this.props.currentTrack} />
-          </div>
-          <div className="track-show-column-second" id="second-col">
-            <InfoColumnContainer
-              closeAnnotationPrompt={this.closeAnnotationPrompt}
-              annotationPrompt={this.state.annotationPrompt}
-              startIdx={this.state.startIdx}
-              endIdx={this.state.endIdx}
-              currentTrack={this.props.currentTrack}
-              top={this.state.top} /> 
-          </div>
-        </main>
-        <footer className="track-show-footer">
-        </footer>
-      </section>
+            <div className="track-show-header-info-container">
+              <h1>{ name }</h1>
+              <h2>{ artist }</h2>
+              <div className="track-show-header-additional">
+                { features.length > 0 && <h3>Featuring <span>{features.length > 2 ? features.join(", ") : features.join(" & ") }</span></h3> }
+                { producers.length > 0 && <h3>Produced by <span>{producers.length > 2 ? producers.join(", ") : producers.join(" & ")}</span></h3> }
+                { writers.length > 0 && <h3>Written by <span>{writers.length > 2 ? writers.join(", ") : writers.join(" & ")}</span></h3> }
+                { album && <h3>Album <span>{album}</span></h3> }
+              </div>
+            </div>
+          </header>
+          <main className="track-show-main">
+            <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
+              <section id="lyrics-rect" className="track-show-lyrics-container">
+                { lyricsButtons }
+                { !this.state.editLyrics ? 
+                  lyricsContainer : 
+                  editArea 
+                }
+              </section>
+              <CommentColumnContainer currentTrack={this.props.currentTrack} />
+            </div>
+            <div className="track-show-column-second" id="second-col">
+              <InfoColumnContainer
+                closeAnnotationPrompt={this.closeAnnotationPrompt}
+                annotationPrompt={this.state.annotationPrompt}
+                startIdx={this.state.startIdx}
+                endIdx={this.state.endIdx}
+                currentTrack={this.props.currentTrack}
+                top={this.state.top} /> 
+            </div>
+          </main>
+          <footer className="track-show-footer">
+          </footer>
+        </section>
+      </FadeIn>
     )
   }
 }

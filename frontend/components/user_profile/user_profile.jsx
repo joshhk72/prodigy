@@ -1,4 +1,5 @@
 import React from 'react';
+import FadeIn from 'react-fade-in';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -37,9 +38,13 @@ class UserProfile extends React.Component {
           <div className="profile-column-1">
             <img id="profile-picture" src={this.props.user.image_url} />
             <span className="profile-name">@{this.props.user.username}</span>
-            {this.props.currentUser === true ?
-              <button onClick={this.handleModal} className="profile-button modal"><i className="fas fa-pencil-alt"></i> Edit</button>
-              : <button className="profile-button">Follow</button>
+            {this.props.currentUserPage === true ?
+              <button 
+                onClick={this.handleModal} 
+                className="profile-button modal">
+                <i className="fas fa-pencil-alt" /> Edit
+              </button>
+              : (this.props.currentUser ? <button className="profile-button">Follow</button> : null)
             }
             <span className="profile-description"></span>
             <p id="profile-description">{this.props.user.description}</p>
@@ -54,10 +59,6 @@ class UserProfile extends React.Component {
           <div className="profile-column-1">
             <img id="profile-picture" src={this.state.image_url} />
             <span className="profile-name">{this.state.username}</span>
-            { this.props.currentUser === true ? 
-                <button onClick={this.handleModal} className="profile-button modal"><i className="fas fa-pencil-alt"></i> Edit</button>
-                : <button className="profile-button">Follow</button>
-            }
             <span className="profile-description"></span>
             <p id="profile-description">{this.state.description}</p>
           </div>

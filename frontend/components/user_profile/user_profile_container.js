@@ -6,7 +6,8 @@ import { openModal } from '../../actions/modal_actions';
 const mapStateToProps = ({ entities, session }, ownProps) => {
   return {
     user: entities.users[ownProps.match.params.userId],
-    currentUser: Boolean(parseInt(ownProps.match.params.userId) === parseInt(session.id))
+    currentUserPage: Boolean(parseInt(ownProps.match.params.userId) === parseInt(session.id)),
+    currentUser: Boolean(session.id)
   }
 };
 
