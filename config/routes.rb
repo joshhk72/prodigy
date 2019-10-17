@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     resources :annotations
     resources :comments
     resources :upvotes, only:[:index, :create, :update, :destroy]
+    get :search, controller: :search
   end
 end
