@@ -6,7 +6,7 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      term: '',
+      term: undefined,
       focus: false
     };
     this.clicked = this.clicked.bind(this);
@@ -27,8 +27,8 @@ class SearchForm extends React.Component {
 
   update(field) {
     return e => {
-      this.setState({ [field]: e.target.value });
-      this.props.searchTracks(this.state.term);
+      this.setState({ [field]: e.target.value || undefined },
+        () => this.props.searchTracks(this.state.term));
     };
   }
 
