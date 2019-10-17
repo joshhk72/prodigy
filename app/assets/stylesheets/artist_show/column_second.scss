@@ -1,0 +1,47 @@
+.artist-show-songs {
+  background-color: pink;
+  height: 400px;
+  margin: 0 40px;
+  width: 80%;
+  padding-top: 30px;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 17px;
+}
+
+.artist-show-albums {
+  background-color: violet;
+  height: 250px;
+  margin: 0 40px;
+  width: 80%;
+  padding-top: 30px;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 17px;
+}
+
+.artist-show-song-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 7px;
+  background-color: red;
+  height: 330px;
+}
+
+.artist-show-song-panel li {
+  background-color: white;
+}
+
+.artist-show-album-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 7px;
+  background-color: red;
+  height: 300px;
+}
+
+.artist-show-album-panel li {
+  background-color: white;
+}

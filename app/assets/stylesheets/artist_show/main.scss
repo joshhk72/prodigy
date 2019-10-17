@@ -1,0 +1,20 @@
+.artist-show-page {
+  background-color: $background-gray;
+  min-height: 1000px;
+}
+
+.artist-show-main {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  min-height: 400px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.artist-show-column-first {
+  min-height: 400px;
+}
+
+.artist-show-column-second {
+  min-height: 400px;
+}

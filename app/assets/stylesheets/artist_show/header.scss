@@ -1,0 +1,29 @@
+.artist-show-header {
+  display: flex;
+  justify-content: center;
+  height: 225px;
+}
+
+#artist-hero-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  position: relative;
+}
+
+.artist-show-column-first {
+  position: relative;
+}
+
+#artist-show-image {
+  min-height: 150px;
+  min-width: 150px;
+  width: 60%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  border: 3px solid green;
+  top: -200px;
+  left: 20%;
+}

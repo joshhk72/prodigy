@@ -14,7 +14,6 @@
 }
 
 .track-show-header {
-  background-color: blue;
   display: flex;
   justify-content: center;
 }
@@ -45,6 +44,7 @@
 #track-show-image {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .track-show-header-info-container {

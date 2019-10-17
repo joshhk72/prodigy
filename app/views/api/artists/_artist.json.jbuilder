@@ -1,9 +1,9 @@
 json.extract! artist, :id, :name
 
-json.album_ids do
-  json.array! artist.albums.map(&:id)
+json.albums do
+  json.array! artist.albums
 end
 
-json.track_ids do
-  json.array! artist.tracks.map(&:id)  
+json.tracks do
+  json.array! artist.tracks 
 end
