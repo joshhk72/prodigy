@@ -1,5 +1,6 @@
 import React from 'react';
 import TrackFormErrorsList from './track_form_errors_list';
+import SuggestedInput from './suggested_input';
 
 class TrackForm extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class TrackForm extends React.Component {
   componentWillUnmount() {
     document.body.classList.remove("dark-body");
     this.props.resetErrors();
+    this.props.clearSearch();
   }
 
   handleSubmit(e) {
@@ -36,7 +38,7 @@ class TrackForm extends React.Component {
       <div className="track-form-container">
         <div className="track-form-top">
           <h1>Add Song</h1>
-          { this.props.errors.length > 0 && 
+          { this.props.errors.length > 0 &&
             <TrackFormErrorsList errors={ this.props.errors }/>
           }
         </div>
@@ -44,10 +46,18 @@ class TrackForm extends React.Component {
           <div className="form-primary-column">
             <h3>Primary Info</h3>
             <div>
-              <label>BY *
-                <br />
-                <input type="text" onChange={ this.update("artist")} value={ this.state.artist || "" } required />
-              </label>
+              {/* <div className="track-form-primary-artist">
+                <label>BY *
+                  <br />
+                  <input type="text" onChange={ this.update("artist")} value={ this.state.artist || "" } required />
+                </label>
+              </div> */}
+              <SuggestedInput
+                label={'By *'}
+                search={this.props.searchArtists}
+                update={this.update("artist")}
+                results={this.props.searchedArtists}
+                />
               <label>TITLE *
                 <br />
                 <input type="text" onChange={ this.update("name") } value={ this.state.name || "" } required />
@@ -67,29 +77,37 @@ class TrackForm extends React.Component {
             <div className="track-form-additional-div">
               <h3 id="track-form-additional">Additional Metadata</h3>
               <small>* required</small>
-            </div> 
+            </div>
             <div>
-              <label>FEATURING (SEPARATE WITH COMMA AND SPACE)
-                <br />
-                <input type="text" onChange={ this.update("features") } value={ this.state.features || '' }/>
-              </label>
-              <label>PRODUCED BY (SEPARATE WITH COMMA AND SPACE)
-                <br />
-                <input type="text" onChange={this.update("producers")} value={ this.state.producers || '' } />
-              </label>
-              <label>WRITTEN BY (SEPARATE WITH COMMA AND SPACE)
-                <br />
-                <input type="text" onChange={this.update("writers")} value={ this.state.writers || '' } />
-              </label>
+              <SuggestedInput
+                label={'FEATURING'}
+                search={this.props.searchFeatures}
+                update={this.update("features")}
+                results={this.props.searchedFeatures}
+              />
+              <SuggestedInput
+                label={'PRODUCED BY'}
+                search={this.props.searchProducers}
+                update={this.update("producers")}
+                results={this.props.searchedProducers}
+              />
+              <SuggestedInput
+                label={'WRITTEN BY'}
+                search={this.props.searchWriters}
+                update={this.update("writers")}
+                results={this.props.searchedWriters}
+              />
               <label>RELEASE DATE
                 <br />
                 <input onChange={ this.update("date") } value={ this.state.date || "" } type="date"></input>
               </label>
               <br />
-              <label>ALBUM
-                <br />
-                <input type="text" onChange={ this.update("album") } value= { this.state.album || "" }/>
-              </label>
+                <SuggestedInput
+                  label={'ALBUM'}
+                  search={this.props.searchAlbums}
+                  update={this.update("album")}
+                  results={this.props.searchedAlbums}
+                />
             </div>
           </div>
           <button>SUBMIT</button>

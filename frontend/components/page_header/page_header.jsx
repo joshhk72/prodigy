@@ -33,6 +33,9 @@ class PageHeader extends React.Component {
   }
 
   render() {
+    console.log('hi');
+    console.log(this.props);
+    console.log(this.props.searchedTracks);
     if (this.props.currentUser) {
       return (
         <div className="page-header">

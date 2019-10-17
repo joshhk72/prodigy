@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :comments
     resources :upvotes, only:[:index, :create, :update, :destroy]
     get :search, controller: :search
+    get :suggest, controller: :search
   end
 end

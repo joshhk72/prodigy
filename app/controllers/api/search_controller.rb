@@ -11,6 +11,16 @@ class Api::SearchController < ApplicationController
     end
     render :search
   end
+
+  def suggest
+    if params[:artist]
+      @artists = Artist.ransack(name_cont: params[:artist]).result
+      render :artists
+    elsif params [:album]
+      @albums = Album.ransack(title_cont: params[:album]).result
+      render :albums
+    end
+  end
 end
 
 # reference from https://medium.com/@jalenjackson/build-your-own-real-time-search-with-react-ruby-on-rails-760f141a2d1d
