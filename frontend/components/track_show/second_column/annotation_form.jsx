@@ -14,6 +14,7 @@ class AnnotationForm extends React.Component {
     e.preventDefault();
     this.props.removeAnnotation(this.state.id);
     this.props.destroyForm(this.state.id);
+    this.props.history.push(`/tracks/${this.props.match.params.trackId}`);
   }
 
   handleSave(e) {
