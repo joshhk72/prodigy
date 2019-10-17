@@ -7,6 +7,26 @@
   position: absolute;
   width: 100%;
   background-color: white;
-  color: blue;
+  color: black;
+  z-index: 1;
 }
+
+.track-form-suggestion li {
+  padding: 5px;
+}
+
+.track-form-suggestion li:hover {
+  cursor: pointer;
+}
+
+.track-form-suggestion li:nth-child(odd) {
+  background-color: #4b4b4b;
+}
+
+.track-form-suggestion li:nth-child(even) {
+  background-color: #999999;
+}
+
+
+
 

@@ -14,10 +14,10 @@ class Api::SearchController < ApplicationController
 
   def suggest
     if params[:artist]
-      @artists = Artist.ransack(name_cont: params[:artist]).result
+      @artists = Artist.ransack(name_cont: params[:artist]).result.limit(5)
       render :artists
-    elsif params [:album]
-      @albums = Album.ransack(title_cont: params[:album]).result
+    elsif params[:album]
+      @albums = Album.ransack(title_cont: params[:album]).result.limit(5)
       render :albums
     end
   end

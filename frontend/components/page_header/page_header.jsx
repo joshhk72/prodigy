@@ -33,9 +33,6 @@ class PageHeader extends React.Component {
   }
 
   render() {
-    console.log('hi');
-    console.log(this.props);
-    console.log(this.props.searchedTracks);
     if (this.props.currentUser) {
       return (
         <div className="page-header">
@@ -60,7 +57,7 @@ class PageHeader extends React.Component {
     } else {
       return (
         <div className="page-header">
-          <SearchForm searchTracks={this.props.searchTracks} />
+          <SearchForm searchTracks={this.props.searchTracks} searchedTracks={this.props.searchedTracks} />
           <Link to='/'><span id="logo">Prodigy</span></Link>
           <div className="header-actions">
             <Link to='/signup'>Sign Up</Link>

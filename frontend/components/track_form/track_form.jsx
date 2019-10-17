@@ -53,10 +53,11 @@ class TrackForm extends React.Component {
                 </label>
               </div> */}
               <SuggestedInput
-                label={'By *'}
+                label={'BY *'}
                 search={this.props.searchArtists}
                 update={this.update("artist")}
                 results={this.props.searchedArtists}
+                klass={'suggested-artists'}
                 />
               <label>TITLE *
                 <br />
@@ -84,18 +85,21 @@ class TrackForm extends React.Component {
                 search={this.props.searchFeatures}
                 update={this.update("features")}
                 results={this.props.searchedFeatures}
+                klass={'suggested-features'}
               />
               <SuggestedInput
                 label={'PRODUCED BY'}
                 search={this.props.searchProducers}
                 update={this.update("producers")}
                 results={this.props.searchedProducers}
+                klass={'suggested-producers'}
               />
               <SuggestedInput
                 label={'WRITTEN BY'}
                 search={this.props.searchWriters}
                 update={this.update("writers")}
                 results={this.props.searchedWriters}
+                klass={'suggested-writers'}
               />
               <label>RELEASE DATE
                 <br />
@@ -107,6 +111,7 @@ class TrackForm extends React.Component {
                   search={this.props.searchAlbums}
                   update={this.update("album")}
                   results={this.props.searchedAlbums}
+                  klass={'suggested-albums'}
                 />
             </div>
           </div>
