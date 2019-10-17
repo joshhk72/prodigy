@@ -3,9 +3,10 @@ import InfoColumn from './info_column';
 import { withRouter } from 'react-router-dom';
 import { receiveAnnotation, removeAnnotation, createAnnotation, deleteAnnotation } from '../../../actions/annotation_actions';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   annotations: state.entities.annotations,
-  currentUserId: state.session.id
+  currentUserId: state.session.id,
+  currentTrack: state.entities.tracks[ownProps.match.params.trackId]
 });
 
 const mapDispatchToProps = dispatch => ({

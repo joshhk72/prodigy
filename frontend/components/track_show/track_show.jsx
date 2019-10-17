@@ -180,8 +180,8 @@ class TrackShow extends React.Component {
     };
 
     return (
-      <FadeIn>
-        <section className="track-show-page" onClick={this.handleSpanClick}>
+      <section className="track-show-page" onClick={this.handleSpanClick}>
+        <FadeIn>
           <header className="track-show-header" id="hero-image" style={heroStyle}>
             <div className="track-show-image-container">
               <img id="track-show-image" onError={handleImageError.bind(this)} src={ image_url } />
@@ -197,31 +197,31 @@ class TrackShow extends React.Component {
               </div>
             </div>
           </header>
-          <main className="track-show-main">
-            <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
-              <section id="lyrics-rect" className="track-show-lyrics-container">
-                { lyricsButtons }
-                { !this.state.editLyrics ? 
-                  lyricsContainer : 
-                  editArea 
-                }
-              </section>
-              <CommentColumnContainer currentTrack={this.props.currentTrack} />
-            </div>
-            <div className="track-show-column-second" id="second-col">
-              <InfoColumnContainer
-                closeAnnotationPrompt={this.closeAnnotationPrompt}
-                annotationPrompt={this.state.annotationPrompt}
-                startIdx={this.state.startIdx}
-                endIdx={this.state.endIdx}
-                currentTrack={this.props.currentTrack}
-                top={this.state.top} /> 
-            </div>
-          </main>
-          <footer className="track-show-footer">
-          </footer>
-        </section>
-      </FadeIn>
+        </FadeIn>
+        <main className="track-show-main">
+          <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
+            <section id="lyrics-rect" className="track-show-lyrics-container">
+              { lyricsButtons }
+              { !this.state.editLyrics ? 
+                lyricsContainer : 
+                editArea 
+              }
+            </section>
+            <CommentColumnContainer currentTrack={this.props.currentTrack} />
+          </div>
+          <div className="track-show-column-second" id="second-col">
+            <InfoColumnContainer
+              closeAnnotationPrompt={this.closeAnnotationPrompt}
+              annotationPrompt={this.state.annotationPrompt}
+              startIdx={this.state.startIdx}
+              endIdx={this.state.endIdx}
+              currentTrack={this.props.currentTrack}
+              top={this.state.top} /> 
+          </div>
+        </main>
+        <footer className="track-show-footer">
+        </footer>
+      </section>
     )
   }
 }

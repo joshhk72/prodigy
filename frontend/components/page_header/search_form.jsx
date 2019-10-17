@@ -30,10 +30,12 @@ class SearchForm extends React.Component {
   }
 
   unclicked(e) {
-    if (!e.target.classList.toString().includes("header-search") && !e.target.classList.toString().includes("header-results")) {
-      this.setState({ focus: false });
-      window.removeEventListener("click", this.unclicked);
-    };
+    if (e.target.classList) {
+      if (!e.target.classList.toString().includes("header-search") && !e.target.classList.toString().includes("header-results")) {
+        this.setState({ focus: false });
+        window.removeEventListener("click", this.unclicked);
+      };
+    }
   }
 
   update(field) {

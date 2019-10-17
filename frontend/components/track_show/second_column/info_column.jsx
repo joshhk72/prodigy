@@ -1,8 +1,8 @@
 import React from 'react';
-import * as AnnotateUtil from '../../../util/annotate_util';
 import AnnotationShowContainer from './annotation_show_container';
 import AnnotationForm from './annotation_form';
 import { Route } from 'react-router-dom';
+import NonAnnotationColumn from './non_annotation_column';
 
 class InfoColumn extends React.Component {
   constructor(props) {
@@ -51,7 +51,12 @@ class InfoColumn extends React.Component {
     const style = { marginTop: `${this.props.top}px` };
     return (
       <div id="info-column">
-        { this.props.annotationPrompt && <div style={style} className="annotation-prompt-container"><button id="annotation-prompt-button" onClick={ this.createAnnotationForm }>Start the Prodigy Annotation</button></div> }
+        { this.props.annotationPrompt && 
+          <div style={style} className="annotation-prompt-container">
+            <button id="annotation-prompt-button" 
+              onClick={ this.createAnnotationForm }>Start the Prodigy Annotation
+            </button>
+          </div> }
         { !this.props.annotationPrompt && this.state.forms }
         { !this.props.annotationPrompt && 
           <Route path="/tracks/:trackId/:annotationId" 
@@ -61,7 +66,14 @@ class InfoColumn extends React.Component {
               currentUserId={this.props.currentUserId}
               deleteAnnotation={this.props.deleteAnnotation}
             />}
-        /> } 
+        /> }
+        { !this.props.annotationPrompt && 
+          <Route 
+            exact path="/tracks/:trackId"
+            render={props => <NonAnnotationColumn {...props}
+              currentTrack={this.props.currentTrack}
+            />}
+        /> }
       </div>
     );
   }
