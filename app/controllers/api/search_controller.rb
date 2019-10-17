@@ -3,7 +3,12 @@ class Api::SearchController < ApplicationController
   def index; end
 
   def search
-    @tracks = Track.ransack(name_cont: params[:q]).result(distinct: true).limit(5)
+    @tracks = Track.ransack(name_cont: params[:q]).result
+    artists = Artist.ransack(name_cont: params[:q]).result
+
+    artists.each do |artist|
+      @tracks = @tracks.or(artist.tracks)
+    end
     render :search
   end
 end
