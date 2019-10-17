@@ -12,13 +12,8 @@ class HomePage extends React.Component {
     this.props.clearTracks();
   }
 
-  checkState(e) {
-    console.log(this.props.tracks);
-  }
-
   render() {
     const orderedRecentTracks = this.props.tracks.sort((a,b) => b.id - a.id);
-    console.log(orderedRecentTracks);
     const trackLis = orderedRecentTracks.map((track, i) => <TrackPanel key={track.id} track={track} num={i + 1} />);
     return (
       <section className="home">

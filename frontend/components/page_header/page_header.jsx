@@ -32,12 +32,10 @@ class PageHeader extends React.Component {
     if (this.props.currentUser) {
       return (
         <div className="page-header">
-          <SearchForm />
+          <SearchForm searchTracks={this.props.searchTracks} searchedTracks={this.props.searchedTracks} />
           <Link to='/'><span id="logo">Prodigy</span></Link>
           <div className="header-actions">
             <Link to="/tracks/new"><i className="fas fa-thumbtack"></i> Add Track</Link>
-            {/* <a href="#"><i className="fas fa-bell"></i> Me</a> */}
-            {/*<a href="#"><i className="fas fa-envelope"></i> Messages</a> */}
             <div className="dropdown-container">
               <a className="dropdown-btn dropdown" onClick={this.handleDropDown}>
                 <img src={this.props.currentUser.image_url} className="dropdown"></img>
@@ -55,7 +53,7 @@ class PageHeader extends React.Component {
     } else {
       return (
         <div className="page-header">
-          <SearchForm />
+          <SearchForm searchTracks={this.props.searchTracks} />
           <Link to='/'><span id="logo">Prodigy</span></Link>
           <div className="header-actions">
             <Link to='/signup'>Sign Up</Link>

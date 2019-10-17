@@ -7,7 +7,6 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       term: '',
-      results: [],
       focus: false
     };
     this.clicked = this.clicked.bind(this);
@@ -20,7 +19,6 @@ class SearchForm extends React.Component {
   }
 
   unclicked(e) {
-    console.dir(e.target);
     if (!e.target.classList.toString().includes("header-search") && !e.target.classList.toString().includes("header-results")) {
       this.setState({ focus: false });
       window.removeEventListener("click", this.unclicked);
@@ -30,13 +28,12 @@ class SearchForm extends React.Component {
   update(field) {
     return e => {
       this.setState({ [field]: e.target.value });
-      searchAPIUtil.fetchTrackResults(this.state.term)
-        .then(res => this.setState({ results: res.tracks }));
+      this.props.searchTracks(this.state.term);
     };
   }
 
   render() {
-    const searchLis = this.state.results.map(result => (
+    const searchLis = this.props.searchedTracks.map(result => (
       <HeaderSearchLi key={result.id} track={result}/>
     ));
 
@@ -50,7 +47,7 @@ class SearchForm extends React.Component {
           <div className="header-results-container">
             <h3>SEARCH RESULTS</h3>
             <ul className="header-results-list">
-              {this.state.results.length > 0 ? searchLis : <div className="header-no-results header-search"><span>No Results</span></div>}
+              {this.props.searchedTracks.length > 0 ? searchLis : <div className="header-no-results header-search"><span>No Results</span></div>}
             </ul>
           </div>
         )}

@@ -1,5 +1,6 @@
 .header-search-form-container {
   position: relative;
+  z-index: 3;
 }
 
 .header-search-form-container {
@@ -12,6 +13,7 @@
   position: absolute;
   top: 50px;
   left: 10px;
+  background-color: #bebebe;
 }
 
 .header-results-container > h3 {
@@ -32,7 +34,11 @@
   box-sizing: border-box;
   padding: 10px;
   height: 100%;
-  background-color: red;
+  background-color: #e2dede;
+}
+
+.header-search-li a:hover {
+  background-color: #bdbdbd;
 }
 
 .header-search-li img {
