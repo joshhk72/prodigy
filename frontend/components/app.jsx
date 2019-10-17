@@ -6,10 +6,11 @@ import SignupFormContainer from './session_form/signup_form_container';
 import TrackFormContainer from './track_form/track_form_container';
 import TrackShowContainer from './track_show/track_show_container';
 import TrackEditFormContainer from './track_show/track_edit_form_container';
-import UserProfileContainer from './user_profile/user_profile_container';
 import ProfileFormContainer from './user_profile/profile_form_container';
+import UserProfileContainer from './user_profile/user_profile_container';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import Modal from './modal';
 
 const App = () => (
   <div className="app">
@@ -26,11 +27,7 @@ const App = () => (
         <Route path="/tracks/:trackId" component={TrackShowContainer} />
       </Switch>
     </article>
-    <Route exact path="/users/:userId" component={ProfileFormContainer} />
-    <Switch>
-      <Route exact path="/tracks/new/" component={() => <div />} />
-      <Route exact path="/tracks/:trackId/" component={TrackEditFormContainer} />
-    </Switch>
+    <Modal />
   </div>
 );
 

@@ -3,10 +3,12 @@ import sessionReducer from './session_reducer';
 import errorsReducer from './errors_reducer';
 import entitiesReducer from './entities_reducer';
 import searchReducer from './search_reducer';
+import modalReducer from './modal_reducer';
 
 export default combineReducers({
   entities: entitiesReducer,
   session: sessionReducer,
   errors: errorsReducer,
-  search: searchReducer
+  search: searchReducer,
+  modal: modalReducer
 });

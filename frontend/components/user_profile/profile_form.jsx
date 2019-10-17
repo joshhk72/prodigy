@@ -5,38 +5,11 @@ class ProfileForm extends React.Component {
     super(props);
     this.state = props.user;
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleModalClick = this.handleModalClick.bind(this);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.match.params.userId !== prevProps.match.params.userId) {
-      const container = document.getElementById("profile-modal-container");
-      const screen = document.getElementById("modal-screen");
-      const form = document.getElementById("modal-form");
-      container.classList.add("modal-hide");
-      screen.classList.add("modal-hide");
-      form.classList.add("modal-hide");
-    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.updateUser(this.state);
-    const container = document.getElementById("profile-modal-container");
-    const screen = document.getElementById("modal-screen");
-    const form = document.getElementById("modal-form");
-    container.classList.add("modal-hide");
-    screen.classList.add("modal-hide");
-    form.classList.add("modal-hide");
-  }
-
-  handleModalClick() {
-    const container = document.getElementById("profile-modal-container");
-    const screen = document.getElementById("modal-screen");
-    const form = document.getElementById("modal-form");
-    container.classList.add("modal-hide");
-    screen.classList.add("modal-hide");
-    form.classList.add("modal-hide");
+    this.props.updateUser(this.state).then(() => this.props.closeModal());
   }
 
   update(field) {
@@ -49,7 +22,6 @@ class ProfileForm extends React.Component {
     if (this.props.user !== undefined) {
       return (
         <div className="modal-container modal-hide" id="profile-modal-container">
-          <div onClick={this.handleModalClick} className="modal-screen modal-hide" id="modal-screen"/>
           <form onSubmit={this.handleSubmit} className="profile-modal-form modal-hide" id="modal-form">
             <label>Change Username
                   <input type="text" onChange={this.update("username")} value={this.state.username}/>

@@ -3,21 +3,15 @@ import React from 'react';
 class TrackEditForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = props.currentTrack;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.trackId !== prevProps.match.params.trackId) {
-      this.hideModal();
+    console.dir(this.props.history);
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.props.closeModal();
     }
-  }
-
-  componentDidMount() {
-    this.props.fetchTrack(this.props.match.params.trackId)
-      .then(res => {
-        this.setState(res.track)
-      })
   }
 
   handleSubmit(e) {
@@ -28,17 +22,8 @@ class TrackEditForm extends React.Component {
     submission.producers = submission.producers.join(', ');
     submission.writers = submission.writers.join(', ');
     this.props.updateTrackForm(submission).then(() => {
-      this.hideModal();
+      this.props.closeModal();
     })
-  }
-
-  hideModal() {
-    const container = document.getElementById("track-modal-container");
-    const screen = document.getElementById("modal-screen");
-    const form = document.getElementById("modal-form");
-    if (container) { container.classList.add("modal-hide") };
-    if (screen) { screen.classList.add("modal-hide") };
-    if (form) { form.classList.add("modal-hide") };
   }
 
   update(field) {
@@ -54,10 +39,10 @@ class TrackEditForm extends React.Component {
   }
 
   render() {
+    console.dir(this.props.currentTrack);
     const form = this.props.loggedIn ?
     (
-      <div className="modal-container modal-hide" id="track-modal-container">
-        <div onClick={this.hideModal} className="modal-screen modal-hide" id="modal-screen" />
+      <div className="modal-container" id="track-modal-container">
         <form onSubmit={this.handleSubmit} className="track-modal-form modal-hide" id="modal-form">
           <div className="track-modal-tab">TITLE AND ARTISTS</div>
           <div className="track-modal-subform" id="subform-1">
@@ -69,15 +54,15 @@ class TrackEditForm extends React.Component {
               <br />
               <input type="text" onChange={ this.update("artist") } value={ this.state.artist || "" }/>
             </label>
-            <label className="subform-1-input">FEATURING (SEPARATE WITH COMMA AND SPACE)
+            <label className="subform-1-input">FEATURING
               <br />
               <input type="text" onChange={ this.updateArtists("features") } value={ this.state.features ? this.state.features.join(', ') : "" } />
             </label>
-              <label className="subform-1-input">WRITTEN BY (SEPARATE WITH COMMA AND SPACE)
+              <label className="subform-1-input">WRITTEN BY
               <br />
                 <input type="text" onChange={ this.updateArtists("writers") } value={this.state.writers ? this.state.writers.join(', ') : "" } />
             </label>
-              <label className="subform-1-input">PRODUCED BY (SEPARATE WITH COMMA AND SPACE)
+              <label className="subform-1-input">PRODUCED BY
               <br />
                 <input type="text" onChange={ this.updateArtists("producers") } value={ this.state.producers ? this.state.producers.join(', ') : "" }/>
             </label>
@@ -105,7 +90,7 @@ class TrackEditForm extends React.Component {
       </div>
     ) : <div></div>
 
-    return (this.state.id !== undefined) ? form : <div />
+    return form;
   }
 }
 

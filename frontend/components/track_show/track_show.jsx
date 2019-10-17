@@ -12,11 +12,11 @@ class TrackShow extends React.Component {
     super(props)
     this.state = { top: 0, annotationPrompt: false, editLyrics: false, lyrics: "", startIdx: undefined, endIdx: undefined }
     this.editButton = this.editButton.bind(this);
-    this.handleModal = this.handleModal.bind(this);
     this.submitLyrics = this.submitLyrics.bind(this);
     this.handleHighlight = this.handleHighlight.bind(this);
     this.handleSpanClick = this.handleSpanClick.bind(this);
     this.closeAnnotationPrompt = this.closeAnnotationPrompt.bind(this);
+    this.handleModal = this.handleModal.bind(this);
   }
 
   componentDidMount() {
@@ -116,11 +116,7 @@ class TrackShow extends React.Component {
   }
 
   handleModal() {
-    const modal = document.getElementsByClassName("modal-hide");
-
-    Array.from(modal).forEach(ele => {
-      ele.classList.remove("modal-hide");
-    })
+    this.props.openModal('trackEdit');
   }
 
   handleImageError() {
@@ -141,7 +137,7 @@ class TrackShow extends React.Component {
   }
 
   render() {
-    if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { return <div>Loading...</div>};
+    if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { return <div className="no-tracks-shown">The song you are looking for does not exist!</div>};
 
     const { currentTrack, loggedIn } = this.props;
     const lyricsLines = currentTrack.lyrics.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i} />), []).length - 1;
