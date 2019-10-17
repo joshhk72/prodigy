@@ -137,7 +137,7 @@ class TrackShow extends React.Component {
   }
 
   render() {
-    if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { return <div className="no-tracks-shown">The song you are looking for does not exist!</div>};
+    if (this.props.currentTrack === undefined || this.props.currentTrack.lyrics === undefined) { return <div className="no-tracks-shown"><h2>Error!</h2><p>The song you are looking for does not exist!</p></div>};
 
     const { currentTrack, loggedIn } = this.props;
     const lyricsLines = currentTrack.lyrics.split(/\r?\n/).reduce((acc, val, i) => acc.concat(val, <br key={i} />), []).length - 1;
