@@ -8,6 +8,9 @@ class TrackEditForm extends React.Component {
     console.dir(currentTrack.artist);
     if (currentTrack !== undefined) {
       currentTrack.artist = currentTrack.artist.name;
+      currentTrack.features = currentTrack.features.map(artist => artist.name);
+      currentTrack.producers = currentTrack.producers.map(artist => artist.name);
+      currentTrack.writers = currentTrack.writers.map(artist => artist.name);
     };
     
     this.state = currentTrack;
