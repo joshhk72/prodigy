@@ -2,7 +2,7 @@
 
 [Link to site](https://prodigy-clone.herokuapp.com)
 
-Prodigy is a lyrics & annotation web app, cloned to imitate the popular site **Genius**. It lets user add song lyrics and annotate these lyrics by highlighting words and submitting notes. Prodigy is built with **React/Redux** and **Ruby on Rails**, using a **PostgreSQL** database.
+Prodigy is a lyrics & annotation web app, cloned to imitate the popular site **Genius**. It lets users add song lyrics and annotate these lyrics by highlighting words and submitting notes. Users can also comment on tracks and upvote/downvote comments and annotations. Prodigy is built with **React/Redux** and **Ruby on Rails**, using a **PostgreSQL** database.
 
 ![Home Page](/app/assets/images/prodigy.png)
 
