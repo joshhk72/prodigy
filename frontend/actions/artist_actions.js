@@ -27,3 +27,8 @@ export const createArtist = artist => dispatch => {
   return ArtistUtil.createArtist(artist)
     .then(newArtist => dispatch(receiveArtist(newArtist)));
 };
+
+export const updateArtist = artist => dispatch => {
+  return ArtistUtil.updateArtist(artist)
+    .then(artist => dispatch(receiveArtist(artist)));
+};

@@ -4,11 +4,11 @@ json.artist @track.artist
 
 json.album @track.album.title if @track.album
 
-json.features @track.featured_artists.map(&:name)
+json.features @track.featured_artists
 
-json.producers @track.producers.map(&:name)
+json.producers @track.producers
 
-json.writers @track.writers.map(&:name)
+json.writers @track.writers
 
 json.annotations do
   @track.annotations.each do |annotation|

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resource :session, only:[:create, :destroy]
     resources :tracks, only:[:create, :show, :update, :index]
     resources :albums, only:[:create, :show]
-    resources :artists, only:[:create, :show, :index]
+    resources :artists, only:[:create, :show, :index, :update]
     resources :track_forms, only:[:create, :update]
     resources :annotations
     resources :comments

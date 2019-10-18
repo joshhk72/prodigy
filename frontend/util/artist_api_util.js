@@ -19,3 +19,11 @@ export const createArtist = artist => {
     data: { artist }
   });
 };
+
+export const updateArtist = artist => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/artists/${artist.id}`,
+    data: { artist }
+  });
+};

@@ -5,6 +5,7 @@ import CommentColumnContainer from './comments/column_container';
 import FadeIn from 'react-fade-in';
 import ReactLoading from "react-loading";
 import { Link } from 'react-router-dom';
+import TrackArtistLink from './artist_link';
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -178,6 +179,33 @@ class TrackShow extends React.Component {
       ) : <div />
     
     const { features, producers, writers, album, name, artist, image_url } = this.props.currentTrack
+    const featureLinks = features.map((feature, i) => (
+      <span key={ feature.id }>
+        { i === 0 && ' ' }
+        { (i > 0 && features.length > 2) && ', ' }
+        { (i > 0 && features.length === 2) && ' & '}
+        <TrackArtistLink artist={ feature } />
+      </span>
+    ));
+
+    const producerLinks = producers.map((producer, i) => (
+      <span key={ producer.id }>
+        { i === 0 && ' ' }
+        { (i > 0 && producers.length > 2) && ', ' }
+        { (i > 0 && producers.length === 2) && ' & ' }
+        <TrackArtistLink artist={ producer } key={ producer.id } />
+      </span>
+    ));
+
+    const writerLinks = writers.map((writer, i) => (
+      <span key={writer.id}>
+        {i === 0 && ' '}
+        {(i > 0 && writers.length > 2) && ', '}
+        {(i > 0 && writers.length === 2) && ' & '}
+        <TrackArtistLink artist={writer} key={writer.id} />
+      </span>
+    ));
+
     const heroStyle = {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image_url})`
     };
@@ -191,11 +219,24 @@ class TrackShow extends React.Component {
             </div>
             <div className="track-show-header-info-container">
               <h1>{ name }</h1>
-              <h2><Link to={`/artists/${artist.id}`}>{ artist.name }</Link></h2>
+              <h2><TrackArtistLink artist={artist}/></h2>
               <div className="track-show-header-additional">
-                { features.length > 0 && <h3>Featuring <span>{features.length > 2 ? features.join(", ") : features.join(" & ") }</span></h3> }
-                { producers.length > 0 && <h3>Produced by <span>{producers.length > 2 ? producers.join(", ") : producers.join(" & ")}</span></h3> }
-                { writers.length > 0 && <h3>Written by <span>{writers.length > 2 ? writers.join(", ") : writers.join(" & ")}</span></h3> }
+                { features.length > 0 && 
+                  <h3>Featuring
+                    { featureLinks }
+                  </h3> }
+                { producers.length > 0 && 
+                  <h3>Produced by
+                    <span>
+                      { producerLinks }
+                    </span>
+                  </h3> }
+                { writers.length > 0 && 
+                  <h3>Written by
+                    <span>
+                      { writerLinks }
+                    </span>
+                  </h3> }
                 { album && <h3>Album <span>{album}</span></h3> }
               </div>
             </div>

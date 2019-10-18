@@ -3,6 +3,7 @@ import { closeModal } from '..//actions/modal_actions';
 import { connect } from 'react-redux';
 import TrackEditFormContainer from './track_show/track_edit_form_container';
 import ProfileFormContainer from './user_profile/profile_form_container';
+import ArtistFormContainer from './artist_show/form_container';
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
@@ -16,6 +17,9 @@ function Modal({ modal, closeModal }) {
       break;
     case 'userEdit':
       component = <ProfileFormContainer />;
+      break;
+    case 'artistEdit':
+      component = <ArtistFormContainer />;
       break;
     default:
       return null;

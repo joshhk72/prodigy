@@ -24,9 +24,20 @@ class Api::ArtistsController < ApplicationController
     end
   end
 
+  def update
+    @artist = Artist.find(params[:id])
+
+    if @artist.update(artist_params)
+      render :show
+    else
+      errors = @artist.errors.full_messages
+      render json: errors, status: 422
+    end
+  end
+
   private
 
   def artist_params
-    params.require(:artist).permit(:name)
+    params.require(:artist).permit(:name, :image_url, :banner_image_url, :description)
   end
 end

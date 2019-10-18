@@ -7,6 +7,7 @@ class ArtistShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = { done: false };
+    this.openModal = this.openModal.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +32,10 @@ class ArtistShow extends React.Component {
     e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
   };
 
+  openModal() {
+    this.props.openModal('artistEdit');
+  }
+
   render() {
     if (!this.state.done) {
       return <ReactLoading type={"bars"} color={"white"} />;
@@ -39,7 +44,6 @@ class ArtistShow extends React.Component {
     };
 
     const { albums, tracks, name, description, image_url, banner_image_url } = this.props.currentArtist;
-    console.dir(this.props.currentArtist);
 
     let heroStyle;
     
@@ -63,6 +67,7 @@ class ArtistShow extends React.Component {
             </div>
             <div className="artist-show-main-info">
               <h1>{name}</h1>
+              <button onClick={this.openModal} className='artist-edit-button'>Edit Artist</button>
             </div>
             <div className="artist-show-about">
               <h3>{`About "${name}"`}</h3>
@@ -70,9 +75,9 @@ class ArtistShow extends React.Component {
             </div>
           </div>
           <div className="artist-show-column-second">
-            <div className="artist-show-songs">
+            <div className="artist-show-tracks">
               <h3>{name} Songs</h3>
-              <ul className="artist-show-song-panel">
+              <ul className="artist-show-track-panel">
                 {trackLis}
               </ul>
             </div>
