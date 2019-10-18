@@ -4,6 +4,7 @@ import InfoColumnContainer from './second_column/info_column_container';
 import CommentColumnContainer from './comments/column_container';
 import FadeIn from 'react-fade-in';
 import ReactLoading from "react-loading";
+import { Link } from 'react-router-dom';
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -91,7 +92,7 @@ class TrackShow extends React.Component {
 
   handleSpanClick(e) {
     if (e.target.className.match(/annotation-submit/)) { return }
-    if (e.target.localName === "button") { return };
+    if (e.target.localName === "button" || e.target.localName === "a") { return };
     
     if (e.target.className === "annotated-lyrics") { 
       this.props.history.push(`/tracks/${this.props.currentTrack.id}/${e.target.id}`);
@@ -190,7 +191,7 @@ class TrackShow extends React.Component {
             </div>
             <div className="track-show-header-info-container">
               <h1>{ name }</h1>
-              <h2>{ artist }</h2>
+              <h2><Link to={`/artists/${artist.id}`}>{ artist.name }</Link></h2>
               <div className="track-show-header-additional">
                 { features.length > 0 && <h3>Featuring <span>{features.length > 2 ? features.join(", ") : features.join(" & ") }</span></h3> }
                 { producers.length > 0 && <h3>Produced by <span>{producers.length > 2 ? producers.join(", ") : producers.join(" & ")}</span></h3> }

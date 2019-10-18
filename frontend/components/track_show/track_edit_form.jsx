@@ -1,9 +1,16 @@
 import React from 'react';
+import { merge } from 'lodash'
 
 class TrackEditForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.currentTrack;
+    const currentTrack = merge({}, props.currentTrack);
+    console.dir(currentTrack.artist);
+    if (currentTrack !== undefined) {
+      currentTrack.artist = currentTrack.artist.name;
+    };
+    
+    this.state = currentTrack;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
