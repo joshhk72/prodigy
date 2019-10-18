@@ -36,7 +36,9 @@ class UserProfile extends React.Component {
         <div className="profile-grid-container">
           <div className="profile-banner"></div>
           <div className="profile-column-1">
-            <img id="profile-picture" src={this.props.user.image_url} />
+            <img id="profile-picture" 
+              src={this.props.user.image_url || "https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"} 
+            />
             <span className="profile-name">@{this.props.user.username}</span>
             {this.props.currentUserPage === true ?
               <button 
