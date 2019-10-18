@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ArtistForm from './form';
+import ArtistForm from './artist_form';
 import { updateArtist } from '../../actions/artist_actions';
 import { closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';

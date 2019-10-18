@@ -9,7 +9,7 @@ import UserProfileContainer from './user_profile/user_profile_container';
 import ArtistShowContainer from './artist_show/show_container';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import Modal from './modal';
+import Modal from './modals/modal';
 
 const App = () => (
   <div className="app">

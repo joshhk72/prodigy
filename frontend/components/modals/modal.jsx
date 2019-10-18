@@ -1,9 +1,9 @@
 import React from 'react';
-import { closeModal } from '..//actions/modal_actions';
 import { connect } from 'react-redux';
-import TrackEditFormContainer from './track_show/track_edit_form_container';
-import ProfileFormContainer from './user_profile/profile_form_container';
-import ArtistFormContainer from './artist_show/form_container';
+import { closeModal } from '../../actions/modal_actions';
+import TrackEditFormContainer from './track_edit_form_container';
+import ProfileFormContainer from './profile_form_container';
+import ArtistFormContainer from './artist_form_container';
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
