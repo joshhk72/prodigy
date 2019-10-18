@@ -1,24 +1,4 @@
-# README
+# Prodigy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prodigy is a lyrics & annotation web app, cloned to imitate the popular site **Genius**. It lets user add song lyrics and annotate these lyrics by highlighting words and submitting notes. Prodigy is built with **React/Redux** and **Ruby on Rails**, using a **PostgreSQL** database.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
