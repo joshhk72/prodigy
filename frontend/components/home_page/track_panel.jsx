@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const TrackPanel = props => {
   const { track, num } = props;
-  console.dir(track.artist)
   return (
     <li className="home-track-list-li">
       <Link to={`/tracks/${track.id}`}>
