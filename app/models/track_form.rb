@@ -100,8 +100,6 @@ class TrackForm
     end
   end
 
-
-
   private
 
   def new_track
