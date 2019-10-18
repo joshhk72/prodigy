@@ -3,7 +3,6 @@ import { closeModal } from '..//actions/modal_actions';
 import { connect } from 'react-redux';
 import TrackEditFormContainer from './track_show/track_edit_form_container';
 import ProfileFormContainer from './user_profile/profile_form_container';
-import { Route } from 'react-router-dom';
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
@@ -22,8 +21,8 @@ function Modal({ modal, closeModal }) {
       return null;
   }
   return (
-    <div className="modal-background" onClick={closeModal}>
-      <div className="modal-child" onClick={e => e.stopPropagation()}>
+    <div className="modal-background" onMouseDown={closeModal}>
+      <div className="modal-child" onMouseDown={e => e.stopPropagation()}>
         {component}
       </div>
     </div>
