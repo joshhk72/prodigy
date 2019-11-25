@@ -37,11 +37,18 @@ class AlbumShow extends React.Component {
 
     const { image, artist, title } = this.props.currentAlbum;
 
+    const heroStyle = {
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`
+    };
+
     return (
       <section className="album-show-page">
-        <header id="album-show-hero">
+        <header id="album-show-hero" style={heroStyle}>
           <div className="album-show-image-container">
-            <img id="album-show-image" onError={this.handleImageError} src={image} />
+            <img id="album-show-image" 
+              onError={this.handleImageError} 
+              src={image || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'} 
+            />
           </div>
           <div className="album-show-header-info-container">
             <span>Album</span>

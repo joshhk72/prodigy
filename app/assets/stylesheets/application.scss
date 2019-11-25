@@ -15,7 +15,22 @@
 
 @function tint($color, $percentage) {
   @return mix(white, $color, $percentage);
-} 
+}
+
+@mixin dark-overlay{
+  &:after{
+    content: "";
+    width: 100%;
+    max-width: 960px;
+    height: auto;
+    position: absolute;
+    top: 0;
+	  right: auto;
+	  left: auto;
+    bottom: 0;
+    z-index: -1;
+  }
+}
 
 @import "base/*";
 @import "header";

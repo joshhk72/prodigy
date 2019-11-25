@@ -1,0 +1,30 @@
+.album-show-page {
+  header {
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
+  }
+}
+
+#album-show-hero {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  position: relative;
+  @include dark-overlay;
+  z-index: 1;
+}
+
+.album-show-image-container {
+  background-color: gray;
+  width: 300px;
+  height: 300px;
+  border: 3px solid gray;
+  margin-top: auto 0;
+  #album-show-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
