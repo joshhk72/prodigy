@@ -1,9 +1,10 @@
 import React from 'react';
 
 const NonAnnotationColumn = props => {
+  const { currentTrack, hide } = props;
   let youtube_url;
-  if (props.currentTrack)  {
-    youtube_url = props.currentTrack.youtube_url;
+  if (currentTrack)  {
+    youtube_url = currentTrack.youtube_url;
   }
 
   let youtubeUrl;
@@ -19,8 +20,11 @@ const NonAnnotationColumn = props => {
   }
   // https://stackoverflow.com/questions/28735459/how-to-validate-youtube-url-in-client-side-in-text-box
 
+  console.log(hide);
   return (
-    <div className="non-annotation">
+    <div 
+      className="info-column-non-annotation"
+      style={{ display: hide ? "none" : "block" }}>
       { youtubeUrl &&
         <div className="video">
           <h3>Video</h3>

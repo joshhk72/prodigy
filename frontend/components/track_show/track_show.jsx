@@ -15,7 +15,8 @@ class TrackShow extends React.Component {
     super(props)
     this.state = { 
       done: false, 
-      top: 0, annotationPrompt: false, 
+      top: 0, 
+      annotationPrompt: false, 
       editLyrics: false, 
       lyrics: "", 
       startIdx: undefined, 
@@ -113,12 +114,13 @@ class TrackShow extends React.Component {
   handleHighlight() {
     if (this.state.editLyrics) return; // don't need to handle highlights when editing lyrics
     const selection = window.getSelection();
-    if (!selection.extentNode || !selection.baseNode) return;
+    if (!selection.extentNode || !selection.baseNode) return; // end and start nodes must exist
 
     const annotationNodes = document.getElementsByClassName('annotated-lyrics');
     if (AnnotateUtil.annotationsNotSelected(annotationNodes) && this.props.loggedIn) {
       const lyricsContainer = document.getElementById("lyrics-container");
-      const { i1, i2, j1, j2 } = AnnotateUtil.getIndices(lyricsContainer);
+      const { i1, i2, j1, j2 } = AnnotateUtil.getIndices(lyricsContainer); 
+      // I could've deconstructed for these methods, but I wanted them to be easy to remember for the future!
       const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
       const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, { i1, i2, j1, j2 });
       const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 330;

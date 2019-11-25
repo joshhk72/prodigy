@@ -48,32 +48,33 @@ class InfoColumn extends React.Component {
   }
 
   render() {
+    const { annotations, annotationPrompt, 
+      currentTrack, currentUserId, 
+      deleteAnnotation, top, match: { isExact } } = this.props;
     const style = { marginTop: `${this.props.top}px` };
+    const hideNonAnnotation = annotationPrompt || !isExact;
     return (
       <div id="info-column">
-        { this.props.annotationPrompt && 
+        {this.props.annotationPrompt &&
           <div style={style} className="annotation-prompt-container">
-            <button id="annotation-prompt-button" 
-              onClick={ this.createAnnotationForm }>Start the Prodigy Annotation
-            </button>
-          </div> }
-        { !this.props.annotationPrompt && this.state.forms }
-        { !this.props.annotationPrompt && 
+            <button id="annotation-prompt-button"
+              onClick={this.createAnnotationForm}>Start the Prodigy Annotation
+          </button>
+          </div>}
+        { !annotationPrompt && this.state.forms.length > 0 && this.state.forms }
+        { !annotationPrompt && 
           <Route path="/tracks/:trackId/:annotationId" 
             render={props => <AnnotationShowContainer {...props}
-              annotations={this.props.annotations}
-              top={this.props.top}
-              currentUserId={this.props.currentUserId}
-              deleteAnnotation={this.props.deleteAnnotation}
+              annotations={annotations}
+              top={top}
+              currentUserId={currentUserId}
+              deleteAnnotation={deleteAnnotation}
             />}
         /> }
-        { !this.props.annotationPrompt && 
-          <Route 
-            exact path="/tracks/:trackId"
-            render={props => <NonAnnotationColumn {...props}
-              currentTrack={this.props.currentTrack}
-            />}
-        /> }
+        <NonAnnotationColumn 
+          currentTrack={currentTrack}
+          hide={hideNonAnnotation}
+        />
       </div>
     );
   }
