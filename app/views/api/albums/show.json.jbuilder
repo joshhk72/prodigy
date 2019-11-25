@@ -1,5 +1,11 @@
-json.extract! @album, :id, :title, :artist_id, :date
+json.extract! @album, :id, :title, :date
 
-json.track_ids do
-  json.array! @album.tracks.map(&:id)
+json.tracks do
+  json.array! @album.tracks do |track|
+    json.extract! track, :id, :name
+  end
+end
+
+json.artist do
+  json.extract! @album.artist, :id, :name
 end

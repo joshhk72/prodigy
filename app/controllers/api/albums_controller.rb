@@ -1,6 +1,6 @@
 class Api::AlbumsController < ApplicationController
   def show
-    @album = Album.includes(:tracks).find(params[:id])
+    @album = Album.includes(:tracks, :artist).find(params[:id])
     render :show
   end
 
