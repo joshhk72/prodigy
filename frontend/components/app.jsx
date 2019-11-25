@@ -29,9 +29,11 @@ const App = () => (
       </Switch>
     </main>
     <Modal />
-    <footer id="page-footer">
-      <Footer />
-    </footer>
+    <Switch>
+      <Route exact path="/login" component={null} />
+      <Route exact path="/signup" component={null} />
+      <Route path="/" component={Footer} />
+    </Switch>
   </div>
 );
 

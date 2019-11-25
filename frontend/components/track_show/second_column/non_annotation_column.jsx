@@ -20,7 +20,6 @@ const NonAnnotationColumn = props => {
   }
   // https://stackoverflow.com/questions/28735459/how-to-validate-youtube-url-in-client-side-in-text-box
 
-  console.log(hide);
   return (
     <div 
       className="info-column-non-annotation"
