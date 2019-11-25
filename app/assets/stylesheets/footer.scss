@@ -1,0 +1,34 @@
+#page-footer {
+  background-color: black;
+  color: white;
+  padding: 2em 4em;
+  > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 6em;
+    height: 16em;
+    max-width: 80em;
+    min-width: 72em;
+    margin: 0 auto;
+    #footer-col-1 {
+      font-size: 40px;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      #footer-links {
+        font-size: 60px;
+        a {
+          margin-right: 0.3em;
+          font-size: 72px;
+        }
+        a:hover {
+          color: gray;
+        }
+      }
+    }
+    #footer-col-2 {
+      font-size: 22px;
+    }
+  }
+}

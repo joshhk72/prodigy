@@ -7,6 +7,7 @@ import TrackFormContainer from './track_form/track_form_container';
 import TrackShowContainer from './track_show/track_show_container';
 import UserProfileContainer from './user_profile/user_profile_container';
 import ArtistShowContainer from './artist_show/show_container';
+import Footer from './footer';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Modal from './modals/modal';
@@ -16,7 +17,7 @@ const App = () => (
     <header>
       <PageHeaderContainer />
     </header>
-    <article>
+    <main>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <Route exact path="/" component={HomePageContainer} />
@@ -26,8 +27,11 @@ const App = () => (
         <ProtectedRoute exact path="/tracks/new" component={TrackFormContainer} />
         <Route path="/tracks/:trackId" component={TrackShowContainer} />
       </Switch>
-    </article>
+    </main>
     <Modal />
+    <footer id="page-footer">
+      <Footer />
+    </footer>
   </div>
 );
 
