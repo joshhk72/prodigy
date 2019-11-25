@@ -1,18 +1,33 @@
 .album-show-page {
+  header {
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
+  }
+  main {
+    min-height: 400px;
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 55% 45%;
+    column-gap: 1.4em;
+    .album-show-main-col-1 {
+      padding-top: 1em;
+      > h2 {
+        font-size: 18px;
+        color: darkgray;
+      }
+    }
+    .album-show-main-col-2 {
+      background-color: white;
+    }
+  }
+}
+
+.album-show-page {
   background-color: $background-gray;
-  min-height: 1000px;
 }
 
 .album-show-header {
   min-height: 350px;
-}
-
-.album-show-header-info-container {
-  box-sizing: border-box;
-  background: transparent;
-  width: 400px;
-  font-family: sans-serif;
-  margin-right: 30%;
-  padding-top: 60px;
-  padding-left: 15px;
 }

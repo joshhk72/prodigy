@@ -216,7 +216,7 @@ class TrackShow extends React.Component {
     ));
 
     const heroStyle = {
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image_url})`
+      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (image_url ? `,url(${image_url})` : "")
     };
 
     return (

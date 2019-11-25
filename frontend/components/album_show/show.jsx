@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactLoading from "react-loading";
 import { Link } from 'react-router-dom';
+import TrackPanel from './track_panel';
 
 class AlbumShow extends React.Component {
   constructor(props) {
@@ -33,13 +34,16 @@ class AlbumShow extends React.Component {
       return <div className="no-tracks-shown"><h2>Error!</h2><p>The album you are looking for does not exist!</p></div>
     };
 
-    console.log(this.props.currentAlbum);
-
-    const { image, artist, title } = this.props.currentAlbum;
+    const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    const { image, artist, title, tracks } = this.props.currentAlbum;
 
     const heroStyle = {
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`
+      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (image ? `,url(${image})` : "")
     };
+
+    const trackLis = tracks.map((track, idx) => {
+      return <TrackPanel key={track.id} track={track} />;
+    });
 
     return (
       <section className="album-show-page">
@@ -47,7 +51,7 @@ class AlbumShow extends React.Component {
           <div className="album-show-image-container">
             <img id="album-show-image" 
               onError={this.handleImageError} 
-              src={image || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'} 
+              src={image || defaultImage} 
             />
           </div>
           <div className="album-show-header-info-container">
@@ -60,6 +64,17 @@ class AlbumShow extends React.Component {
             </h2>
           </div>
         </header>
+        <main>
+          <div className="album-show-main-col-1">
+            <h2>{title} Tracklist</h2>
+            <ul>
+              {trackLis}
+            </ul>
+          </div>
+          <div className="album-show-main-col-2">
+
+          </div>
+        </main>
       </section>
     )
   }
