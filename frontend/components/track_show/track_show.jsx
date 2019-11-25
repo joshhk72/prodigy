@@ -4,7 +4,6 @@ import InfoColumnContainer from './second_column/info_column_container';
 import CommentColumnContainer from './comments/column_container';
 import FadeIn from 'react-fade-in';
 import ReactLoading from "react-loading";
-import { Link } from 'react-router-dom';
 import TrackArtistLink from './artist_link';
 
 function handleImageError() {
@@ -14,7 +13,14 @@ function handleImageError() {
 class TrackShow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { done: false, top: 0, annotationPrompt: false, editLyrics: false, lyrics: "", startIdx: undefined, endIdx: undefined }
+    this.state = { 
+      done: false, 
+      top: 0, annotationPrompt: false, 
+      editLyrics: false, 
+      lyrics: "", 
+      startIdx: undefined, 
+      endIdx: undefined,
+    }
     this.editButton = this.editButton.bind(this);
     this.submitLyrics = this.submitLyrics.bind(this);
     this.handleHighlight = this.handleHighlight.bind(this);
@@ -105,9 +111,10 @@ class TrackShow extends React.Component {
   }
 
   handleHighlight() {
+    if (this.state.editLyrics) return; // don't need to handle highlights when editing lyrics
     const selection = window.getSelection();
-    if (!selection.extentNode || !selection.baseNode) { return };
-    //if (selection.extentNode.nodeName !== "#text" || selection.baseNode.nodeName !== "#text") { return };
+    if (!selection.extentNode || !selection.baseNode) return;
+
     const annotationNodes = document.getElementsByClassName('annotated-lyrics');
     if (AnnotateUtil.annotationsNotSelected(annotationNodes) && this.props.loggedIn) {
       const lyricsContainer = document.getElementById("lyrics-container");
