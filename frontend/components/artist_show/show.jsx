@@ -46,13 +46,16 @@ class ArtistShow extends React.Component {
     const { albums, tracks, name, description, image_url, banner_image_url } = this.props.currentArtist;
     const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
 
-    let heroStyle;
-    
+    let bannerImage;
     if (banner_image_url) {
-      heroStyle = {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${banner_image_url})`
-      };
+      bannerImage = banner_image_url;
+    } else if (image_url) {
+      bannerImage = image_url;
     }
+
+    const heroStyle = {
+      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (bannerImage ? `,url(${bannerImage})` : "")
+    };
 
     const trackLis = tracks.map(track => <ArtistTrackLi track={track} key={track.id}/>);
 

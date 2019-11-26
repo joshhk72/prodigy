@@ -82,7 +82,10 @@ class AlbumShow extends React.Component {
             </ul>
           </div>
           <div className="album-show-main-col-2">
-
+            { description && <div className="album-show-description">
+              <h3>About {title}</h3>
+              <p>{description}</p>
+          </div> }
           </div>
         </main>
       </section>
