@@ -2,7 +2,7 @@ json.extract! @track, :album_id, :id, :name, :lyrics, :length, :image_url, :date
 
 json.artist @track.artist
 
-json.album @track.album.title if @track.album
+json.album @track.album
 
 json.features @track.featured_artists
 
