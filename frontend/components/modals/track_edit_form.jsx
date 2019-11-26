@@ -5,7 +5,6 @@ class TrackEditForm extends React.Component {
   constructor(props) {
     super(props);
     const currentTrack = merge({}, props.currentTrack);
-    console.dir(currentTrack.artist);
     if (currentTrack !== undefined) {
       currentTrack.artist = currentTrack.artist.name;
       currentTrack.features = currentTrack.features.map(artist => artist.name);
@@ -18,7 +17,6 @@ class TrackEditForm extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.dir(this.props.history);
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.props.closeModal();
     }
@@ -49,7 +47,6 @@ class TrackEditForm extends React.Component {
   }
 
   render() {
-    console.dir(this.props.currentTrack);
     const form = this.props.loggedIn ?
     (
       <div className="modal-container" id="track-modal-container">

@@ -16,7 +16,6 @@ class CommentForm extends React.Component {
 
   submitComment(e) {
     e.preventDefault();
-    console.log(this.props);
     this.props.submitComment(this.state)
       .then(() => this.setState({ body: "", commenting: false }));
   }
