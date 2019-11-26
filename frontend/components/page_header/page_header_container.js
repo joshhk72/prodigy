@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import PageHeader from './page_header';
 import { logout } from '../../actions/session_actions';
 import { searchTracks, clearSearch } from '../../actions/search_actions';
+import { withRouter } from 'react-router-dom';
 
 const MapStateToProps = ({ entities, session, search }) => ({
   currentUser: entities.users[session.id],
@@ -14,7 +15,7 @@ const MapDispatchToProps = dispatch => ({
   clearSearch: () => dispatch(clearSearch())
 });
 
-export default connect(
+export default withRouter(connect(
   MapStateToProps, 
   MapDispatchToProps
-)(PageHeader);
+)(PageHeader));

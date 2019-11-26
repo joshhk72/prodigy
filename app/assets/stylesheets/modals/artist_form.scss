@@ -25,7 +25,7 @@
 .artist-form textarea {
   resize: none;
   height: 200px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .artist-form button {

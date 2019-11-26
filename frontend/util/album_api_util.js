@@ -8,7 +8,15 @@ export const fetchAlbum = id => {
 export const createAlbum = album => {
   return $.ajax({
     method: "POST",
-    url: "api/artists/",
+    url: "api/albums/",
+    data: { album }
+  });
+};
+
+export const updateAlbum = album => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/albums/${album.id}`,
     data: { album }
   });
 };

@@ -1,0 +1,32 @@
+.album-show-page {
+  header {
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
+  }
+  main {
+    min-height: 400px;
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 55% 45%;
+    column-gap: 1.4em;
+    .album-show-main-col-1 {
+      padding-top: 1em;
+      > h2 {
+        font-size: 18px;
+        color: darkgray;
+      }
+    }
+    .album-show-main-col-2 {
+    }
+  }
+}
+
+.album-show-page {
+  background-color: $background-gray;
+}
+
+.album-show-header {
+  min-height: 350px;
+}

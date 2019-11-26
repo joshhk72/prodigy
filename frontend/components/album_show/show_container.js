@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import ArtistShow from './show';
-import { clearArtists, fetchArtist } from '../../actions/artist_actions';
+import AlbumShow from './show';
+import { clearAlbums, fetchAlbum } from '../../actions/album_actions';
 import { openModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   loggedIn: Boolean(state.session.id),
-  currentArtist: state.entities.artists[ownProps.match.params.artistId]
+  currentAlbum: state.entities.albums[ownProps.match.params.albumId]
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchArtist: id => dispatch(fetchArtist(id)),
-  clearArtists: () => dispatch(clearArtists()),
+  fetchAlbum: id => dispatch(fetchAlbum(id)),
+  clearAlbums: () => dispatch(clearAlbums()),
   openModal: modal => dispatch(openModal(modal))
 });
 
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(ArtistShow));
+)(AlbumShow));

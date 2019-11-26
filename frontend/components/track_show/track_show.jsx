@@ -4,6 +4,7 @@ import InfoColumnContainer from './second_column/info_column_container';
 import CommentColumnContainer from './comments/column_container';
 import FadeIn from 'react-fade-in';
 import ReactLoading from "react-loading";
+import { Link } from 'react-router-dom';
 import TrackArtistLink from './artist_link';
 
 function handleImageError() {
@@ -187,7 +188,7 @@ class TrackShow extends React.Component {
         </div>
       ) : <div />
     
-    const { features, producers, writers, album, name, artist, image_url } = this.props.currentTrack
+    const { features, producers, writers, album, name, artist, image_url } = this.props.currentTrack;
     const featureLinks = features.map((feature, i) => (
       <span key={ feature.id }>
         { i === 0 && ' ' }
@@ -216,7 +217,7 @@ class TrackShow extends React.Component {
     ));
 
     const heroStyle = {
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image_url})`
+      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (image_url ? `,url(${image_url})` : "")
     };
 
     return (
@@ -246,7 +247,7 @@ class TrackShow extends React.Component {
                       { writerLinks }
                     </span>
                   </h3> }
-                { album && <h3>Album <span>{album}</span></h3> }
+                { album && <h3>Album <span><Link to={`/albums/${album.id}`}>{album.title}</Link></span></h3> }
               </div>
             </div>
           </header>

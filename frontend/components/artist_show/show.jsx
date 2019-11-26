@@ -2,6 +2,7 @@ import React from 'react';
 import { FadeIn } from 'react-fade-in';
 import ReactLoading from "react-loading";
 import ArtistTrackLi from './track_li';
+import ArtistAlbumLi from './album_li';
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class ArtistShow extends React.Component {
 
   handleImageError(e) {
     e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
-  };
+  }
 
   openModal() {
     this.props.openModal('artistEdit');
@@ -44,16 +45,21 @@ class ArtistShow extends React.Component {
     };
 
     const { albums, tracks, name, description, image_url, banner_image_url } = this.props.currentArtist;
+    const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
 
-    let heroStyle;
-    
+    let bannerImage;
     if (banner_image_url) {
-      heroStyle = {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${banner_image_url})`
-      };
+      bannerImage = banner_image_url;
+    } else if (image_url) {
+      bannerImage = image_url;
     }
 
+    const heroStyle = {
+      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (bannerImage ? `,url(${bannerImage})` : "")
+    };
+
     const trackLis = tracks.map(track => <ArtistTrackLi track={track} key={track.id}/>);
+    const albumLis = albums.map(album => <ArtistAlbumLi album={album} key={album.id}/>);
 
     return(
       <section className="artist-show-page">
@@ -63,11 +69,11 @@ class ArtistShow extends React.Component {
         <main className="artist-show-main">
           <div className="artist-show-column-first">
             <div className="artist-show-image-container">
-              <img id="artist-show-image" onError={this.handleImageError} src={`${image_url}`} />
+              <img id="artist-show-image" onError={this.handleImageError} src={`${image_url || defaultImage}`} />
             </div>
             <div className="artist-show-main-info">
               <h1>{name}</h1>
-              <button onClick={this.openModal} className='artist-edit-button'>Edit Artist</button>
+              { this.props.loggedIn && <button onClick={this.openModal} className='artist-edit-button'>Edit Artist</button> }
             </div>
             <div className="artist-show-about">
               <h3>{`About "${name}"`}</h3>
@@ -81,14 +87,14 @@ class ArtistShow extends React.Component {
                 {trackLis}
               </ul>
             </div>
-            <div className="artist-show-albums">
-              <h3>{name} Albums</h3>
-              <ul className="artist-show-album-panel">
-                <li>one</li>
-                <li>two</li>
-                <li>three</li>
-              </ul>
-            </div>
+            { albums && albums.length > 0 && 
+              <div className="artist-show-albums">
+                <h3>{name} Albums</h3>
+                <ul className="artist-show-album-panel">
+                  {albumLis}
+                </ul>
+              </div> 
+            }
           </div>
         </main>
       </section>

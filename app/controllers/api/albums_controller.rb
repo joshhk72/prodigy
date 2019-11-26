@@ -1,6 +1,6 @@
 class Api::AlbumsController < ApplicationController
   def show
-    @album = Album.includes(:tracks).find(params[:id])
+    @album = Album.includes(:tracks, :artist).find(params[:id])
     render :show
   end
 
@@ -15,9 +15,20 @@ class Api::AlbumsController < ApplicationController
     end
   end
 
+  def update
+    @album = Album.find(params[:id])
+
+    if @album.update(album_params)
+      render :show
+    else
+      errors = @album.errors.full_messages
+      render json: errors, status: 422
+    end
+  end
+
   private
 
   def album_params
-    params.require(:album).permit(:title, :artist_id, :date)
+    params.require(:album).permit(:title, :artist_id, :date, :image_url, :banner_image_url, :description)
   end
 end

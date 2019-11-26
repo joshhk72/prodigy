@@ -21,3 +21,9 @@ export const createAlbum = album => dispatch => {
   return AlbumUtil.createAlbum(album)
     .then(newAlbum => dispatch(receiveAlbum(newAlbum)));
 };
+
+export const updateAlbum = album => dispatch => {
+  return AlbumUtil.updateAlbum(album)
+    .then(album => dispatch(receiveAlbum(album)));
+};
+
