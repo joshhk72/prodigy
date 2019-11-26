@@ -52,31 +52,3 @@
 .artist-show-about p {
   font-size: 17px;
 }
-
-.artist-show-album-panel {
-  background-color: red;
-  box-sizing: border-box;
-  padding: 0.4em;
-  .artist-album-li {
-    display: block;
-    min-height: 150px;
-    background-color: green;
-    a {
-      padding: 0.2em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      img {
-        height: 150px;
-        width: 150px;
-      }
-      span {
-        font-size: 13px;
-        color: darkgray;
-      }
-    }
-    a:hover {
-      background-color: $background-gray;
-    }
-  }
-}

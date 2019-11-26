@@ -9,6 +9,7 @@ class PageHeader extends React.Component {
   constructor(props) {
     super(props);
     this.handleDropDown = this.handleDropDown.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentWillUnmount() {
@@ -32,6 +33,10 @@ class PageHeader extends React.Component {
     window.addEventListener('click', this.handleOutsideClick);
   }
 
+  logout() {
+    this.props.logout().then(() => this.props.history.goBack());
+  }
+
   render() {
     if (this.props.currentUser) {
       return (
@@ -48,7 +53,7 @@ class PageHeader extends React.Component {
               <div id="dropdown-list" className="dropdown-content">
                 <h3>Account</h3>
                 <Link to={`/users/${this.props.currentUser.id}`}>View Profile</Link>
-                <a href="#" onClick={this.props.logout}>Sign Out</a>
+                <a href="#" onClick={this.logout}>Sign Out</a>
               </div>
             </div>
           </div>
