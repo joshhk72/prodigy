@@ -35,13 +35,20 @@ class AlbumShow extends React.Component {
     };
 
     const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
-    const { image_url, artist, title, tracks } = this.props.currentAlbum;
+    const { image_url, banner_image_url, description, artist, title, tracks } = this.props.currentAlbum;
+
+    let bannerImage;
+    if (banner_image_url) {
+      bannerImage = banner_image_url;
+    } else if (image_url) {
+      bannerImage = image_url;
+    }
 
     const heroStyle = {
-      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (image_url ? `,url(${image_url})` : "")
+      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (bannerImage ? `,url(${bannerImage})` : "")
     };
 
-    const trackLis = tracks.map((track, idx) => {
+    const trackLis = tracks.map(track => {
       return <TrackPanel key={track.id} track={track} />;
     });
 
