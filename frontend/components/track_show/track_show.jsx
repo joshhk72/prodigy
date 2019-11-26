@@ -189,7 +189,6 @@ class TrackShow extends React.Component {
       ) : <div />
     
     const { features, producers, writers, album, name, artist, image_url } = this.props.currentTrack;
-    console.log(album);
     const featureLinks = features.map((feature, i) => (
       <span key={ feature.id }>
         { i === 0 && ' ' }

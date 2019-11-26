@@ -66,6 +66,9 @@ class AlbumShow extends React.Component {
         </header>
         <main>
           <div className="album-show-main-col-1">
+            { this.props.loggedIn && 
+              <button onClick={() => this.props.openModal("albumEdit")}>Edit Album</button> 
+            }
             <h2>{title} Tracklist</h2>
             <ul>
               {trackLis}

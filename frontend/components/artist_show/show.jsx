@@ -64,7 +64,7 @@ class ArtistShow extends React.Component {
             </div>
             <div className="artist-show-main-info">
               <h1>{name}</h1>
-              <button onClick={this.openModal} className='artist-edit-button'>Edit Artist</button>
+              { this.props.loggedIn && <button onClick={this.openModal} className='artist-edit-button'>Edit Artist</button> }
             </div>
             <div className="artist-show-about">
               <h3>{`About "${name}"`}</h3>

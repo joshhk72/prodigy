@@ -5,6 +5,7 @@ import { clearAlbums, fetchAlbum } from '../../actions/album_actions';
 import { openModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state, ownProps) => ({
+  loggedIn: Boolean(state.session.id),
   currentAlbum: state.entities.albums[ownProps.match.params.albumId]
 });
 
