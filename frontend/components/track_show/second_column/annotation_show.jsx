@@ -13,7 +13,8 @@ class AnnotationShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchAnnotationUpvotes(this.props.match.params.annotationId);
+    const { annotationId } = this.props.match.params;
+    if (annotationId[0] !== 't') this.props.fetchAnnotationUpvotes(this.props.match.params.annotationId);
     const span = document.getElementById(this.props.match.params.annotationId);
     if (span) { span.classList.add("active-annotation") };
   }
@@ -64,7 +65,7 @@ class AnnotationShow extends React.Component {
     this.props.deleteUpvote(this.currentUpvote.id);
   }
 
-  handleNothing() {
+  handleNothing(e) {
     e.preventDefault();
   }
 
