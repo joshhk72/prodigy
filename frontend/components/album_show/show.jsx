@@ -35,10 +35,10 @@ class AlbumShow extends React.Component {
     };
 
     const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
-    const { image, artist, title, tracks } = this.props.currentAlbum;
+    const { image_url, artist, title, tracks } = this.props.currentAlbum;
 
     const heroStyle = {
-      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (image ? `,url(${image})` : "")
+      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (image_url ? `,url(${image_url})` : "")
     };
 
     const trackLis = tracks.map((track, idx) => {
@@ -51,7 +51,7 @@ class AlbumShow extends React.Component {
           <div className="album-show-image-container">
             <img id="album-show-image" 
               onError={this.handleImageError} 
-              src={image || defaultImage} 
+              src={image_url || defaultImage} 
             />
           </div>
           <div className="album-show-header-info-container">

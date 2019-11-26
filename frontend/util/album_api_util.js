@@ -12,3 +12,11 @@ export const createAlbum = album => {
     data: { album }
   });
 };
+
+export const updateAlbum = album => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/albums/${album.id}`,
+    data: { album }
+  });
+};

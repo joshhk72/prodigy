@@ -1,4 +1,4 @@
-json.extract! @album, :id, :title, :date
+json.extract! @album, :id, :title, :date, :image_url, :description, :banner_image_url
 
 json.tracks do
   json.array! @album.tracks do |track|

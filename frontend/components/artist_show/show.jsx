@@ -28,6 +28,10 @@ class ArtistShow extends React.Component {
     };
   }
 
+  handleImageError(e) {
+    e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+  }
+
   openModal() {
     this.props.openModal('artistEdit');
   }
@@ -60,7 +64,7 @@ class ArtistShow extends React.Component {
         <main className="artist-show-main">
           <div className="artist-show-column-first">
             <div className="artist-show-image-container">
-              <img id="artist-show-image" src={`${image_url || defaultImage}`} />
+              <img id="artist-show-image" onError={this.handleImageError} src={`${image_url || defaultImage}`} />
             </div>
             <div className="artist-show-main-info">
               <h1>{name}</h1>

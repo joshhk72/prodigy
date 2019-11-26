@@ -4,6 +4,7 @@ import { closeModal } from '../../actions/modal_actions';
 import TrackEditFormContainer from './track_edit_form_container';
 import ProfileFormContainer from './profile_form_container';
 import ArtistFormContainer from './artist_form_container';
+import AlbumFormContainer from './album_form_container';
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
@@ -20,6 +21,9 @@ function Modal({ modal, closeModal }) {
       break;
     case 'artistEdit':
       component = <ArtistFormContainer />;
+      break;
+    case 'albumEdit':
+      component = <AlbumFormContainer />;
       break;
     default:
       return null;
