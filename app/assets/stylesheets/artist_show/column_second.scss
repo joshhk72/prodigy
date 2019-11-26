@@ -21,14 +21,32 @@
 }
 
 .artist-show-album-panel {
+  box-sizing: border-box;
+  padding: 0.4em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
-}
-
-.artist-show-album-panel li {
-  background-color: white;
-  height: 70px;
+  .artist-album-li {
+    display: block;
+    min-height: 150px;
+    a {
+      padding: 0.2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        height: 150px;
+        width: 150px;
+      }
+      span {
+        font-size: 13px;
+        color: darkgray;
+      }
+    }
+    a:hover {
+      background-color: $background-gray;
+    }
+  }
 }
 
 .artist-show-tracks h3 {

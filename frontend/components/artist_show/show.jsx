@@ -2,6 +2,7 @@ import React from 'react';
 import { FadeIn } from 'react-fade-in';
 import ReactLoading from "react-loading";
 import ArtistTrackLi from './track_li';
+import ArtistAlbumLi from './album_li';
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class ArtistShow extends React.Component {
     };
 
     const trackLis = tracks.map(track => <ArtistTrackLi track={track} key={track.id}/>);
+    const albumLis = albums.map(album => <ArtistAlbumLi album={album} key={album.id}/>);
 
     return(
       <section className="artist-show-page">
@@ -85,14 +87,14 @@ class ArtistShow extends React.Component {
                 {trackLis}
               </ul>
             </div>
-            <div className="artist-show-albums">
-              <h3>{name} Albums</h3>
-              <ul className="artist-show-album-panel">
-                <li>one</li>
-                <li>two</li>
-                <li>three</li>
-              </ul>
-            </div>
+            { albums && albums.length > 0 && 
+              <div className="artist-show-albums">
+                <h3>{name} Albums</h3>
+                <ul className="artist-show-album-panel">
+                  {albumLis}
+                </ul>
+              </div> 
+            }
           </div>
         </main>
       </section>
