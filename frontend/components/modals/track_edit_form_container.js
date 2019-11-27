@@ -5,8 +5,8 @@ import { updateTrackForm } from '../../actions/track_form_actions';
 import { closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 
-const mapStateToProps = (state) => ({
-  currentTrack: Object.values(state.entities.tracks)[0],
+const mapStateToProps = (state, ownProps) => ({
+  currentTrack: state.entities.tracks[ownProps.location.pathname.split('/')[2]],
   loggedIn: Boolean(state.session.id)
 });
 
