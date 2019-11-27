@@ -10,6 +10,9 @@
 
 .profile-banner {
   background-color: blue;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 1;
@@ -29,7 +32,8 @@
   border-radius: 50%;
   justify-self: stretch;
   object-fit: cover;
-  width: 70%;
+  width: 225px;
+  height: 225px;
   margin: 35px auto;
   margin-bottom: 25px;
   border: 2px solid white;

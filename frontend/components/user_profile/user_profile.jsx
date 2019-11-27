@@ -32,9 +32,11 @@ class UserProfile extends React.Component {
 
   render() {
     if (this.props.user) {
+
+      const bannerStyle = { backgroundImage: `url(${this.props.user.image_url})` };
       return (
         <div className="profile-grid-container">
-          <div className="profile-banner"></div>
+          <div className="profile-banner" style={this.props.user.image_url ? bannerStyle : null}/>
           <div className="profile-column-1">
             <img id="profile-picture" 
               src={this.props.user.image_url || "https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"} 
