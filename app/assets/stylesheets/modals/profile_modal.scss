@@ -11,19 +11,17 @@
   padding: 20px;
   padding-right: 0;
   font-family: sans-serif;
-}
-
-.profile-modal-form input, .profile-modal-form textarea {
-  width: 90%;
-  background-color: white;
-  line-height: 2;
-  border: 1px solid blue;
-  margin: 0 auto;
-  margin-bottom: 10px;
-}
-
-.profile-modal-form button {
-  padding: 8px;
-  border: 2px solid $save-button-green;
-  color: $save-button-green;
+  input, textarea {
+    width: 90%;
+    background-color: white;
+    line-height: 2;
+    border: 1px solid blue;
+    margin: 0 auto;
+    margin-bottom: 10px; 
+  }
+  button {
+    padding: 8px;
+    border: 2px solid $save-button-green;
+    color: $save-button-green; 
+  }
 }

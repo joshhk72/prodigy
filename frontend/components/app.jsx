@@ -34,6 +34,7 @@ const App = () => (
     <Switch>
       <Route exact path="/login" component={null} />
       <Route exact path="/signup" component={null} />
+      <Route exact path="/tracks/new" component={null} />
       <Route path="/" component={Footer} />
     </Switch>
   </div>

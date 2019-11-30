@@ -1,12 +1,18 @@
 .track-form-container {
   display: grid;
   grid-template-columns: 10% 40% 40% 10%;
-}
-
-.track-form-container small {
-  color: white;
-  margin-top: auto;
-  margin-bottom: 5px
+  small {
+    color: white;
+    margin-top: auto;
+    margin-bottom: 5px 
+  }
+  h1 {
+    margin-left: 6px;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    color: white;
+  }
 }
 
 .track-form-additional-div {
@@ -28,14 +34,6 @@
   margin-top: 20px;
 }
 
-.track-form-container h1 {
-  margin-left: 6px;
-  font-family: sans-serif;
-  font-weight: 600;
-  font-size: 36px;
-  color: white;
-}
-
 .track-form {
   display: grid;
   grid-column-start: 1;
@@ -44,48 +42,57 @@
   grid-row-end: 3;
   grid-template-columns: 10% 40% 40% 10%;
   grid-template-rows: 45% 55%;
-}
-
-.track-form label {
-  color: rgb(82, 121, 121)
-}
-
-.track-form h3 {
-  border: none;
-  width: auto;
-  padding: 0;
-  padding-bottom: 5px;
-  border-bottom: 1px solid white;
-  margin-bottom: 10px;
-  color: white;
-  font-family: sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.track-form input {
-  background-color: white;
-  margin: 10px auto;
-  margin-top: 3px;
-  border-radius: 3px;
-  width: 100%;
-  line-height: 1.8;
+  label {
+    color: rgb(82, 121, 121)
+  }
+  h3 {
+    border: none;
+    width: auto;
+    padding: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+    margin-bottom: 10px;
+    color: white;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  input {
+    background-color: white;
+    margin: 10px auto;
+    margin-top: 3px;
+    border-radius: 3px;
+    width: 100%;
+    line-height: 1.8;  
+  }
+  textarea {
+    width: 99%;
+    line-height: 1.2;
+    background-color: white;
+    resize: none;
+  }
+  select {
+    margin: 10px auto;
+  }
+  button {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    background-color: gray;
+    color: white;
+    border: 1px solid white;
+    padding: 6px;
+    justify-self: center;
+    align-self: start;
+    border-radius: 8px;
+    margin-top: 70px;
+  }
 }
 
 .form-lyrics-container {
   width: 100%;
   margin: 0 auto;
-}
-
-.track-form textarea {
-  width: 99%;
-  line-height: 1.2;
-  background-color: white;
-  resize: none;
-}
-
-.track-form select {
-  margin: 10px auto;
 }
 
 .form-primary-column {
@@ -112,21 +119,6 @@
   padding: 10px;
 }
 
-.track-form button {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  background-color: gray;
-  color: white;
-  border: 1px solid white;
-  padding: 6px;
-  justify-self: center;
-  align-self: start;
-  border-radius: 8px;
-  margin-top: 70px;
-}
-
 .track-form-errors-container {
   display: block;
   margin-top: 10px;
@@ -137,19 +129,17 @@
   grid-column-end: 4;
   box-sizing: border-box;
   justify-self: center;
-}
-
-.track-form-errors-container h3 {
-  width: 97%;
-  margin: 0 auto;
-  background-color: $error-form-red;
-  padding: 3px 20px;
-}
-
-.track-form-errors-list {
-  width: 97%;
-  margin: 0 auto;
-  background-color: $error-form-gray;
-  list-style-type: disc;
-  padding: 10px 30px;
+  h3 {
+    width: 97%;
+    margin: 0 auto;
+    background-color: $error-form-red;
+    padding: 3px 20px; 
+  }
+  ul {
+    width: 97%;
+    margin: 0 auto;
+    background-color: $error-form-gray;
+    list-style-type: disc;
+    padding: 10px 30px;
+  }
 }

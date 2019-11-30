@@ -5,7 +5,7 @@ const TrackFormErrorsList = props => {
   return (
     <div className="track-form-errors-container">
       <h3>{props.errors.length} errors prevented the track from being saved</h3>
-      <ul className="track-form-errors-list">
+      <ul>
         { errorLis }
       </ul>
     </div>
