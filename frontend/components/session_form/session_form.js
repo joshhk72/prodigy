@@ -62,7 +62,7 @@ class SessionForm extends React.Component {
 
     return (
       <div className='session-form-container'>
-        <h2 id="session-head-text">{headText}</h2>
+        <h2>{headText}</h2>
         <form onSubmit={this.handleSubmit} className='session-form'>
           {this.props.errors.length > 0 &&
             <div className="session-error-list-container">

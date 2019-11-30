@@ -27,16 +27,14 @@
   align-items: center;
   height: 40px;
   font-size: 13px;
-}
-
-.header-actions > a {
-  padding: 10px;
-  height: 40px;
-}
-
-.header-actions > a:hover {
-  border-bottom: 5px solid red;
-  cursor: pointer;
+  > a {
+    padding: 10px;
+    height: 40px;
+  }
+  > a:hover {
+    border-bottom: 5px solid red;
+    cursor: pointer;
+  }
 }
 
 #logo {

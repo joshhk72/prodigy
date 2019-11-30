@@ -1,6 +1,16 @@
 .session-form-container {
   width: 70%;
   margin: 0 auto;
+  > h2 {
+    display: block;
+    width: 150px;
+    font-size: 32px;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    margin-top: 30px;
+    font-family: sans-serif;
+  }
 }
 
 .session-form {
@@ -14,34 +24,30 @@
   font-weight: 500;
   border-radius: 2px;
   border-top: 1px solid $session-gray;
-}
-
-.session-form input {
-  width: 100%;
-  margin-top: 3px;
-  margin-bottom: 15px;
-  background-color: $session-gray;
-  border: 1px solid $session-light-gray;
-  line-height: 1.8;
-  border-radius: 2px;
-}
-
-.session-form input:focus {
-  border: 1px solid $session-lightest-gray;
-}
-
-.session-form button {
-  padding: 5px 8px;
-  background-color: #2E2A29;
-  border: 1px solid $session-light-gray;
-  color: $session-button-white;
-  border-radius: 2px;
-}
-
-.session-form button:hover {
-  background-color: tint(#2E2A29, 5%);
-  border: 1px solid tin($session-light-gray, 5%);
-  color: tint($session-button-white, 30%);
+  input {
+    width: 100%;
+    margin-top: 3px;
+    margin-bottom: 15px;
+    background-color: $session-gray;
+    border: 1px solid $session-light-gray;
+    line-height: 1.8;
+    border-radius: 2px;   
+  }
+  input:focus {
+    border: 1px solid $session-lightest-gray;
+  }
+  button {
+    padding: 5px 8px;
+    background-color: #2E2A29;
+    border: 1px solid $session-light-gray;
+    color: $session-button-white;
+    border-radius: 2px; 
+  }
+  button:hover {
+    background-color: tint(#2E2A29, 5%);
+    border: 1px solid tin($session-light-gray, 5%);
+    color: tint($session-button-white, 30%);
+  }
 }
 
 #alternative {
@@ -52,29 +58,16 @@
   color: white;
   font-family: sans-serif;
   font-size: 15px;
-}
-
-#alternative a {
-  color: $session-link-blue;
-}
-
-#alternative a:hover {
-  color: tint($session-link-blue, 40%);
+  a {
+    color: $session-link-blue;
+  }
+  a:hover {
+    color: tint($session-link-blue, 40%);
+  }
 }
 
 .demo:hover {
   cursor: pointer;
-}
-
-#session-head-text {
-  display: block;
-  width: 150px;
-  font-size: 32px;
-  text-align: center;
-  color: white;
-  margin: 0 auto;
-  margin-top: 30px;
-  font-family: sans-serif;
 }
 
 .session-error-list-container {
@@ -84,31 +77,27 @@
   box-sizing: border-box;
   font-size: 13px;
   background-color: $error-form-gray;
-}
-
-.session-error-list-container h3 {
-  background-color: $error-form-red;
-  padding: 10px 0;
-  padding-left: 30px;
-  font-size: 14px;
-}
-
-.session-error-list-container p {
-  margin-left: 30px;
-  padding-top: 20px;
-  padding-bottom: 10px;
+  h3 {
+    background-color: $error-form-red;
+    padding: 10px 0;
+    padding-left: 30px;
+    font-size: 14px;
+  }
+  p {
+    margin-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 10px;  
+  }
 }
 
 .session-error-list {
   list-style-type: disc;
   padding: 15px;
   padding-left: 40px;
-}
-
-.session-error-list li {
-  margin-bottom: 10px;
-}
-
-.session-error-list li:last-of-type {
-  margin-bottom: 0;
+  li {
+    margin-bottom: 10px;
+  }
+  li:last-of-type {
+    margin-bottom: 0;
+  }
 }
