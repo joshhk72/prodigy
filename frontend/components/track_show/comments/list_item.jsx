@@ -56,7 +56,7 @@ class CommentListItem extends React.Component {
     const [leftClass, rightClass] = UpvoteUtil.determineClasses(this.currentUpvote);
 
     return (
-      <li className="comments-list-li">
+      <li>
         <div className="comment-container">
           <div className="comment-meta-row">
             <div className="comment-user-meta">
@@ -64,7 +64,7 @@ class CommentListItem extends React.Component {
                 onError={function () { this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}}
                 src={profile_img || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'}
               />
-              <span className="comment-username">{username}</span>
+              <span>{username}</span>
             </div>
             <span className="comment-date">{date}</span>
           </div>

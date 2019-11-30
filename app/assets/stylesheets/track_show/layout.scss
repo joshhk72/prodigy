@@ -20,22 +20,20 @@
   width: 100%;
   height: 100%;
   padding-top: 200px;
-}
-
-.no-tracks-shown h2 {
-  display: flex;
-  justify-content: center;
-  width: 400px;
-  margin: 0 auto;
-  font-size: 60px;
-}
-
-.no-tracks-shown p {
-  display: flex;
-  justify-content: center;
-  font-size: 18px;
-  width: 400px;
-  margin: 0 auto;
+  h2 {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    margin: 0 auto;
+    font-size: 60px;
+  }
+  p {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    width: 400px;
+    margin: 0 auto;   
+  }
 }
 
 .track-show-footer {

@@ -12,25 +12,22 @@
   padding-right: 0;
   font-family: sans-serif;
   text-transform: uppercase;
-}
-
-.artist-form input, .artist-form textarea {
-  background-color: white;
-  line-height: 1.5;
-  width: 90%;
-  border: 1px solid black;
-  margin: 10px auto;
-}
-
-.artist-form textarea {
-  resize: none;
-  height: 200px;
-  overflow-y: auto;
-}
-
-.artist-form button {
-  padding: 8px;
-  border: 2px solid indigo;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  input, textarea {
+    background-color: white;
+    line-height: 1.5;
+    width: 90%;
+    border: 1px solid black;
+    margin: 10px auto;
+  }
+  textarea {
+    resize: none;
+    height: 200px;
+    overflow-y: auto;
+  }
+  button {
+    padding: 8px;
+    border: 2px solid indigo;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }

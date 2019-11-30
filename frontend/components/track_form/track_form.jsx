@@ -46,12 +46,6 @@ class TrackForm extends React.Component {
           <div className="form-primary-column">
             <h3>Primary Info</h3>
             <div>
-              {/* <div className="track-form-primary-artist">
-                <label>BY *
-                  <br />
-                  <input type="text" onChange={ this.update("artist")} value={ this.state.artist || "" } required />
-                </label>
-              </div> */}
               <SuggestedInput
                 label={'BY *'}
                 search={this.props.searchArtists}

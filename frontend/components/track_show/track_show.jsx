@@ -223,9 +223,9 @@ class TrackShow extends React.Component {
     return (
       <section className="track-show-page" onClick={this.handleSpanClick}>
         <FadeIn>
-          <header className="track-show-header" id="hero-image" style={heroStyle}>
+          <header className="track-show-header" id="track-show-hero-image" style={heroStyle}>
             <div className="track-show-image-container">
-              <img id="track-show-image" onError={handleImageError.bind(this)} src={ image_url } />
+              <img onError={handleImageError.bind(this)} src={ image_url } />
             </div>
             <div className="track-show-header-info-container">
               <h1>{ name }</h1>
