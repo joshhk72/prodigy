@@ -7,86 +7,77 @@
 
 .comments-list {
   box-sizing: content-box;
-}
-
-.comments-list li {
-  margin: 0 15px;
-  padding: 20px 0;
-  border-top: 2px solid $comment-border-purple;
-  box-sizing: content-box;
+  li {
+    margin: 0 15px;
+    padding: 20px 0;
+    border-top: 2px solid $comment-border-purple;
+    box-sizing: content-box;
+  }
 }
 
 .comment-meta-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+  .comment-date {
+    font-size: 12px;
+  }
 }
 
 .comment-user-meta {
   display: flex;
   justify-content: space-between;
   width: 65px;
+  img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+  span {
+    font-size: 15px;
+    font-weight: 550;
+  }
 }
 
-.comment-username {
-  font-size: 15px;
-  font-weight: 550;
-}
-
-.comment-date {
-  font-size: 12px;
-}
-
-.comment-container p {
+.comment-body {
   font-size: 15px;
   margin-bottom: 20px;
 }
 
-.comment-profile-img {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-}
-
 .comment-form-container {
   padding: 15px;
-}
-
-.comment-pre {
-  background-color: white;
-  border: 2px solid $input-border-gray;
-  width: 100%;
-  padding: 5px 3px;
-  box-sizing: border-box;
-}
-
-.comment-input {
-  background-color: white;
-  border: 2px solid $input-border-gray;
-  width: 100%;
-  resize: none;
-  padding: 5px;
-  box-sizing: border-box;
-}
-
-.comment-input:focus {
-  -webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;
-  -moz-box-shadow: inset 2px 2px 2px 0px #dddddd;
-  box-shadow: inset 2px 2px 2px 0px #dddddd;
-}
-
-.submit-comment {
-  margin-top: 12px;
-  margin-bottom: 5px;
-  padding: 8px;
-  border: 2px solid $save-button-green;
+  .comment-pre {
+    background-color: white;
+    border: 2px solid $input-border-gray;
+    width: 100%;
+    padding: 5px 3px;
+    box-sizing: border-box;
+  }
+  .comment-input {
+    background-color: white;
+    border: 2px solid $input-border-gray;
+    width: 100%;
+    resize: none;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+  .comment-input:focus {
+    -webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    -moz-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    box-shadow: inset 2px 2px 2px 0px #dddddd;
+  }
+  button {
+    margin-top: 12px;
+    margin-bottom: 5px;
+    padding: 8px;
+    border: 2px solid $save-button-green;  
+  }
 }
 
 .comment-bottom {
   display: flex;
   justify-content: space-between;
-}
-
-.comment-bottom a:hover {
-  cursor: pointer;
+  a:hover {
+    cursor: pointer;
+  }
 }

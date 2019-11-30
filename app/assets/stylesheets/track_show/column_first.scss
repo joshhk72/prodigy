@@ -1,6 +1,14 @@
 .track-show-column-first {
   background-color: $lyrics-background-gray;
   padding: 15px;
+  p, #edit-textarea {
+    font-size: 17px;
+    line-height: 1.8;
+    font-family: sans-serif;
+  }
+  p {
+    word-wrap: break-word;
+  }
 }
 
 .track-show-lyrics-container button {
@@ -14,21 +22,8 @@
   border: 2px solid $save-button-green;
 }
 
-.track-show-column-first p, #edit-textarea {
-  font-size: 17px;
-  line-height: 1.8;
-  font-family: sans-serif;
-}
-
-.track-show-column-first p {
-  word-wrap: break-word;
-}
-
 #edit-textarea {
   background-color: $lyrics-edit-gray;
-}
-
-#edit-textarea {
   resize: none;
   overflow: none;
   width: 98%;
