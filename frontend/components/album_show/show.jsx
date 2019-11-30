@@ -52,6 +52,11 @@ class AlbumShow extends React.Component {
       return <TrackPanel key={track.id} track={track} />;
     });
 
+    let descParagraphs
+    if (description) descParagraphs = description.split(/\r?\n/).map(paragraph => {
+      return <p>{paragraph}</p>
+    });
+
     return (
       <section className="album-show-page">
         <header id="album-show-hero" style={heroStyle}>
@@ -84,7 +89,7 @@ class AlbumShow extends React.Component {
           <div className="album-show-main-col-2">
             { description && <div className="album-show-description">
               <h3>About {title}</h3>
-              <p>{description}</p>
+              {descParagraphs}
           </div> }
           </div>
         </main>

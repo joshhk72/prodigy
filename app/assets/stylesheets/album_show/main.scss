@@ -42,7 +42,10 @@
   .album-show-description {
     background-color: white;
     font-family: sans-serif;
-    min-height: 8em;
+    min-height: 100px;
+    padding: 10px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
     h3 {
       font-size: 16px;
       font-weight: 550;
@@ -50,6 +53,11 @@
     }
     p {
       font-size: 19px;
+      word-wrap: break-word;
+      margin-bottom: 15px;
+    }
+    p:last-of-type {
+      margin-bottom: 0;
     }
   }
 }

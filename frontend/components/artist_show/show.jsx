@@ -58,6 +58,11 @@ class ArtistShow extends React.Component {
       backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (bannerImage ? `,url(${bannerImage})` : "")
     };
 
+    let descParagraphs
+    if (description) descParagraphs = description.split(/\r?\n/).map(paragraph => {
+      return <p>paragraph</p>
+    });
+
     const trackLis = tracks.map(track => <ArtistTrackLi track={track} key={track.id}/>);
     const albumLis = albums.map(album => <ArtistAlbumLi album={album} key={album.id}/>);
 
@@ -77,7 +82,7 @@ class ArtistShow extends React.Component {
             </div>
             <div className="artist-show-about">
               <h3>{`About "${name}"`}</h3>
-              <p>{description}</p>
+              {descParagraphs}
             </div>
           </div>
           <div className="artist-show-column-second">

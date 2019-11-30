@@ -36,11 +36,18 @@ users = User.create([
 artists = Artist.create([
   { name: "Car Seat Headrest", 
     image_url: "https://pbs.twimg.com/profile_images/459401939529134080/ZPooDfQ0_400x400.jpeg",
-    banner_image_url: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p640x640/40095711_2176917312381348_6504233799444856832_o.jpg?_nc_cat=109&_nc_ohc=ULaBjFI5mfIAQnM735_K2CdWi9lE104pnMgzCQ4WaX6H7RkxXlzq3U4hw&_nc_ht=scontent-lga3-1.xx&oh=ef566fb0176f3c43c1f458474c14df35&oe=5E4E7A38"
+    banner_image_url: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p640x640/40095711_2176917312381348_6504233799444856832_o.jpg?_nc_cat=109&_nc_ohc=ULaBjFI5mfIAQnM735_K2CdWi9lE104pnMgzCQ4WaX6H7RkxXlzq3U4hw&_nc_ht=scontent-lga3-1.xx&oh=ef566fb0176f3c43c1f458474c14df35&oe=5E4E7A38",
+    description: %Q(Will Toledo is an upstanding young man who has upheld the letter of the law to the fullest extent of his abilities.
+      
+      He passed through his school years and through college without any evidence of criminal wrongdoings being attached to him, indeed becoming a role model and a guiltless beacon of hope to his peer group, members of whom might have otherwise been terribly misled.
+      
+      He has no identifying marks or scars.)
   },
   { name: "Joanna Newsom",
     image_url: "https://media.pitchfork.com/photos/5d7c07438699b30008f1b0ad/2:1/w_790/Joanna-Newsom.jpg",
-    banner_image_url: "https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff3a4e9cc-87ab-11e5-90de-f44762bf9896?fit=scale-down&source=next&width=700" },
+    banner_image_url: "https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff3a4e9cc-87ab-11e5-90de-f44762bf9896?fit=scale-down&source=next&width=700",
+    description: "Newsom is a singer-songwriter whose uniqueness is defined by her voice, her lyrics, her instrument of choice (the pedal harp), and her manner of composition (long songs owing more to modern classical music than pop song formats)."
+  },
   { name: "Laura Marling",
     image_url: "https://www.thetimes.co.uk/imageserver/image/methode%2Ftimes%2Fprod%2Fweb%2Fbin%2F4cc7a56c-5f0b-11e6-829b-372b3909db3d.jpg?crop=2028%2C1141%2C58%2C32&resize=685",
     banner_image_url: "https://cdn.cherwell.org/wp-content/uploads/2017/02/09070647/LM-Conference-3-e1487946942627.jpg" }
@@ -51,11 +58,19 @@ albums = Album.create([
     image_url: "https://f4.bcbits.com/img/a0202599159_10.jpg", 
     banner_image_url: "https://www.angryyoungandpoor.com/store/pc/catalog/products/lp/mtd11330lp.jpg"
   },
-  { title: "Teens of Denial", artist_id: artists[0].id, date: Date.new(2016, 5, 20) },
-  { title: "Ys", artist_id: artists[1].id, date: Date.new(2006, 11, 6) },
-  { title: "Divers", artist_id: artists[1].id, date: Date.new(2015, 10, 23) },
-  { title: "I Speak Because I Can", artist_id: artists[2].id, date: Date.new(2010, 3, 22) },
-  { title: "Semper Femina", artist_id: artists[2].id, date: Date.new(2017, 3, 10) },
+  { title: "Teens of Denial", artist_id: artists[0].id, date: Date.new(2016, 5, 20), 
+    image_url: "https://f4.bcbits.com/img/a2165492760_10.jpg"},
+  { title: "Ys", artist_id: artists[1].id, date: Date.new(2006, 11, 6),
+    image_url: "https://upload.wikimedia.org/wikipedia/en/4/4d/Ys_cover.jpg",
+    description: "Ys is the second studio album by harpist, singer and songwriter Joanna Newsom. The album title refers to the mythical city of Ys, supposedly located on the coast of Brittany before it ended up sinking beneath an ocean flood."
+  },
+  { title: "Divers", artist_id: artists[1].id, date: Date.new(2015, 10, 23),
+    image_url: "https://midnightpunk.files.wordpress.com/2015/11/joannanewsom_divers_mini-400x400.jpg",
+    banner_image_url: "https://i.ytimg.com/vi/WY1uzXMKsOE/maxresdefault.jpg"},
+  { title: "I Speak Because I Can", artist_id: artists[2].id, date: Date.new(2010, 3, 22),
+    image_url: "https://upload.wikimedia.org/wikipedia/en/a/a1/Ispeakbecauseican.jpg"},
+  { title: "Semper Femina", artist_id: artists[2].id, date: Date.new(2017, 3, 10),
+    image_url: "https://upload.wikimedia.org/wikipedia/en/7/72/Semper_Femina_-_Laura_Marling.jpg"},
   { title: "Have One on Me", artist_id: artists[1].id, date: Date.new(2010, 02, 23), 
     image_url: "https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2Fe2f790a4752e38a734e9a107bbcb3f5c.452x452x1.jpg",
     banner_image_url: "https://static.stereogum.com/uploads/2011/12/joanna-newsom-good-intentions-paving-company-608x450.jpg"
