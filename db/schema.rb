@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_002100) do
+ActiveRecord::Schema.define(version: 2019_12_01_231020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 2019_11_26_002100) do
     t.index ["track_id"], name: "index_annotations_on_track_id"
   end
 
+  create_table "answers", force: :cascade do |t|
+    t.text "body", null: false
+    t.string "user_id", null: false
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
   create_table "artists", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -56,6 +66,17 @@ ActiveRecord::Schema.define(version: 2019_11_26_002100) do
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_comments_on_author_id"
     t.index ["track_id"], name: "index_comments_on_track_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "user_id", null: false
+    t.integer "questionable_id", null: false
+    t.integer "questionable_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questionable_type", "questionable_id"], name: "index_questions_on_questionable_type_and_questionable_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "track_features", force: :cascade do |t|
