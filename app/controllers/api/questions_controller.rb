@@ -1,11 +1,11 @@
 class Api::QuestionsController < ApplicationController
   def index
     if params[:track_id]
-      @questions = Track.find(params[:track_id]).questions
+      @questions = Track.find(params[:track_id]).questions.includes(:answer)
     elsif params[:artist_id]
-      @questions = Artist.find(params[:artist_id]).questions
+      @questions = Artist.find(params[:artist_id]).questions.includes(:answer)
     elsif params[:album]
-      @questions = Album.find(params[:album_id]).questions
+      @questions = Album.find(params[:album_id]).questions.includes(:answer)
     end
     render :index
   end
