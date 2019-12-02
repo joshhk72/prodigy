@@ -1,18 +1,20 @@
 import { combineReducers } from 'redux';
-import usersReducer from './users_reducer';
-import artistsReducer from './artists_reducer';
-import albumsReducer from './albums_reducer';
-import tracksReducer from './tracks_reducer';
-import annotationsReducer from './annotations_reducer';
-import commentsReducer from './comments_reducer';
-import upvotesReducer from './upvotes_reducer';
+import users from './users_reducer';
+import artists from './artists_reducer';
+import albums from './albums_reducer';
+import tracks from './tracks_reducer';
+import annotations from './annotations_reducer';
+import comments from './comments_reducer';
+import upvotes from './upvotes_reducer';
+import questions from './questions_reducer';
 
 export default combineReducers({
-  users: usersReducer,
-  tracks: tracksReducer,
-  albums: albumsReducer,
-  artists: artistsReducer,
-  annotations: annotationsReducer,
-  comments: commentsReducer,
-  upvotes: upvotesReducer
+  users,
+  tracks,
+  albums,
+  artists,
+  annotations,
+  comments,
+  upvotes,
+  questions,
 });
