@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionSection from '../questions/section';
+import QuestionSectionContainer from '../questions/section_container';
 
 const NonAnnotationColumn = props => {
   const { currentTrack, hide } = props;
@@ -35,7 +35,7 @@ const NonAnnotationColumn = props => {
           />
         </div>
       }
-      <QuestionSection />
+      <QuestionSectionContainer />
     </div>
   )
 };

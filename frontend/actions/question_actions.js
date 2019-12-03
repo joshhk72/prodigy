@@ -11,7 +11,7 @@ const removeQuestion = questionId => ({
 });
 
 export const clearQuestions = () => ({
-  type: CLEAR_TRACKS
+  type: CLEAR_QUESTIONS
 });
 
 const receiveQuestion = question => ({

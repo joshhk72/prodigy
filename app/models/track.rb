@@ -19,6 +19,7 @@ class Track < ApplicationRecord
   validates :name, :lyrics, :length, :artist_id, presence: true
 
   before_validation :set_lyrics_length
+  after_create :create_default_questions
 
   belongs_to :album, optional: true
   belongs_to :artist
@@ -27,6 +28,7 @@ class Track < ApplicationRecord
   has_many :track_writers
   has_many :annotations
   has_many :comments
+  has_many :questions, as: :questionable
 
   has_many :featured_artists,
     through: :track_features,
@@ -42,5 +44,10 @@ class Track < ApplicationRecord
 
   def set_lyrics_length
     self.length = self.lyrics.length
+  end
+
+  def create_default_questions
+    q1 = self.questions.create({ questionable_type: "Track", title: "About \"#{self.name}\"" })
+    q2 = self.questions.create({ questionable_type: "Track", title: "What have the artists said about the song?" })
   end
 end
