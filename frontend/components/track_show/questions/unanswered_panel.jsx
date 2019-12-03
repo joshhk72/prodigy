@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import autosize from 'autosize';
 
 const UnansweredPanel = props => {
-  const { question } = props;
+  const { question, createAnswer, deleteQuestion } = props;
   const [focused, setFocused] = useState(false);
   let textarea;
   useEffect(() => {
@@ -23,6 +23,19 @@ const UnansweredPanel = props => {
           type="text"
           placeholder="Answer here"
           onFocus={() => setFocused(true)} />
+      }
+      {focused &&
+        <div className="answer-buttons">
+          <button className="answer-submit">Submit</button>
+          <button 
+            className="answer-cancel" 
+            onClick={() => setFocused(false)}>
+              Cancel</button>
+          <button 
+            className="question-delete" 
+            onClick={() => deleteQuestion(question.id)}>
+              Delete Question</button>
+        </div>
       }
     </li>
   )

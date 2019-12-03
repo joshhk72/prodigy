@@ -22,7 +22,7 @@ export const fetchAlbumQuestions = albumId => {
 export const createQuestion = question => {
   return $.ajax({
     method: "POST",
-    url: "api/question/",
+    url: "api/questions/",
     data: { question }
   });
 };

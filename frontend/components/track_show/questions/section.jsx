@@ -7,7 +7,7 @@ import { partition } from 'lodash';
 const QuestionSection = props => {
   const { 
     createQuestion, clearQuestions, 
-    fetchTrackQuestions, deleteQuestion, // deleting questions should be left to mods?
+    fetchTrackQuestions, deleteQuestion,
     createAnswer, deleteAnswer, currentUserId
   } = props;
   const [questions, setQuestions] = useState([]);
@@ -17,6 +17,10 @@ const QuestionSection = props => {
     fetchTrackQuestions(props.match.params.trackId)
       .then(res => setQuestions(res.questions));
   }, []);
+
+  useEffect(() => {
+    setQuestions(props.questions);
+  }, [props.questions]);
   
   const answeredPanels = answeredQuestions.map(q => 
     <AnsweredPanel key={q.id} 

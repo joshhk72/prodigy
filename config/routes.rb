@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     resources :track_forms, only:[:create, :update]
     resources :annotations
     resources :comments
-    resources :questions, only:[:index, :create, :delete]
-    resources :answers, only:[:create, :delete, :update, :show]
+    resources :questions, only:[:index, :create, :destroy]
+    resources :answers, only:[:create, :destroy, :update, :show]
     resources :upvotes, only:[:index, :create, :update, :destroy]
     get :search, controller: :search
     get :suggest, controller: :search
