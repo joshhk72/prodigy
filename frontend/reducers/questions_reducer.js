@@ -5,6 +5,8 @@ import { RECEIVE_ANSWER, REMOVE_ANSWER} from '../actions/answer_actions';
 const questionsReducer = (state = {}, action) => {
   Object.freeze(state);
   const newState = merge({}, state);
+  let questionId;
+  if (action.answer) questionId = action.answer.question_id;
   switch (action.type) {
     case CLEAR_QUESTIONS:
       return {};
@@ -16,11 +18,9 @@ const questionsReducer = (state = {}, action) => {
       if (newState[action.question.id]) delete newState[action.question.id];
       return newState;
     case RECEIVE_ANSWER:
-      const questionId = action.answer.question_id;
       newState[questionId].answer = action.answer;
       return newState;
     case REMOVE_ANSWER:
-      const questionId = action.answer.question_id;
       newState[questionId].answer = null;
       return newState;
     default:

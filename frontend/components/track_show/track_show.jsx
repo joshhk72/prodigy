@@ -124,7 +124,7 @@ class TrackShow extends React.Component {
       // I could've deconstructed for these methods, but I wanted them to be easy to remember for the future!
       const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
       const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, { i1, i2, j1, j2 });
-      const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 330;
+      const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 424;
       this.setState({ startIdx, endIdx, top });
       this.showAnnotationPrompt(startIdx, endIdx);
     };
