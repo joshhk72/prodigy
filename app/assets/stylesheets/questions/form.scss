@@ -3,7 +3,7 @@
   label {
     display: block;
     font-weight: 600;
-    font-size: 17px;
+    font-size: 16px;
     margin-bottom: 1.1em;
   }
   input, textarea {
@@ -12,5 +12,30 @@
     padding: 6px 8px;
     font-size: 19px;
     box-sizing: border-box;
+  }
+  textarea {
+    resize: none;
+    &:focus {
+      border: 2px solid gray;
+    }
+  }
+  .question-buttons {
+    margin-top: 0.8em;
+    .question-submit {
+      border: 2px solid black;
+      padding: 0.7em;
+      margin-right: 0.2em;
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+    .question-cancel {
+      padding: 0.7em;
+      border: 2px solid white;
+      &:hover {
+        background-color: lightgray;
+        border: 2px solid lightgray;
+      }
+    }
   }
 }
