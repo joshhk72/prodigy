@@ -43,6 +43,12 @@ const QuestionSection = props => {
         { unansweredPanels }
       </ul> }
       { currentUserId && <QuestionForm createQuestion={createQuestion} trackId={props.match.params.trackId} /> }
+      { currentUserId && 
+        <p className="question-info">
+          Answers for questions use the <a target="_blank" href="http://demo.showdownjs.com/">Showdown </a> Markdown converter library!
+          Check it out for more info.
+        </p>
+      }
     </div>
   )
 };

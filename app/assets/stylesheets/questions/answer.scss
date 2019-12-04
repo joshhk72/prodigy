@@ -1,0 +1,33 @@
+.answer-body {
+  font-size: 19px;
+  margin-bottom: 1.4em;
+  p {
+    margin: 1.1em 0;
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+  a {
+    color: rgb(118, 81, 143);
+    &:hover {
+      color: rgb(188, 146, 216);
+    }
+  }
+  strong {
+    font-weight: 600;
+  }
+  blockquote {
+    font: 17px normal helvetica, sans-serif;
+    margin-top: 1em;
+    margin-bottom: 0.7em;
+    margin-left: 1.8em;
+    padding-left: 1.3em;
+    border-left: 3px solid #ccc;
+    p {
+      margin: 0.3em 0;
+    }
+  }
+  image {
+    margin: 0.4em 0;
+  }
+}
