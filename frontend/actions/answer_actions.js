@@ -3,9 +3,9 @@ import * as AnswerAPIUtil from '../util/answer_api_util';
 export const RECEIVE_ANSWER = "RECEIVE_ANSWER";
 export const REMOVE_ANSWER = "REMOVE_ANSWER";
 
-const removeAnswer = answerId => ({
+const removeAnswer = answer => ({
   type: REMOVE_ANSWER,
-  answerId
+  answer
 });
 
 const receiveAnswer = answer => ({
@@ -20,10 +20,10 @@ export const createAnswer = answer => dispatch => {
 
 export const deleteAnswer = answerId => dispatch => {
   return AnswerAPIUtil.deleteAnswer(answerId)
-    .then(answer => dispatch(removeAnswer(answer.id)));
+    .then(answer => dispatch(removeAnswer(answer)));
 }
 
 export const updateAnswer = answer => dispatch => {
   return AnswerAPIUtil.updateAnswer(answer)
-    .then(answer => dispatch(receiveanswer(answer)));
+    .then(answer => dispatch(receiveAnswer(answer)));
 };

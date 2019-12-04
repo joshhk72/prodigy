@@ -1,7 +1,7 @@
 import { connect }  from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { clearQuestions, createQuestion, deleteQuestion, fetchTrackQuestions } from '../../../actions/question_actions';
-import { createAnswer, deleteAnswer } from '../../../actions/answer_actions';
+import { createAnswer, deleteAnswer, updateAnswer } from '../../../actions/answer_actions';
 import QuestionSection from './section';
 
 const mapStateToProps = (state, ownProps) => ({

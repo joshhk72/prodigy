@@ -28,6 +28,16 @@ class Api::AnswersController < ApplicationController
     end
   end
 
+  def destroy
+    @answer = Answer.find(params[:id]) 
+    if @answer
+      @answer.destroy
+      render :show
+    else
+      render json: { success: false }
+    end
+  end
+
   private
 
   def answer_params

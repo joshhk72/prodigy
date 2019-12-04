@@ -16,7 +16,7 @@ export const deleteAnswer = id => {
 export const updateAnswer = answer => {
   return $.ajax({
     method: "PATCH",
-    url: `api/answers/${id}`,
+    url: `api/answers/${answer.id}`,
     data: { answer }
   });
 }

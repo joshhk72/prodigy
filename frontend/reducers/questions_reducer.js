@@ -21,7 +21,7 @@ const questionsReducer = (state = {}, action) => {
       newState[questionId].answer = action.answer;
       return newState;
     case REMOVE_ANSWER:
-      newState[questionId].answer = null;
+      newState[action.answer.question_id].answer = null;
       return newState;
     default:
       return state;
