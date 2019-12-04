@@ -20,6 +20,7 @@ class Track < ApplicationRecord
 
   before_validation :set_lyrics_length
   after_create :create_default_questions
+  after_update :set_lyrics_length, :check_annotations
 
   belongs_to :album, optional: true
   belongs_to :artist
@@ -44,6 +45,14 @@ class Track < ApplicationRecord
 
   def set_lyrics_length
     self.length = self.lyrics.length
+  end
+
+  def check_annotations
+    self.annotations.each do |annotation|
+      if annotation.end_idx > self.length - 1
+        annotation.destroy
+      end
+    end
   end
 
   def create_default_questions
