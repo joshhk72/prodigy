@@ -12,11 +12,12 @@ class Api::QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @question.user_id = current_user.id
 
     if @question.save
       render :show
     else
-      errors = @question.errors.full_messsages
+      errors = @question.errors.full_messages
       render json: errors, status: 422
     end
   end
@@ -34,6 +35,6 @@ class Api::QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :user_id, :questionable_id, :questionable_type)
+    params.require(:question).permit(:title, :track_id, :artist_id, :album_id)
   end
 end

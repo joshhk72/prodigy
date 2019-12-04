@@ -41,7 +41,7 @@ const QuestionSection = props => {
       { currentUserId && <ul className="unanswered-questions-list">
         { unansweredPanels }
       </ul> }
-      { currentUserId && <QuestionForm createQuestion={createQuestion} /> }
+      { currentUserId && <QuestionForm createQuestion={createQuestion} trackId={props.match.params.trackId} /> }
     </div>
   )
 };

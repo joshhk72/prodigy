@@ -4,4 +4,19 @@ class Question < ApplicationRecord
 
   has_one :answer, dependent: :destroy
   belongs_to :questionable, polymorphic: true
+
+  def track_id=(id)
+    self.questionable_id = id
+    self.questionable_type = "Track"
+  end
+
+  def artist_id=(id)
+    self.questionable_id = id
+    self.questionable_type = "Artist"
+  end
+
+    def album_id=(id)
+    self.questionable_id = id
+    self.questionable_type = "Album"
+  end
 end
