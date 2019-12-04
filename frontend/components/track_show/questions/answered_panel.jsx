@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuestionUpvotes from './upvotes';
+import AnswerBody from './answer_body';
 import autosize from 'autosize';
 
 const AnsweredPanel = props => {
@@ -21,7 +22,7 @@ const AnsweredPanel = props => {
       { !editing && 
         <div className="answered-panel-show">
           <h4>{question.title}</h4>
-          <p className="answered-panel-body">{question.answer.body}</p>
+          <AnswerBody answer={ question.answer } />
           <div className="answered-panel-bottom">
             <QuestionUpvotes answerId={question.answer.id}/> 
             <div>
