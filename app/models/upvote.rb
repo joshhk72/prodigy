@@ -13,7 +13,7 @@
 
 class Upvote < ApplicationRecord
   validates :value, :user_id, :upvotable_id, :upvotable_type, presence: true
-  validates :upvotable_type, inclusion: { in: ["Comment", "Annotation"] }
+  validates :upvotable_type, inclusion: { in: ["Comment", "Annotation", "Answer"] }
   validates :user_id, uniqueness: { scope: [:upvotable_id, :upvotable_type] }
 
   belongs_to :upvotable, polymorphic: true

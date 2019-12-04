@@ -22,3 +22,8 @@ export const deleteAnswer = answerId => dispatch => {
   return AnswerAPIUtil.deleteAnswer(answerId)
     .then(answer => dispatch(removeAnswer(answer.id)));
 }
+
+export const updateAnswer = answer => dispatch => {
+  return AnswerAPIUtil.updateAnswer(answer)
+    .then(answer => dispatch(receiveanswer(answer)));
+};

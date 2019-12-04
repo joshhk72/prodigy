@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
   deleteQuestion: questionId => dispatch(deleteQuestion(questionId)),
   createAnswer: answer => dispatch(createAnswer(answer)),
   deleteAnswer: answerId => dispatch(deleteAnswer(answerId)),
+  updateAnswer: answer => dispatch(updateAnswer(answer))
 });
 
 export default withRouter(connect(

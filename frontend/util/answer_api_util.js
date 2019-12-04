@@ -1,7 +1,7 @@
 export const createAnswer = answer => {
   return $.ajax({
     method: "POST",
-    url: "api/answer/",
+    url: "api/answers/",
     data: { answer }
   });
 };
@@ -12,3 +12,11 @@ export const deleteAnswer = id => {
     url: `api/answers/${id}`
   });
 };
+
+export const updateAnswer = answer => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/answers/${id}`,
+    data: { answer }
+  });
+}

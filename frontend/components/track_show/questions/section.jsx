@@ -7,7 +7,7 @@ import { partition } from 'lodash';
 const QuestionSection = props => {
   const { 
     createQuestion, clearQuestions, 
-    fetchTrackQuestions, deleteQuestion,
+    fetchTrackQuestions, deleteQuestion, updateAnswer,
     createAnswer, deleteAnswer, currentUserId
   } = props;
   const [questions, setQuestions] = useState([]);
@@ -24,7 +24,8 @@ const QuestionSection = props => {
   
   const answeredPanels = answeredQuestions.map(q => 
     <AnsweredPanel key={q.id} 
-      question={q} 
+      question={q}
+      updateAnswer={updateAnswer}
       deleteAnswer={deleteAnswer} 
       currentUserId={currentUserId}/>);
   const unansweredPanels = unansweredQuestions.map(q => 
