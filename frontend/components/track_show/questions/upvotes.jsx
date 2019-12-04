@@ -40,7 +40,7 @@ const QuestionUpvotes = props => {
   const [leftClass, rightClass] = UpvoteUtil.determineClasses(currentUpvote);
 
   return (
-    <div>
+    <div className="answer-upvotes">
       <a onClick={leftCb} className="upvote-link"><i className={`far fa-thumbs-up ${leftClass}`} /></a>
       <span className="upvote-count">{sign}{upvoteCount}</span>
       <a onClick={rightCb} className="upvote-link"><i className={`far fa-thumbs-down fa-flip-horizontal ${rightClass}`} /></a>

@@ -4,13 +4,14 @@ import autosize from 'autosize';
 const UnansweredPanel = props => {
   const { question, createAnswer, deleteQuestion } = props;
   const [focused, setFocused] = useState(false);
+  const [onceFocused, setOnceFocused] = useState(false);
   const [body, setBody] = useState('');
   let textarea;
-
   useEffect(() => {
-    if (textarea !== undefined) {
+    if (textarea !== undefined && !onceFocused) {
       textarea.focus();
       autosize(textarea);
+      setOnceFocused(true);
     }
   });
 
@@ -19,30 +20,30 @@ const UnansweredPanel = props => {
       {!focused && <h4>{question.title}</h4> }
       <form onSubmit={ e => {
         createAnswer({ body, question_id: question.id })
-          .then(() => { setBody(''); setFocused(false) });
+          .then(() => { setBody(''); setFocused(false); setOnceFocused(false) });
       } }>
       {focused ?
         <textarea
           onChange={ e => setBody(e.target.value) }
           value={body}
           ref={node => textarea = node}
-          placeholder="Answer here" /> :
+          placeholder={`${question.title}`} /> :
         <input
           type="text"
           placeholder="Answer here"
           onFocus={() => setFocused(true)} />
       }
         {focused &&
-          <div className="answer-buttons">
-            <button className="answer-submit">Submit</button>
+          <div className="question-buttons">
+            <button className="question-submit">Submit</button>
             <button 
-              className="answer-cancel" 
-              onClick={ e => { e.stopPropagation(); setFocused(false) } }>
+              className="question-cancel" 
+              onClick={ e => { e.stopPropagation(); setFocused(false); setOnceFocused(false) } }>
                 Cancel</button>
             <button 
               className="question-delete" 
-              onClick={ e => { e.stopPropagation(); deleteQuestion(question.id) } }>
-                Delete Question</button>
+            onClick={e => { e.stopPropagation(); const result = confirm("Delete question?"); if(result) deleteQuestion(question.id) } }>
+                Delete</button>
           </div>
         }
       </form>
