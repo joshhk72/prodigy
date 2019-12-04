@@ -12,8 +12,11 @@
   textarea {
     display: block;
     background-color: $lyrics-edit-gray;
+    font-size: 18px;
+    padding: 0.3em;
     width: 100%;
     height: 150px;
+    resize: none;
   }
   div {
     margin: 0 auto;
