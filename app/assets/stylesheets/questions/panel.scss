@@ -1,5 +1,7 @@
 .answered-panel {
   margin-bottom: 1.6em;
+  padding-bottom: 1.6em;
+  border-bottom: 1px solid $home-border-gray;
   textarea {
     width: 100%;
     padding: 6px 8px;
@@ -51,6 +53,8 @@
 
 .unanswered-panel {
   margin-bottom: 1.6em;
+  padding-bottom: 1.6em;
+  border-bottom: 1px solid $home-border-gray;
   h4 {
     font-weight: 600;
     margin-bottom: 1.4em;
