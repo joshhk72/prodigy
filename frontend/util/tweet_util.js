@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 
-const tweetRegex = /\n\[https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status\/(\d+)\]$/g;
+const tweetRegex = /\[https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status\/(\d+)\]$/g;
 
 export const replaceTweets = str => {
   return str.replace(tweetRegex, 

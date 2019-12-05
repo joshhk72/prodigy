@@ -1,4 +1,5 @@
 import React from 'react';
+import AnnotationBody from './annotation_body';
 import * as AnnotateUtil from '../../../util/annotate_util';
 import * as UpvoteUtil from '../../../util/upvote_util';
 
@@ -85,7 +86,7 @@ class AnnotationShow extends React.Component {
     return show ? 
       (<div className="annotation-show-container annotation-show" style={style}>
         <h3 className="annotation-show">Prodigy Annotation</h3>
-        <p className="annotation-show">{currentAnnotation.body}</p>
+        <p className="annotation-show"><AnnotationBody body={currentAnnotation.body}/></p>
         {this.props.currentUserId === currentAnnotation.author_id && 
           <button 
             className="annotation-delete annotation-show" 
