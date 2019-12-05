@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionForm from './form';
 import AnsweredPanel from './answered_panel';
 import UnansweredPanel from './unanswered_panel';
+import { Link } from 'react-router-dom';
 import { partition } from 'lodash';
 
 const QuestionSection = props => {
@@ -45,8 +46,8 @@ const QuestionSection = props => {
       { currentUserId && <QuestionForm createQuestion={createQuestion} trackId={props.match.params.trackId} /> }
       { currentUserId && 
         <p className="question-info">
-          Answers for questions use the <a target="_blank" href="http://demo.showdownjs.com/">Showdown </a> Markdown converter library!
-          Check it out for more info.
+          Annotations and answers for questions use the <a target="_blank" href="http://demo.showdownjs.com/">Showdown </a> Markdown converter library!
+          Also check out the <Link to="/format">formatting help page</Link>.
         </p>
       }
     </div>
