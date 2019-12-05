@@ -42,7 +42,7 @@ const UnansweredPanel = props => {
                 Cancel</button>
             <button 
               className="question-delete" 
-            onClick={e => { e.stopPropagation(); const result = confirm("Delete question?"); if(result) deleteQuestion(question.id) } }>
+            onClick={e => { e.stopPropagation(); e.preventDefault(); const result = confirm("Delete question?"); if(result) deleteQuestion(question.id) } }>
                 Delete</button>
           </div>
         }
