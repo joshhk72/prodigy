@@ -19,11 +19,3 @@ const AnswerBody = props => {
 };
 
 export default AnswerBody;
-
-// so far
-// *text* for bold
-// **text** for italics
-// > paragraph here for blockquotes
-// [text](link) for links, images, videos
-// <small>text</small> for small text
-// [tweet url] for tweets (this is custom!);

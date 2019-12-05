@@ -38,9 +38,11 @@ class AnnotationShow extends React.Component {
   }
 
   deleteButton() {
-    const annotationId = this.props.match.params.annotationId;
-    this.props.deleteAnnotation(annotationId)
-      .then(() => this.props.history.push(`/tracks/${this.props.match.params.trackId}`));
+    if (confirm("Delete this annotation?")) {
+      const annotationId = this.props.match.params.annotationId;
+      this.props.deleteAnnotation(annotationId)
+        .then(() => this.props.history.push(`/tracks/${this.props.match.params.trackId}`));
+    }
   }
 
   upvote(e) {
