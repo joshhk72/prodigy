@@ -1,4 +1,5 @@
 class Api::ArtistsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :update]
 
   def index
     if params[:track_id]

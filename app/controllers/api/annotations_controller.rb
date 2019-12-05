@@ -1,4 +1,5 @@
 class Api::AnnotationsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :update, :destroy]
   def index
     @annotations = Annotation.all
     render :index

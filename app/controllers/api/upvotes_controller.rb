@@ -1,4 +1,6 @@
 class Api::UpvotesController < ApplicationController
+  before_action :authenticate_user, only: [:create, :update, :destroy]
+
   def index
     if params[:comment_id]
       model = Comment.find(params[:comment_id])

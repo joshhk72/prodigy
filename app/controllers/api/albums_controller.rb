@@ -1,4 +1,5 @@
 class Api::AlbumsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :update]
   def show
     @album = Album.includes(:tracks, :artist).find(params[:id])
     render :show

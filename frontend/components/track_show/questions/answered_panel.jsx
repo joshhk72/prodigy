@@ -4,7 +4,7 @@ import AnswerBody from './answer_body';
 import autosize from 'autosize';
 
 const AnsweredPanel = props => {
-  const { question, updateAnswer, deleteAnswer } = props;
+  const { question, updateAnswer, deleteAnswer, currentUserId } = props;
   const [editing, setEditing] = useState(false);
   const [onceFocused, setOnceFocused] = useState(false);
   const [body, setBody] = useState(question.answer.body);
@@ -23,13 +23,15 @@ const AnsweredPanel = props => {
         <div className="answered-panel-show">
           <h4>{question.title}</h4>
           <AnswerBody answer={ question.answer } />
-          <div className="answered-panel-bottom">
+          { currentUserId && <div className="answered-panel-bottom">
             <QuestionUpvotes answerId={question.answer.id}/> 
             <div>
-            <button onClick={() => { const result = confirm("Delete answer?"); if(result) deleteAnswer(question.answer.id) } }><i className="far fa-trash-alt"/></button>
+              <button onClick={() => { const result = confirm("Delete answer?"); 
+                if(result) deleteAnswer(question.answer.id) } }>
+                  <i className="far fa-trash-alt"/></button>
             <button onClick={() => setEditing(true)}><i className="fas fa-pencil-alt" /></button>
             </div>
-          </div>
+          </div> }
         </div>
       }
       { editing && 

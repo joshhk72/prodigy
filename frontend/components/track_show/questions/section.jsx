@@ -23,7 +23,7 @@ const QuestionSection = props => {
   }, [props.questions]);
   
   const answeredPanels = answeredQuestions.map(q => 
-    <AnsweredPanel key={q.id} 
+    <AnsweredPanel key={q.id}
       question={q}
       updateAnswer={updateAnswer}
       deleteAnswer={deleteAnswer} 

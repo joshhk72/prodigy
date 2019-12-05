@@ -1,4 +1,5 @@
 class Api::AnswersController < ApplicationController
+  before_action :authenticate_user, only: [:create, :update, :destroy]
 
   def show
     @answer = Answer.find(params[:id])

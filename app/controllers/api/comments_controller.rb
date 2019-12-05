@@ -1,4 +1,5 @@
 class Api::CommentsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :destroy]
   def index
     if params[:track_id]
       track = Track.find(params[:track_id])

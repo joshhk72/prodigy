@@ -1,4 +1,5 @@
 class Api::QuestionsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :destroy]
   def index
     if params[:track_id]
       @questions = Track.find(params[:track_id]).questions.includes(:answer)
