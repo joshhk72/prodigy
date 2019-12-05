@@ -108,6 +108,14 @@ class TrackShow extends React.Component {
     } else if (e.target.className.match(/annotation-show$/)) {
       return;
     } else {
+      let x = e.target;
+      while (x = x.parentNode) {
+        if (!x) {
+          break;
+        } else if (x.className && x.className.match(/annotation-show$/)) {
+          return;
+        }
+      }
       this.props.history.push(`/tracks/${this.props.currentTrack.id}`);
     }
   }

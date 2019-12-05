@@ -27,3 +27,8 @@ export const createAnnotation = annotation => dispatch => {
   return AnnotationAPIUtil.createAnnotation(annotation)
     .then(newAnnotation => dispatch(receiveAnnotation(newAnnotation)))
 };
+
+export const updateAnnotation = annotation => dispatch => {
+  return AnnotationAPIUtil.updateAnnotation(annotation)
+    .then(annotation => dispatch(receiveAnnotation(annotation)));
+};

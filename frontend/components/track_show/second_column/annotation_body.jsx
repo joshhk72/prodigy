@@ -11,10 +11,10 @@ const AnnotationBody = props => {
   const tweetsReplaced = replaceTweets(body);
   const converter = new showdown.Converter({ extensions: ['youtube'] });
   const html = converter.makeHtml(tweetsReplaced);
-  
+
   // don't need to sanitize html because it's only on the client side
   return (
-    <div className="annotation-body" dangerouslySetInnerHTML={{ __html: html }}>
+    <div className="annotation-body annotation-show" dangerouslySetInnerHTML={{ __html: html }}>
     </div>
   )
 };

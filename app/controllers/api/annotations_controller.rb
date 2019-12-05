@@ -24,6 +24,14 @@ class Api::AnnotationsController < ApplicationController
   end
 
   def update
+    @annotation = Annotation.find(params[:id])
+
+    if @annotation.update(annotation_params)
+      render :show
+    else
+      errors = @answer.errors.full_messages
+      render json: errors, status: 422
+    end
   end
 
   def destroy

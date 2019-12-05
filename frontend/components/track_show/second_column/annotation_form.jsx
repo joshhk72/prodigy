@@ -25,7 +25,7 @@ class AnnotationForm extends React.Component {
 
   handleSave(e) {
     e.preventDefault();
-    this.props.createAnnotation(this.state)
+    this.props.submit(this.state)
       .then((res) => {
         this.props.removeAnnotation(this.state.id);
         this.props.destroyForm(this.state.id);

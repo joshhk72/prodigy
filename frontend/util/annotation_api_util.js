@@ -12,3 +12,11 @@ export const deleteAnnotation = id => {
     url: `api/annotations/${id}`
   });
 };
+
+export const updateAnnotation = annotation => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/annotations/${annotation.id}`,
+    data: { annotation }
+  });
+}

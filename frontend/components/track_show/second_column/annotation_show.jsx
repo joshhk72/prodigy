@@ -1,5 +1,6 @@
 import React from 'react';
 import AnnotationBody from './annotation_body';
+import { Link } from 'react-router-dom';
 import * as AnnotateUtil from '../../../util/annotate_util';
 import * as UpvoteUtil from '../../../util/upvote_util';
 
@@ -86,16 +87,25 @@ class AnnotationShow extends React.Component {
     return show ? 
       (<div className="annotation-show-container annotation-show" style={style}>
         <h3 className="annotation-show">Prodigy Annotation</h3>
-        <p className="annotation-show"><AnnotationBody body={currentAnnotation.body}/></p>
-        {this.props.currentUserId === currentAnnotation.author_id && 
-          <button 
-            className="annotation-delete annotation-show" 
-            onClick={this.deleteButton}
-          >Delete</button>}
+        <div className="annotation-show"><AnnotationBody body={currentAnnotation.body}/></div>
         <div className="annotation-show-bottom annotation-show">
-          <a className="upvote-link" onClick={leftCb}><i className={`far fa-thumbs-up ${leftClass} annotation-show`} /></a>
-          <span className="upvote-count annotation-show">{sign}{upvoteCount}</span>
-          <a className="upvote-link" onClick={rightCb}><i className={`far fa-thumbs-down fa-flip-horizontal ${rightClass} annotation-show`} /></a>
+          <div className="annotation-show-upvotes annotation-show">
+            <a className="upvote-link" onClick={leftCb}><i className={`far fa-thumbs-up ${leftClass} annotation-show`} /></a>
+            <span className="upvote-count annotation-show">{sign}{upvoteCount}</span>
+            <a className="upvote-link" onClick={rightCb}><i className={`far fa-thumbs-down fa-flip-horizontal ${rightClass} annotation-show`} /></a>
+          </div>
+          <div className="annotation-show-buttons annotation-show">
+            {this.props.currentUserId === currentAnnotation.author_id &&
+              <button
+                className="annotation-delete annotation-show"
+                onClick={this.deleteButton}
+              >Delete</button>}
+            {this.props.currentUserId === currentAnnotation.author_id &&
+              <Link
+                className="annotation-edit annotation-show"
+                to={`/tracks/${currentAnnotation.track_id}/${currentAnnotation.id}/edit`}
+              >Edit</Link>}
+          </div>
         </div>
       </div>
       ) : (<div></div>)
