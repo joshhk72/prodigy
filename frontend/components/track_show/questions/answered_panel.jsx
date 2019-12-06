@@ -36,6 +36,7 @@ const AnsweredPanel = props => {
       }
       { editing && 
         <form onSubmit={e => {
+          e.preventDefault();
           updateAnswer({ body, id: question.answer.id })
             .then(() => { setEditing(false); setOnceFocused(false) });
         }}>

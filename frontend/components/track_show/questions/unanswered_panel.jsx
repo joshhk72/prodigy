@@ -19,6 +19,7 @@ const UnansweredPanel = props => {
     <li className="unanswered-panel">
       {!focused && <h4>{question.title}</h4> }
       <form onSubmit={ e => {
+        e.preventDefault();
         createAnswer({ body, question_id: question.id })
           .then(() => { setBody(''); setFocused(false); setOnceFocused(false) });
       } }>
@@ -40,10 +41,10 @@ const UnansweredPanel = props => {
               className="question-cancel" 
               onClick={ e => { e.stopPropagation(); setFocused(false); setOnceFocused(false) } }>
                 Cancel</button>
-            <button 
+            { !question.permanent && <button 
               className="question-delete" 
-            onClick={e => { e.stopPropagation(); e.preventDefault(); const result = confirm("Delete question?"); if(result) deleteQuestion(question.id) } }>
-                Delete</button>
+              onClick={e => { e.stopPropagation(); e.preventDefault(); const result = confirm("Delete question?"); if(result) deleteQuestion(question.id) } }>
+              Delete</button> }
           </div>
         }
       </form>

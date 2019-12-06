@@ -56,7 +56,7 @@ class Track < ApplicationRecord
   end
 
   def create_default_questions
-    q1 = self.questions.create({ questionable_type: "Track", title: "About \"#{self.name}\"" })
-    q2 = self.questions.create({ questionable_type: "Track", title: "What have the artists said about the song?" })
+    q1 = self.questions.create({ permanent: true, questionable_type: "Track", title: "About \"#{self.name}\"" })
+    q2 = self.questions.create({ permanent: true, questionable_type: "Track", title: "What have the artists said about the song?" })
   end
 end

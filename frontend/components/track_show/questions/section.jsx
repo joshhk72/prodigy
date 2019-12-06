@@ -47,7 +47,7 @@ const QuestionSection = props => {
       { currentUserId && 
         <p className="question-info">
           Annotations and answers for questions use the <a target="_blank" href="http://demo.showdownjs.com/">Showdown </a> Markdown converter library!
-          Also check out the <Link to="/format">formatting help page</Link>.
+          Also check out the <Link to="/format" target="_blank">formatting help page</Link>.
         </p>
       }
     </div>
