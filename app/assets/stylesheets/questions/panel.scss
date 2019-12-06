@@ -1,7 +1,8 @@
 .answered-panel {
   margin-bottom: 1.6em;
-  padding-bottom: 1.6em;
+  padding-bottom: 0.8em;
   border-bottom: 1px solid $home-border-gray;
+  word-wrap: break-word;
   textarea {
     width: 100%;
     padding: 6px 8px;
@@ -15,6 +16,7 @@
     width: 100%;
     h4 {
       font-weight: 600;
+      font-size: 15px;
       margin-bottom: 1.4em;
     }
     .answered-panel-bottom {
@@ -53,11 +55,13 @@
 
 .unanswered-panel {
   margin-bottom: 1.6em;
-  padding-bottom: 1.6em;
+  padding-bottom: 1.2em;
   border-bottom: 1px solid $home-border-gray;
+  word-wrap: break-word;
   h4 {
     font-weight: 600;
     margin-bottom: 1.4em;
+    font-size: 15px;
   }
   textarea {
     width: 100%;
