@@ -8,6 +8,7 @@ import TrackShowContainer from './track_show/track_show_container';
 import UserProfileContainer from './user_profile/user_profile_container';
 import ArtistShowContainer from './artist_show/show_container';
 import AlbumShowContainer from './album_show/show_container';
+import FormatHelpPage from './format_page';
 import Footer from './footer';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
@@ -25,6 +26,7 @@ const App = () => (
       <Route exact path="/users/:userId" component={UserProfileContainer}/>
       <Route path="/artists/:artistId" component={ArtistShowContainer} />
       <Route path="/albums/:albumId" component={AlbumShowContainer} />
+      <Route path="/format" component={FormatHelpPage} />
       <Switch>
         <ProtectedRoute exact path="/tracks/new" component={TrackFormContainer} />
         <Route path="/tracks/:trackId" component={TrackShowContainer} />

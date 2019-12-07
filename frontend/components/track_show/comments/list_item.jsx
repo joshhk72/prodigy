@@ -42,7 +42,7 @@ class CommentListItem extends React.Component {
     const { currentUser, deleteComment, upvotes } = this.props;
 
     const deleteButton = currentUser && currentUser.id === author_id ? 
-      <a onClick={() => deleteComment(id)}>
+      <a onClick={() => { const result = confirm("Delete this comment?"); if (result) deleteComment(id) } }>
         <i className="fas fa-trash-alt" /></a> 
       : <div></div>;
 

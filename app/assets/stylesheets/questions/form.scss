@@ -1,0 +1,33 @@
+.question-form {
+  width: 100%;
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 1.1em;
+  }
+  input, textarea {
+    border: 2px solid $input-border-gray;
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 19px;
+    box-sizing: border-box;
+  }
+  textarea {
+    resize: none;
+    &:focus {
+      border: 2px solid gray;
+    }
+  }
+  .question-buttons {
+    margin-top: 0.8em;
+    .question-cancel {
+      padding: 0.7em;
+      border: 2px solid white;
+      &:hover {
+        background-color: lightgray;
+        border: 2px solid lightgray;
+      }
+    }
+  }
+}

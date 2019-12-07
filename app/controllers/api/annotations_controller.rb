@@ -1,4 +1,5 @@
 class Api::AnnotationsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :update, :destroy]
   def index
     @annotations = Annotation.all
     render :index
@@ -23,6 +24,14 @@ class Api::AnnotationsController < ApplicationController
   end
 
   def update
+    @annotation = Annotation.find(params[:id])
+
+    if @annotation.update(annotation_params)
+      render :show
+    else
+      errors = @answer.errors.full_messages
+      render json: errors, status: 422
+    end
   end
 
   def destroy

@@ -14,7 +14,7 @@ class Comment < ApplicationRecord
 
   validates :body, :author_id, :track_id, presence: true
 
-  has_many :upvotes, as: :upvotable
+  has_many :upvotes, as: :upvotable, dependent: :destroy
   belongs_to :track
   belongs_to :author,
     class_name: :User,

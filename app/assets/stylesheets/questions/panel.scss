@@ -1,0 +1,117 @@
+.answered-panel {
+  margin-bottom: 1.6em;
+  padding-bottom: 0.8em;
+  border-bottom: 1px solid $home-border-gray;
+  word-wrap: break-word;
+  textarea {
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: 2px solid plum;
+    min-height: 10em;
+    resize: none;
+  }
+  .answered-panel-show {
+    width: 100%;
+    h4 {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 1.4em;
+    }
+    .answered-panel-bottom {
+      display: flex;
+      justify-content: space-between;
+      .answer-upvotes {
+        span {
+          width: 17px;
+          margin-right: 0.6em;
+          text-align: center;
+        }
+        i {
+          color: gray;
+          font-size: 20px;
+          &.green-up {
+            color: green;
+          }
+          &.red-down {
+            color: red;
+          }
+        }
+      }
+      button {
+        padding: 0.2em;
+        margin-right: 1.2em;
+        :hover {
+          color: gray;
+        }
+        i {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
+
+.unanswered-panel {
+  margin-bottom: 1.6em;
+  padding-bottom: 1.2em;
+  border-bottom: 1px solid $home-border-gray;
+  word-wrap: break-word;
+  h4 {
+    font-weight: 600;
+    margin-bottom: 1.4em;
+    font-size: 15px;
+  }
+  textarea {
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: 2px solid plum;
+    min-height: 10em;
+    resize: none;
+  }
+  input { 
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 19px;
+    box-sizing: border-box;
+    border: 2px solid $input-border-gray;
+  }
+}
+
+.question-buttons {
+  margin-top: 0.8em;
+}
+
+.question-submit {
+  border: 2px solid $save-button-green;
+  padding: 0.7em;
+  margin-right: 0.4em;
+  &:hover {
+    background-color: lightgray;
+  }
+}
+
+.question-cancel {
+  border: 2px solid white;
+  background-color: white;
+  padding: 0.7em;
+  margin-right: 0.2em;
+  &:hover {
+    border: 2px solid lightgray;
+    background-color: lightgray;
+  }
+}
+
+.question-delete {
+  border: 2px solid white;
+  background-color: white;
+  padding: 0.7em;
+  margin-right: 0.2em;
+  &:hover {
+    border: 2px solid red;
+    background-color: red;
+  }
+}

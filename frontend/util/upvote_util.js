@@ -8,6 +8,11 @@ export const annotationUpvotes = (upvotes, annotationId) => {
     upvote.upvotable_type === "Annotation" && upvote.upvotable_id === annotationId))
 };
 
+export const answerUpvotes = (upvotes, answerId) => {
+  return upvotes.filter(upvote => (
+    upvote.upvotable_type === "Answer" && upvote.upvotable_id === answerId))
+};
+
 export const determineSign = upvoteCount => {
   let sign;
   if (upvoteCount > 0) {

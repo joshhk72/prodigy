@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
     current_user.reset_session_token!
     session[:session_token] = nil
   end
+
+  def authenticate_user
+    unless current_user
+      render json: errors, status: 422
+      return
+    end
+  end
 end

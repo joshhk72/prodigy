@@ -17,6 +17,10 @@
   @return mix(white, $color, $percentage);
 }
 
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
 @mixin dark-overlay{
   &:after{
     content: "";
@@ -46,7 +50,9 @@
 @import "upvotes";
 @import "home";
 @import "footer";
+@import "questions/*";
 @import "search/header_search";
+@import "format-help";
 
 .dark-body {
   background-color: black;

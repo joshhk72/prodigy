@@ -24,6 +24,11 @@ const removeUpvote = upvoteId => ({
   upvoteId
 });
 
+export const fetchAnswerUpvotes = answerId => dispatch => {
+  return UpvoteAPIUtil.fetchAnswerUpvotes(answerId)
+    .then(upvotes => dispatch(receiveUpvotes(upvotes)));
+};
+
 export const fetchCommentUpvotes = commentId => dispatch => {
   return UpvoteAPIUtil.fetchCommentUpvotes(commentId)
     .then(upvotes => dispatch(receiveUpvotes(upvotes)));

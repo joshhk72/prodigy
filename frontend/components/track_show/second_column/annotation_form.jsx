@@ -1,4 +1,5 @@
 import React from 'react';
+import autosize from 'autosize';
 import { merge } from 'lodash';
 
 class AnnotationForm extends React.Component {
@@ -8,6 +9,11 @@ class AnnotationForm extends React.Component {
     this.top = this.props.top;
     this.handleCancel = this.handleCancel.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.textarea = React.createRef();
+  }
+
+  componentDidMount() {
+    autosize(this.textarea.current);
   }
 
   handleCancel(e) {
@@ -19,7 +25,7 @@ class AnnotationForm extends React.Component {
 
   handleSave(e) {
     e.preventDefault();
-    this.props.createAnnotation(this.state)
+    this.props.submit(this.state)
       .then((res) => {
         this.props.removeAnnotation(this.state.id);
         this.props.destroyForm(this.state.id);
@@ -49,7 +55,7 @@ class AnnotationForm extends React.Component {
     return (
       <div style={style} className="annotation-form-container annotation-submit">
         <form className="annotation-form annotation-submit" >
-          <textarea className="annotation-submit" placeholder={placeholdText} onChange={this.update("body")} value={this.state.body} />
+          <textarea ref={this.textarea} className="annotation-submit" placeholder={placeholdText} onChange={this.update("body")} value={this.state.body} />
           <button className="save-annotation" onClick={this.handleSave}>Save</button>
           <button className="cancel-annotation" onClick={this.handleCancel}>Cancel</button>
         </form>

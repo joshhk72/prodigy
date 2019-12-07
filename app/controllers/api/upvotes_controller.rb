@@ -1,12 +1,15 @@
 class Api::UpvotesController < ApplicationController
+  before_action :authenticate_user, only: [:create, :update, :destroy]
+
   def index
     if params[:comment_id]
-      comment = Comment.find(params[:comment_id])
-      @upvotes = comment.upvotes.includes(:user)
+      model = Comment.find(params[:comment_id])
     elsif params[:annotation_id]
-      annotation = Annotation.find(params[:annotation_id])
-      @upvotes = annotation.upvotes.includes(:user)
+      model = Annotation.find(params[:annotation_id])
+    elsif params[:answer_id]
+      model = Answer.find(params[:answer_id])
     end
+    @upvotes = model.upvotes.includes(:user)
     render :index
   end
   

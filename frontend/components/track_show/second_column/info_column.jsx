@@ -1,6 +1,7 @@
 import React from 'react';
 import AnnotationShowContainer from './annotation_show_container';
 import AnnotationForm from './annotation_form';
+import AnnotationEditForm from './annotation_edit_form';
 import { Route } from 'react-router-dom';
 import NonAnnotationColumn from './non_annotation_column';
 
@@ -33,7 +34,7 @@ class InfoColumn extends React.Component {
       key={temp.id}
       render={props => <AnnotationForm {...props}
         removeAnnotation={this.props.removeAnnotation}
-        createAnnotation={this.props.createAnnotation}
+        submit={this.props.createAnnotation}
         destroyForm={this.destroyForm}
         top={this.props.top}
         authorId={this.props.currentUserId}
@@ -63,7 +64,7 @@ class InfoColumn extends React.Component {
           </div>}
         { !annotationPrompt && this.state.forms.length > 0 && this.state.forms }
         { !annotationPrompt && 
-          <Route path="/tracks/:trackId/:annotationId" 
+          <Route exact path="/tracks/:trackId/:annotationId" 
             render={props => <AnnotationShowContainer {...props}
               annotations={annotations}
               top={top}
@@ -71,6 +72,13 @@ class InfoColumn extends React.Component {
               deleteAnnotation={deleteAnnotation}
             />}
         /> }
+        {!annotationPrompt &&
+          <Route exact path="/tracks/:trackId/:annotationId/edit"
+            render={props => <AnnotationEditForm {...props}
+              top={top}
+              currentUserId={currentUserId}
+            />}
+          />}
         <NonAnnotationColumn 
           currentTrack={currentTrack}
           hide={hideNonAnnotation}

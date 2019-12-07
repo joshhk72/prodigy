@@ -16,6 +16,8 @@ TrackWriter.destroy_all
 Annotation.destroy_all
 Comment.destroy_all
 Upvote.destroy_all
+Question.destroy_all
+Answer.destroy_all
 
 # ActiveRecord::Base.connection.reset_pk_sequence!('users') # this resets the id during every new seed
 ActiveRecord::Base.connection.tables.each do |t|
@@ -533,7 +535,7 @@ tracks = Track.create([
     image_url: "https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2Fe2f790a4752e38a734e9a107bbcb3f5c.452x452x1.jpg"}
 ])
 
-tracks[0].producers.create(name: "Will Toledo");
+tracks[0].producers.create!(name: "Will Toledo")
 will = tracks[0].producers.find_by(name: "Will Toledo")
 tracks[0].writers = [will]
 

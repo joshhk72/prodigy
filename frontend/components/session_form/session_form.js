@@ -27,7 +27,6 @@ class SessionForm extends React.Component {
   demoLogin(e) {
     e.preventDefault();
     const user = { username: "user1", password: "555555" }
-    console.log(this.props);
     this.props.submitForm(user)
       .then(() => this.props.history.goBack());
   }

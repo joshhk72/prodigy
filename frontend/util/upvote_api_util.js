@@ -5,6 +5,13 @@ export const fetchCommentUpvotes = commentId => {
   });
 };
 
+export const fetchAnswerUpvotes = answerId => {
+  return $.ajax({
+    method: "GET",
+    url: `api/upvotes?answer_id=${answerId}`
+  });
+};
+
 export const fetchAnnotationUpvotes = annotationId => {
   return $.ajax({
     method: "GET",
