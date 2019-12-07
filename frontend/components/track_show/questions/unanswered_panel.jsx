@@ -27,6 +27,7 @@ const UnansweredPanel = props => {
         <textarea
           onChange={ e => setBody(e.target.value) }
           value={body}
+          required={true}
           ref={node => textarea = node}
           placeholder={`${question.title}`} /> :
         <input

@@ -44,6 +44,7 @@ const AnsweredPanel = props => {
               onChange={e => setBody(e.target.value)}
               value={body}
               ref={node => textarea = node}
+              required={true}
               placeholder="Answer here" />
             <div className="answer-buttons">
               <button className="question-submit">Submit</button>

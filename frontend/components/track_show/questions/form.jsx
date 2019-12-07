@@ -32,6 +32,7 @@ const QuestionForm = props => {
         <textarea
           onChange={e => setTitle(e.target.value)}
           value={title}
+          required={true}
           ref={node => textarea = node} 
           placeholder="Ask a question" /> :
         <input 
