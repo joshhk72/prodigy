@@ -9,6 +9,8 @@
 #
 
 class Artist < ApplicationRecord
+  include PublicActivity::Common
+
   validates :name, presence: true
 
   has_many :albums

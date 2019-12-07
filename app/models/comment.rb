@@ -11,8 +11,11 @@
 #
 
 class Comment < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
 
   validates :body, :author_id, :track_id, presence: true
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   has_many :upvotes, as: :upvotable, dependent: :destroy
   belongs_to :track

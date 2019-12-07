@@ -11,6 +11,8 @@
 #
 
 class Album < ApplicationRecord
+  include PublicActivity::Common
+
   validates :title, :artist_id, presence: true
 
   belongs_to :artist

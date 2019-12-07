@@ -16,6 +16,9 @@
 #
 
 class Track < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
+
   validates :name, :lyrics, :length, :artist_id, presence: true
 
   before_validation :set_lyrics_length
