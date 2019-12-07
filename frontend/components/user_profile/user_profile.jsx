@@ -32,6 +32,7 @@ class UserProfile extends React.Component {
 
   render() {
     if (this.props.user) {
+      console.log(this.props.user.activities);
 
       const bannerStyle = { backgroundImage: `url(${this.props.user.image_url})` };
       return (
