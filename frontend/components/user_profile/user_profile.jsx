@@ -61,6 +61,9 @@ class UserProfile extends React.Component {
             { activities && activities.length > 0 &&
               <ActivitySection activities={activities} username={user.username}/>
             }
+            { activities.length === 0 && 
+              <p className="no-activities">The user has no activities yet.</p>
+            }
           </div>
         </div>
       )

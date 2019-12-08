@@ -20,7 +20,7 @@ const ActivitySection = props => {
   });
 
   return (
-    <div>
+    <div className="activity-section">
       <ul className="activities-date-list">
         {datePanels}
       </ul>
