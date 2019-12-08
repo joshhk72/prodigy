@@ -99,7 +99,9 @@ After rendering the HTML converted by Showdown, I could utilize the [react-twitt
   };
 ```
 
-![Tweet](/app/assets/images/tweet.png)
+<p align="center">
+  <img src="/app/assets/images/tweet.png">
+</p>
 
 There are various other interesting features that I want to implement in the future. Some of these include:
 
