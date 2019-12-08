@@ -26,6 +26,10 @@ class User < ApplicationRecord
   attr_reader :password
   after_initialize :ensure_session_token
 
+  has_many :activities,
+    class_name: 'PublicActivity::Activity',
+    foreign_key: :owner_id
+
   has_many :annotations,
     class_name: :Annotation,
     foreign_key: :author_id

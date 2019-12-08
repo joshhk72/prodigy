@@ -9,8 +9,11 @@
 #
 
 class Artist < ApplicationRecord
+  include PublicActivity::Common
+
   validates :name, presence: true
 
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
   has_many :albums
   has_many :tracks
   has_many :track_features

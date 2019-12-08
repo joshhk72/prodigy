@@ -29,6 +29,7 @@ class Api::ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
 
     if @artist.update(artist_params)
+      @artist.create_activity key: 'artist.update', owner: current_user
       render :show
     else
       errors = @artist.errors.full_messages

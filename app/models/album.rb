@@ -11,9 +11,11 @@
 #
 
 class Album < ApplicationRecord
+  include PublicActivity::Common
+
   validates :title, :artist_id, presence: true
 
   belongs_to :artist
-
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
   has_many :tracks
 end

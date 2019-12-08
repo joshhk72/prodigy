@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+PublicActivity.enabled = false
 
 User.destroy_all
 Artist.destroy_all
@@ -18,6 +19,7 @@ Comment.destroy_all
 Upvote.destroy_all
 Question.destroy_all
 Answer.destroy_all
+PublicActivity::Activity.destroy_all
 
 # ActiveRecord::Base.connection.reset_pk_sequence!('users') # this resets the id during every new seed
 ActiveRecord::Base.connection.tables.each do |t|
@@ -556,3 +558,5 @@ upvotes = Upvote.create!([
   { value: 1, user_id: users[1].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" },
   { value: 1, user_id: users[2].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" }
 ])
+
+PublicActivity.enabled = true

@@ -20,6 +20,7 @@ class Api::AlbumsController < ApplicationController
     @album = Album.find(params[:id])
 
     if @album.update(album_params)
+      @album.create_activity key: 'album.update', owner: current_user
       render :show
     else
       errors = @album.errors.full_messages

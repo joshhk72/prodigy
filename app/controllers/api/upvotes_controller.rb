@@ -28,6 +28,7 @@ class Api::UpvotesController < ApplicationController
     @upvote = Upvote.find(params[:id])
     
     if @upvote
+      @upvote.activities.destroy
       @upvote.reverse!
       render :show
     else

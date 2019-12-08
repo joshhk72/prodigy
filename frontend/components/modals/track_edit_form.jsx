@@ -10,7 +10,7 @@ class TrackEditForm extends React.Component {
       currentTrack.features = currentTrack.features.map(artist => artist.name);
       currentTrack.producers = currentTrack.producers.map(artist => artist.name);
       currentTrack.writers = currentTrack.writers.map(artist => artist.name);
-      currentTrack.album = currentTrack.album.title
+      if (currentTrack.album) currentTrack.album = currentTrack.album.title
     };
     
     this.state = currentTrack;

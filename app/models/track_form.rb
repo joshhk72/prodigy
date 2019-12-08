@@ -10,6 +10,7 @@ class TrackForm
 
     ActiveRecord::Base.transaction do # save everything in the form, or nothing
       @track = new_track
+      PublicActivity.enabled = false
 
       artist = find_or_create_artist(self.artist)
 
@@ -28,7 +29,9 @@ class TrackForm
       @track.date = self.date if self.date
       @track.image_url = self.image_url if self.image_url
       @track.youtube_url = self.youtube_url if self.youtube_url
+      PublicActivity.enabled = true
       @track.save!
+      PublicActivity.enabled = false
 
       if self.features
         features = self.features.split(',').map { |name| find_or_create_artist(name) }
@@ -44,7 +47,7 @@ class TrackForm
         writers = self.writers.split(',').map { |name| find_or_create_artist(name) }
         @track.writers = writers
       end
-      
+      PublicActivity.enabled = true
       true # returning true for easier logic using TrackForm.save in the future
 
     rescue ActiveRecord::StatementInvalid => e
@@ -57,6 +60,7 @@ class TrackForm
     return false if invalid? # in case I add custom errors for tracks/albums/artists
 
     ActiveRecord::Base.transaction do # save everything in the form, or nothing
+      PublicActivity.enabled = false
       @track = Track.find(self.id)
 
       artist = find_or_create_artist(self.artist)
@@ -74,7 +78,9 @@ class TrackForm
       @track.youtube_url = self.youtube_url != "" && self.youtube_url != nil ? self.youtube_url : nil
       @track.name = self.name
 
+      PublicActivity.enabled = true
       @track.save!
+      PublicActivity.enabled = false
 
       if self.features
         features = self.features.split(',').map { |name| find_or_create_artist(name) }
@@ -92,7 +98,7 @@ class TrackForm
       end
 
       # have to erase & create some associations here!
-
+      PublicActivity.enabled = true
       true
     rescue ActiveRecord::StatementInvalid => e
       errors.add(:base, e.message) # refer to https://revs.runtime-revolution.com/saving-multiple-models-with-form-objects-and-transactions-2c26f37f7b9a
