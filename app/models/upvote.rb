@@ -13,8 +13,8 @@
 
 class Upvote < ApplicationRecord
   include PublicActivity::Model
-  attr_accessor :track
   tracked owner: Proc.new{ |controller, model| controller.current_user }
+  attr_accessor :track
   
   validates :value, :user_id, :upvotable_id, :upvotable_type, presence: true
   validates :upvotable_type, inclusion: { in: ["Comment", "Annotation", "Answer"] }
