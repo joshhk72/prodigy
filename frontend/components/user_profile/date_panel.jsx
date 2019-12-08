@@ -5,7 +5,7 @@ const DatePanel = props => {
   const { activities, date, username } = props;
   const activityPanels = activities.map(activity => {
     return <Panel username={username} activity={activity} key={activity.id + 300}/>
-  })
+  }).reverse();
 
   return (
     <li className="activities-date-panel">

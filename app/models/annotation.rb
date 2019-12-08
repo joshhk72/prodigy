@@ -14,7 +14,7 @@
 
 class Annotation < ApplicationRecord
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked owner: Proc.new{ |controller, model| controller ? controller.current_user : nil }
   
   validates :track_id, :start_idx, :end_idx, :body, presence: true
   before_validation :check_for_spaces

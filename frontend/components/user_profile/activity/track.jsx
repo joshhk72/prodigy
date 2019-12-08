@@ -9,7 +9,7 @@ const TrackActivityPanel = props => {
     <p>{username} updated the track page for <span>{track.name}</span>.</p>
 
   return (
-    <li>
+    <li className="activity-panel">
       <Link to={`/tracks/${track.id}`}>
         <div className="activity-image" />
         {textComponent}

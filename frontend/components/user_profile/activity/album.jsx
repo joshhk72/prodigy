@@ -5,7 +5,7 @@ const AlbumActivityPanel = props => {
   const { activity, username } = props;
   const album = activity.trackable;
   return (
-    <li>
+    <li className="activity-panel">
       <Link to={`/albums/${album.id}`}>
         <div className="activity-image" />
         <p>{username} updated the album page for <span>{album.title}</span>.</p>

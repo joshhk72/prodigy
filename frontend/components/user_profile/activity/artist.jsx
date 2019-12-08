@@ -5,7 +5,7 @@ const ArtistActivityPanel = props => {
   const { activity, username } = props;
   const artist = activity.trackable;
   return (
-    <li>
+    <li className="activity-panel">
       <Link to={`/artists/${artist.id}`}>
         <div className="activity-image" />
         <p>{username} updated the artist page for <span>{artist.name}</span>.</p>

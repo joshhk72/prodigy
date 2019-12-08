@@ -17,7 +17,7 @@
 
 class Track < ApplicationRecord
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked owner: Proc.new{ |controller, model| controller ? controller.current_user : nil }
 
   validates :name, :lyrics, :length, :artist_id, presence: true
 
@@ -60,7 +60,9 @@ class Track < ApplicationRecord
   end
 
   def create_default_questions
+    PublicActivity.enabled = false
     q1 = self.questions.create({ permanent: true, questionable_type: "Track", title: "About \"#{self.name}\"" })
     q2 = self.questions.create({ permanent: true, questionable_type: "Track", title: "What have the artists said about the song?" })
+    PublicActivity.enabled = true
   end
 end
