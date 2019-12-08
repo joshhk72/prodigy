@@ -1,5 +1,5 @@
 class Api::AnswersController < ApplicationController
-  before_action :authenticate_user, only: [:create, :update, :destroy]
+  before_action :authenticate_user, only: [:update, :destroy]
 
   def show
     @answer = Answer.find(params[:id])
@@ -8,7 +8,7 @@ class Api::AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
-    @answer.user_id = current_user.id
+    @answer.user_id = current_user.id if current_user
 
     if @answer.save
       render :show
