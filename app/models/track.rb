@@ -27,6 +27,7 @@ class Track < ApplicationRecord
 
   belongs_to :album, optional: true
   belongs_to :artist
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
   has_many :track_features
   has_many :track_producers
   has_many :track_writers

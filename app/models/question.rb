@@ -6,6 +6,7 @@ class Question < ApplicationRecord
   validates :questionable_type, inclusion: { in: ["Track", "Album", "Artist"] }
 
   has_one :answer, dependent: :destroy
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
   belongs_to :questionable, polymorphic: true
 
   def track_id=(id)
