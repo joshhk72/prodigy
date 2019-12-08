@@ -1,7 +1,14 @@
 class Api::UsersController < ApplicationController
 
   def show
-    @user = User.includes(:activities).find(params[:id])
+    @user = User
+      .includes(activities: :trackable).find(params[:id])
+    @user.activities.each do |activity|
+      if activity.trackable_type == "Upvote"
+        activity.trackable.track = activity.trackable.upvotable.track
+      end
+    end
+
     render :profile
   end
 

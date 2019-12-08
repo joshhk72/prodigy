@@ -13,6 +13,7 @@
 
 class Upvote < ApplicationRecord
   include PublicActivity::Model
+  attr_accessor :track
   tracked owner: Proc.new{ |controller, model| controller.current_user }
   
   validates :value, :user_id, :upvotable_id, :upvotable_type, presence: true
@@ -27,4 +28,5 @@ class Upvote < ApplicationRecord
     self.value *= -1
     self.save!
   end
+
 end
