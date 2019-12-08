@@ -2,14 +2,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User
-      .includes(activities: :trackable).find(params[:id])
-    @user.activities.each do |activity|
-      if activity.trackable_type == "Upvote"
-        activity.trackable.track = activity.trackable.upvotable.track
-      elsif activity.trackable_type == "Answer"
-        activity.trackable.track = activity.trackable.question.questionable
-      end
-    end
+      .find(params[:id])
 
     render :profile
   end
@@ -27,10 +20,11 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User
+      .find(params[:id])
 
     if @user.update(user_params)
-      render :show
+      render :profile
     else
       errors = @user.errors.full_messages
       render json: errors, status: 422

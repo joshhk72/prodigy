@@ -1,22 +1,20 @@
 import React from 'react';
+import Album from './album';
+import Track from './track';
+import Artist from './artist';
+import Other from './other';
 
 const ActivityPanel = props => {
-  const { activity } = props;
+  const { activity, username } = props;
   switch (activity.trackable_type) {
     case "Album":
-      return <Album activity={activity} />
+      return <Album username={username} activity={activity} />
     case "Artist":
-      return <Artist activity={activity} />
+      return <Artist username={username} activity={activity} />
     case "Track":
-      return <Track activity={activity} />
-    case "Comment":
-      return <Track activity={activity} />
-    case "Upvote":
-      return <Track activity={activity} />
-    case "Annotation":
-      return <Annotation activity={activity} />
-    case "Question":
-      return <Question activity={activity} />
+      return <Track username={username} activity={activity} />
+    default:
+      return <Other username={username} activity={activity} />
   }
 
 };

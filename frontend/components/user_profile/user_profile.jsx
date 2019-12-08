@@ -1,18 +1,21 @@
 import React from 'react';
+import ActivitySection from './activity_section'
 import FadeIn from 'react-fade-in';
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
     this.handleModal = this.handleModal.bind(this);
-    this.state = { username: "User Does Not Exist",
+    this.state = { 
+      username: "User Does Not Exist",
       image_url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
       description: undefined
     }
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.match.params.userId);
+    this.props.fetchUser(this.props.match.params.userId)
+      .then(res => this.props.fetchUserActivities(res.user.id));
     const image = document.getElementById('profile-picture');
     image.onerror = function () {
       this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -31,9 +34,9 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    if (this.props.user) {
-      console.log(this.props.user.activities);
+    const { user, activities } = this.props;
 
+    if (user) {
       const bannerStyle = { backgroundImage: `url(${this.props.user.image_url})` };
       return (
         <div className="profile-grid-container">
@@ -54,7 +57,11 @@ class UserProfile extends React.Component {
             <span className="profile-description"></span>
             <p id="profile-description">{this.props.user.description}</p>
           </div>
-          <div className="profile-column-2"></div>
+          <div className="profile-column-2">
+            { activities && activities.length > 0 &&
+              <ActivitySection activities={activities} username={user.username}/>
+            }
+          </div>
         </div>
       )
     } else {

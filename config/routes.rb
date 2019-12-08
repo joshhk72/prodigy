@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :questions, only:[:index, :create, :destroy]
     resources :answers, only:[:create, :destroy, :update, :show]
     resources :upvotes, only:[:index, :create, :update, :destroy]
+    resources :activities, only:[:index]
     get :search, controller: :search
     get :suggest, controller: :search
   end

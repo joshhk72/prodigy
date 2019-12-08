@@ -7,6 +7,7 @@ import annotations from './annotations_reducer';
 import comments from './comments_reducer';
 import upvotes from './upvotes_reducer';
 import questions from './questions_reducer';
+import activities from './activities_reducer';
 
 export default combineReducers({
   users,
@@ -17,4 +18,5 @@ export default combineReducers({
   comments,
   upvotes,
   questions,
+  activities,
 });
