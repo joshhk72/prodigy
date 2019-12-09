@@ -15,7 +15,7 @@ const ActivitySection = props => {
     }
   })
 
-  const datePanels = Object.keys(filtered).map(d => {
+  const datePanels = Object.keys(filtered).sort((d1,d2) => new Date(d2) - new Date(d1)).map(d => {
     return <DatePanel key={d} date={d} username={username} activities={filtered[d]}/>
   });
 
