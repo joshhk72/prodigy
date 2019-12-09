@@ -8,6 +8,7 @@ class Question < ApplicationRecord
   has_one :answer, dependent: :destroy
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
   belongs_to :questionable, polymorphic: true
+  belongs_to :track
 
   def track_id=(id)
     self.questionable_id = id

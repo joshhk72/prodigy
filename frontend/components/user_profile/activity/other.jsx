@@ -7,7 +7,6 @@ const OtherActivityPanel = props => {
   const track = trackable.track;
   let style;
   if (track.image_url) {
-    console.log(track.image_url);
     style = {
       backgroundImage: `url(${track.image_url})`
     };

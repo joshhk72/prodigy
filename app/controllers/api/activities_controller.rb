@@ -8,7 +8,11 @@ class Api::ActivitiesController < ApplicationController
         .activities
       @activities.each do |activity|
         if activity.trackable_type == "Upvote"
-          activity.trackable.track = activity.trackable.upvotable.track
+          if activity.trackable.upvotable_type == "Answer"
+            activity.trackable.track = activity.trackable.upvotable.question.questionable
+          else
+            activity.trackable.track = activity.trackable.upvotable.track
+          end
         elsif activity.trackable_type == "Answer"
           activity.trackable.track = activity.trackable.question.questionable
         end

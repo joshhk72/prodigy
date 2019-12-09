@@ -559,4 +559,8 @@ upvotes = Upvote.create!([
   { value: 1, user_id: users[2].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" }
 ])
 
+answers = Answer.create!([
+  { body: "[https://twitter.com/carseatheadrest/status/846419969638383616]", question_id: tracks[3].questions[1].id, user_id: users[0].id },
+])
+
 PublicActivity.enabled = true
