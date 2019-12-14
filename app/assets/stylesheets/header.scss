@@ -7,6 +7,7 @@
   height: 42px;
   background-color: yellow;
   font-family: sans-serif;
+  z-index: 3;
 }
 
 .header-search-form {
@@ -16,6 +17,7 @@
   line-height: 1.8;
   margin: 5px;
   width: 225px;
+  font-size: 17px;
 }
 
 .search-form input {
@@ -38,12 +40,13 @@
 }
 
 #logo {
+  position: absolute;
   font-size: 28px;
   color: yellow;
   font-weight: 600;
   text-shadow: -2px 2px black;
-  position: absolute;
   top: 0px;
-  left: 45%;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 

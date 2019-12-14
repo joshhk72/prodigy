@@ -10,8 +10,8 @@
   background-size: cover;
   background-attachment: scroll;
   position: relative;
-  @include dark-overlay;
   z-index: 1;
+  @include dark-overlay;
 }
 
 #hero-image:after {
@@ -34,6 +34,7 @@
 .track-show-header-info-container {
   box-sizing: border-box;
   background: transparent;
+  height: 225px;
   width: 400px;
   font-family: sans-serif;
   margin: auto 0;
@@ -51,6 +52,9 @@
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 12px;
+  }
+  h3 {
+    font-size: 17px;
   }
 }
 

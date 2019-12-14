@@ -31,7 +31,8 @@
     background-color: $session-gray;
     border: 1px solid $session-light-gray;
     line-height: 1.8;
-    border-radius: 2px;   
+    border-radius: 2px;
+    padding: 2px 4px;   
   }
   input:focus {
     border: 1px solid $session-lightest-gray;

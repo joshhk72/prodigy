@@ -90,7 +90,7 @@ class TrackEditForm extends React.Component {
               <input type="text" onChange={ this.update("album") } value={ this.state.album || "" } />
             </label>
             <label>DATE
-              <input type="date" onChange={ this.update("date") } value={ this.state.date || "" } />
+              <input className="track-modal-date" type="date" onChange={ this.update("date") } value={ this.state.date || "" } />
             </label>
           </div>
           <button>Save</button>

@@ -10,19 +10,29 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 15em;
+    height: 20em;
     grid-column-start: 1;
     grid-column-end: 6;
     z-index: 1;
   }
   .profile-column-1 {
     position: relative;
-    bottom: 14em;
     grid-column-start: 2;
     grid-column-end: 3;
     width: 100%;
     display: flex;
     flex-direction: column;
+    @include xs {
+
+    }
+
+    @include lg {
+      bottom: 10rem;
+    }
+
+    @include xl {
+      bottom: 14rem;
+    }
   }
   .profile-column-2 {
     width: 100%;
