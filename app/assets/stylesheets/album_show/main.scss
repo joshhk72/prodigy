@@ -20,6 +20,7 @@
   background-color: inherit;
   border: 1px solid lightgray;
   width: 100%;
+  max-width: 20em;
   height: 3em;
   box-sizing: border-box;
   a {
@@ -31,6 +32,9 @@
     font-family: sans-serif;
     font-size: 1em;
     font-weight: 550;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   a:hover {
     background-color: #acb6c0;

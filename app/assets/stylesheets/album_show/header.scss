@@ -1,50 +1,86 @@
 #album-show-hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: scroll;
-  position: relative;
-  @include dark-overlay;
   z-index: 1;
+  @include dark-overlay;
+  &:after {
+    max-width: 960px;
+  }
+  #album-show-hero-center {
+    display: flex;
+    max-width: 960px;
+    width: 100%;
+    background-color: transparent;
+    background-image: none;
+    margin: auto auto;
+    @include rwd(960) {
+      position: relative;
+      left: -1.5em;
+    }
+  }
 }
 
 .album-show-image-container {
-  background-color: gray;
-  width: 300px;
-  height: 300px;
-  border: 3px solid gray;
+  background-color: transparent;
+  width: 22vw;
+  height: 22vw;
+  min-width: 6em;
+  min-height: 6em;
+  max-width: 300px;
+  max-height: 300px;
   margin-top: auto 0;
+  z-index: 3;
+  @include md {
+
+  }
   #album-show-image {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+    border: 2px solid gray;
   }
 }
 
 .album-show-header-info-container {
   box-sizing: border-box;
   background: transparent;
-  width: 400px;
+  margin-top: 0.7em;
+  width: 100%;
+  max-width: 15em;
   font-family: sans-serif;
-  margin: auto 0;
-  margin-right: 25%;
   padding-left: 1.2em;
-  padding-bottom: 10em;
+  z-index: 3;
+  @include md {
+    max-width: 25em;
+  }
   span {
     color: yellow;
-    font-size: 15px;
+    font-size: 0.8em;
+    @include md {
+      font-size: 0.9em;
+    }
   }
   h1 {
     color: white;
-    font-size: 38px;
+    font-size: 1.2em;
     font-weight: 700;
     margin-top: 0.1em;
     margin-bottom: 0.1em;
+    @include md {
+      font-size: 2.1em;
+    }
   }
   h2 {
     color: white;
-    font-size: 24px;
+    font-size: 1.05em;
     font-weight: 700;
+    @include md {
+      font-size: 1.4em;
+    }
   }
   h2:hover {
     color: lightblue;
