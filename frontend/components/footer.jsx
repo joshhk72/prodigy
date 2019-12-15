@@ -6,7 +6,7 @@ const Footer = props => {
       <div>
         <div id="footer-col-1">
           <p>
-            Prodigy is a web app based on the popular lyrics annotation site Genius.
+            Prodigy is a web app based on <span>the popular lyrics annotation site</span> Genius.
           </p>
           <div id="footer-links">
             <a href="https://github.com/joshhk72/">
@@ -22,8 +22,8 @@ const Footer = props => {
             Prodigy was built to expand and demonstrate my skills as a web developer.
           </p>
           <p>
-            Built with a React/Redux front-end and Rails back-end, Prodigy provides a dynamic resource for
-            users to manage a knowledge base of song lyrics and annotations.
+            Built with a React/Redux front-end and Rails back-end, Prodigy provides <span>a dynamic resource for
+            users to manage a</span> knowledge base of song lyrics and annotations.
           </p>
         </div>
       </div>

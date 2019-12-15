@@ -2,12 +2,14 @@
   background-color: black;
   color: white;
   padding: 2em 4em;
+  padding-bottom: 140px;
   > div {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 6em;
-    height: 16em;
-    width: 80%;
+    column-gap: 2em;
+    width: 100%;
+    min-width: 300px;
+    max-width: 1100px;
     margin: 0 auto;
     #footer-col-1 {
       font-size: 40px;
@@ -26,6 +28,12 @@
         @include lg {
           font-size: 28px;
           margin-bottom: 1.4em;
+        }
+        span {
+          display: none;
+          @include md {
+            display: inline-block;
+          }
         }
       }
       #footer-links {
@@ -65,6 +73,12 @@
         display: none;
         @include md {
           display: block;
+        }
+      }
+      span {
+        display: none;
+        @include md {
+          display: inline-block;
         }
       }
     }
