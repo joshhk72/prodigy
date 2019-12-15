@@ -1,12 +1,13 @@
-.artist-show-image-container {
-  display: table;
-  height: 80px;
-  min-width: 150px;
-  width: 100%;
-  background-image: none;
+.artist-show-column-first {
+  padding-top: 6vw;
+  padding-left: 0.8em;
+  @include md {
+    padding-left: 0;
+  }
 }
 
 .artist-show-main-info {
+  padding-top: 1em;
   height: 150px;
   width: 100%;
   background-color: white;

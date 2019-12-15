@@ -8,7 +8,9 @@
     width: 100%;
     background-color: transparent;
     background-image: none;
+    padding-left: 1em;
     @include rwd(960) {
+      padding-left: none;
       position: relative;
       left: -1.6em;
     }

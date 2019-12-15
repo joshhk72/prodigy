@@ -1,7 +1,9 @@
 .artist-show-header {
   display: flex;
+  position: relative;
   justify-content: center;
-  height: 225px;
+  height: 27vw;
+  max-height: 18em;
 }
 
 #artist-hero-image {
@@ -10,19 +12,37 @@
   background-size: cover;
   background-attachment: scroll;
   position: relative;
+  #artist-show-header-center {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    > div {
+      position: relative;
+      width: 100%;
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+  }
 }
 
-.artist-show-column-first {
-  position: relative;
-}
-
-#artist-show-image {
-  height: 250px;
-  width: 250px;
-  object-fit: cover;
-  border-radius: 50%;
+.artist-show-image-container {
   position: absolute;
-  border: 3px solid green;
-  top: -200px;
-  left: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 3;
+  bottom: -3.5vw;
+  background-color: transparent;
+  background-image: none;
+  #artist-show-image {
+    max-height: 18em;
+    max-width: 18em;
+    width: 27vw;
+    height: 27vw;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid green;
+  }
 }

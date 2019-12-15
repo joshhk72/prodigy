@@ -1,6 +1,7 @@
 .album-form {
   position: fixed;
-  width: 35vw;
+  width: 40vw;
+  min-width: 420px;
   max-width: 30em;
   background-color: $background-gray; 
   opacity:1.0;
