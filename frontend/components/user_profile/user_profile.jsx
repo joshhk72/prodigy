@@ -41,10 +41,14 @@ class UserProfile extends React.Component {
       return (
         <div className="profile-grid-container">
           <div className="profile-banner" style={this.props.user.image_url ? bannerStyle : null}/>
+          <div id="profile-picture-container">
+            <div className="content">
+              <img id="profile-picture"
+                src={this.props.user.image_url || "https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"}
+              />
+            </div>
+          </div>
           <div className="profile-column-1">
-            <img id="profile-picture" 
-              src={this.props.user.image_url || "https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"} 
-            />
             <span className="profile-name">@{this.props.user.username}</span>
             {this.props.currentUserPage === true ?
               <button 

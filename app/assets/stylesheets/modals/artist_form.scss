@@ -1,18 +1,19 @@
 .artist-form {
   position: fixed;
-  width: 30%;
-  min-width: 300px;
-  min-height: 420px;
-  background-color: $background-gray; opacity:1.0;
-  top: 250px;
+  width: 35vw;
+  max-width: 30em;
+  background-color: $background-gray; 
+  opacity:1.0;
+  top: 5vh;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
   z-index: 10;
   padding: 20px;
   padding-right: 0;
   font-family: sans-serif;
   text-transform: uppercase;
   input, textarea {
+    padding: 0.4em;
     background-color: white;
     line-height: 1.5;
     width: 90%;
@@ -26,7 +27,8 @@
   }
   button {
     padding: 8px;
-    border: 2px solid indigo;
+    border: 2px solid $save-button-green;
+    color: $save-button-green;
     margin-top: 10px;
     margin-bottom: 10px;
   }

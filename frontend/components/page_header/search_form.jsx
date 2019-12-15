@@ -52,8 +52,16 @@ class SearchForm extends React.Component {
 
     return (
       <div className="header-search-form-container">
-        <form className="header-search-form">
-          <input className="header-search-input" type="text" onFocus={this.clicked} onBlur={this.unclicked} onChange={ this.update("term") } value={ this.state.term || '' }placeholder="Search songs & more"/>
+        <form className="header-search-form" onSubmit={e => e.preventDefault()}>
+          <input 
+            className="header-search-input" 
+            type="text" 
+            onFocus={this.clicked} 
+            onBlur={this.unclicked} 
+            onChange={ this.update("term") } 
+            value={ this.state.term || '' } 
+            placeholder="Search songs & more"
+          />
           <button><i className="fas fa-search"></i></button>
         </form>
         { (this.state.focus && this.state.term) && (

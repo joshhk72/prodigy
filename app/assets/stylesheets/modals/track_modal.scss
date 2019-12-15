@@ -1,21 +1,26 @@
 .track-modal-form {
   position: relative;
   min-height: 500px;
-  width: 60%;
-  min-width: 420px;
-  background-color: $background-gray; opacity:1.0;
-  top: 360px;
+  width: 55vw;
+  max-width: 35em;
+  background-color: $background-gray; 
+  opacity: 1.0;
+  top: 5vh;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
   z-index: 10;
   padding: 20px;
-  font-size: 14px;
+  font-size: 0.8em;
   font-family: sans-serif;
   button {
     padding: 8px;
-    border: 2px solid indigo;
+    color: $save-button-green;
+    border: 2px solid $save-button-green;
     margin-top: 20px;
     margin-bottom: 10px;
+  }
+  label {
+    box-sizing: border-box;
   }
   input, textarea {
     padding: 2px 4px;
