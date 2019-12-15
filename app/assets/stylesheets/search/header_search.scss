@@ -5,13 +5,16 @@
 
 .header-results-container {
   min-height: 150px;
-  width: 400px;
+  width: 97vw;
   position: absolute;
   top: 50px;
   left: 10px;
   background-color: #d4d4d4;
   overflow: hidden;
   overflow-y: scroll;
+  @include md {
+    width: 400px;
+  }
   > h3 {
     border-bottom: 1px solid #c5c3c3;
     padding: 10px;
