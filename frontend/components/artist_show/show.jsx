@@ -60,7 +60,7 @@ class ArtistShow extends React.Component {
 
     let descParagraphs
     if (description) descParagraphs = description.split(/\r?\n/).map((paragraph, i) => {
-      return <p key={500+i}>paragraph</p>
+      return <p key={500+i}>{paragraph}</p>
     });
 
     const trackLis = tracks.map(track => <ArtistTrackLi track={track} key={track.id}/>);
