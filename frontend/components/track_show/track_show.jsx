@@ -126,13 +126,15 @@ class TrackShow extends React.Component {
     if (!selection.extentNode || !selection.baseNode) return; // end and start nodes must exist
 
     const annotationNodes = document.getElementsByClassName('annotated-lyrics');
-    if (AnnotateUtil.annotationsNotSelected(annotationNodes) && this.props.loggedIn) {
+    if (AnnotateUtil.annotationsNotSelected(annotationNodes)) {
       const lyricsContainer = document.getElementById("lyrics-container");
       const { i1, i2, j1, j2 } = AnnotateUtil.getIndices(lyricsContainer); 
       // I could've deconstructed for these methods, but I wanted them to be easy to remember for the future!
       const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
       const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, { i1, i2, j1, j2 });
-      const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 424;
+      const top1 = lyricsContainer.getBoundingClientRect().top;
+      const top2 = selection.getRangeAt(0).getBoundingClientRect().top;
+      const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 354;
       this.setState({ startIdx, endIdx, top });
       this.showAnnotationPrompt(startIdx, endIdx);
     };

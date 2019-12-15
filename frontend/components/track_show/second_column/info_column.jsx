@@ -2,7 +2,7 @@ import React from 'react';
 import AnnotationShowContainer from './annotation_show_container';
 import AnnotationForm from './annotation_form';
 import AnnotationEditForm from './annotation_edit_form';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import NonAnnotationColumn from './non_annotation_column';
 
 class InfoColumn extends React.Component {
@@ -56,11 +56,17 @@ class InfoColumn extends React.Component {
     const hideNonAnnotation = annotationPrompt || !isExact;
     return (
       <div id="info-column">
-        {this.props.annotationPrompt &&
+        { currentUserId && annotationPrompt &&
           <div style={style} className="annotation-prompt-container">
             <button id="annotation-prompt-button"
               onClick={this.createAnnotationForm}>Start the Prodigy Annotation
           </button>
+          </div>}
+        {!currentUserId && annotationPrompt &&
+          <div style={style} className="annotation-prompt-container">
+            <Link id="annotation-prompt-button"
+              to="/login">You must log in to annotate lyrics!
+          </Link>
           </div>}
         { !annotationPrompt && this.state.forms.length > 0 && this.state.forms }
         { !annotationPrompt && 
