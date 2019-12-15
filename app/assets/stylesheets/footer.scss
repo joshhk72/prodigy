@@ -75,12 +75,6 @@
           display: block;
         }
       }
-      span {
-        display: none;
-        @include md {
-          display: inline-block;
-        }
-      }
     }
   }
 }

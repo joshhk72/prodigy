@@ -19,11 +19,10 @@ const Footer = props => {
         </div>
         <div id="footer-col-2">
           <p>
-            Prodigy was built to expand and demonstrate my skills as a web developer.
+            Highlight lyrics to start annotating!
           </p>
           <p>
-            Built with a React/Redux front-end and Rails back-end, Prodigy provides <span>a dynamic resource for
-            users to manage a</span> knowledge base of song lyrics and annotations.
+            Prodigy is built with a React/Redux front-end and Ruby on Rails back-end.
           </p>
         </div>
       </div>
