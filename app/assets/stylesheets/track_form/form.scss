@@ -1,5 +1,7 @@
 .track-form-container {
   display: grid;
+  max-width: 1200px;
+  margin: 0 auto;
   grid-template-columns: 10% 40% 40% 10%;
   small {
     color: white;
