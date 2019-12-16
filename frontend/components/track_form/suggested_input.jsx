@@ -22,7 +22,6 @@ class SuggestedInput extends React.Component {
   handleOutsideClick(e) {
     if (!e.target.className.includes(this.props.klass)) {
       this.setState({ open: false });
-      document.removeEventListener("click", this.handleOutsideClick);
     };
   }
 

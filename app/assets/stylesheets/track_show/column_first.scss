@@ -11,11 +11,20 @@
   }
 }
 
+.track-show-lyrics-container {
+  >div {
+    margin-bottom: 40px;
+  }
+}
+
 .track-show-lyrics-container button {
   padding: 8px;
   border: 2px solid black;
-  margin-bottom: 40px;
   margin-right: 10px;
+  font-size: 17px;
+  &:first-of-type {
+    margin-bottom: 15px;
+  }
 }
 
 #lyrics-edit-save-button {

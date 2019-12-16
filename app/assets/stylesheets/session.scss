@@ -1,5 +1,6 @@
 .session-form-container {
   width: 70%;
+  max-width: 1050px;
   margin: 0 auto;
   > h2 {
     display: block;
@@ -26,12 +27,14 @@
   border-top: 1px solid $session-gray;
   input {
     width: 100%;
-    margin-top: 3px;
+    box-sizing: border-box;
+    margin-top: 6px;
     margin-bottom: 15px;
     background-color: $session-gray;
     border: 1px solid $session-light-gray;
     line-height: 1.8;
-    border-radius: 2px;   
+    border-radius: 2px;
+    padding: 2px 4px;   
   }
   input:focus {
     border: 1px solid $session-lightest-gray;

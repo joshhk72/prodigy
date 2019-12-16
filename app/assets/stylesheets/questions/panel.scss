@@ -21,7 +21,25 @@
     }
     .answered-panel-bottom {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
+      @include md {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      > div {
+        display: flex;
+        justify-content: center;
+        @include md {
+          display: block;
+        }
+        &:first-of-type {
+          margin-bottom: 12px;
+          @include md {
+            margin-bottom: 0;
+          }
+        }
+      }
       .answer-upvotes {
         span {
           width: 17px;
@@ -41,7 +59,14 @@
       }
       button {
         padding: 0.2em;
-        margin-right: 1.2em;
+        &:first-of-type {
+          margin-right: 1.2em;
+        }
+        @include md {
+          &:last-of-type {
+            margin-right: 1.2em;
+          }
+        }
         :hover {
           color: gray;
         }
@@ -89,6 +114,7 @@
   border: 2px solid $save-button-green;
   padding: 0.7em;
   margin-right: 0.4em;
+  font-size: 17px;
   &:hover {
     background-color: lightgray;
   }
@@ -99,6 +125,7 @@
   background-color: white;
   padding: 0.7em;
   margin-right: 0.2em;
+  font-size: 17px;
   &:hover {
     border: 2px solid lightgray;
     background-color: lightgray;

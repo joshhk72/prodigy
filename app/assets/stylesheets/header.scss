@@ -7,6 +7,7 @@
   height: 42px;
   background-color: yellow;
   font-family: sans-serif;
+  z-index: 3;
 }
 
 .header-search-form {
@@ -15,11 +16,12 @@
   padding: 0 4px;
   line-height: 1.8;
   margin: 5px;
-  width: 225px;
-}
-
-.search-form input {
-  width: 200px;
+  font-size: 17px;
+  input {
+    max-width: 225px;
+    width: 25vw;
+    padding-right: 0.4em;
+  }
 }
 
 .header-actions {
@@ -38,12 +40,13 @@
 }
 
 #logo {
+  position: absolute;
   font-size: 28px;
   color: yellow;
   font-weight: 600;
   text-shadow: -2px 2px black;
-  position: absolute;
   top: 0px;
-  left: 45%;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 

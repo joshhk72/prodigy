@@ -13,6 +13,60 @@
  *= require_self
  */
 
+$screen-xs-min: 0px;
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
+
+@mixin xs {
+   @media (min-width: #{$screen-xs-min}) {
+       @content;
+   }
+}
+// Small devices
+@mixin sm {
+   @media (min-width: #{$screen-sm-min}) {
+       @content;
+   }
+}
+
+// Medium devices
+@mixin md {
+   @media (min-width: #{$screen-md-min}) {
+       @content;
+   }
+}
+
+// Large devices
+@mixin lg {
+   @media (min-width: #{$screen-lg-min}) {
+       @content;
+   }
+}
+
+// Extra large devices
+@mixin xl {
+   @media (min-width: #{$screen-xl-min}) {
+       @content;
+   }
+}
+
+@mixin rwd($screen) {
+   @media (min-width: $screen+'px') {
+       @content;
+   }
+}
+
 @function tint($color, $percentage) {
   @return mix(white, $color, $percentage);
 }
@@ -24,15 +78,32 @@
 @mixin dark-overlay{
   &:after{
     content: "";
-    width: 100%;
-    max-width: 960px;
-    height: auto;
     position: absolute;
+    width: 100%;
+    height: auto;
     top: 0;
 	  right: auto;
 	  left: auto;
     bottom: 0;
-    z-index: -1;
+    background:rgba(0, 0, 0, 0.65);
+    z-index: 2;
+  }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 }
 

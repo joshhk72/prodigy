@@ -2,11 +2,13 @@
   header {
     display: flex;
     justify-content: center;
-    padding: 2em 0;
+    padding-top: 2.2em;
+    padding-bottom: 1.5em;
   }
   main {
     min-height: 400px;
     max-width: 960px;
+    padding: 0 20px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 55% 45%;
@@ -18,15 +20,9 @@
         color: darkgray;
       }
     }
-    .album-show-main-col-2 {
-    }
   }
 }
 
 .album-show-page {
   background-color: $background-gray;
-}
-
-.album-show-header {
-  min-height: 350px;
 }

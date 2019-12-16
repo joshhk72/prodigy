@@ -45,7 +45,7 @@ class AlbumShow extends React.Component {
     }
 
     const heroStyle = {
-      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" + (bannerImage ? `,url(${bannerImage})` : "")
+      backgroundImage: bannerImage ? `url(${bannerImage})` : ""
     };
 
     const trackLis = tracks.map(track => {
@@ -60,20 +60,24 @@ class AlbumShow extends React.Component {
     return (
       <section className="album-show-page">
         <header id="album-show-hero" style={heroStyle}>
-          <div className="album-show-image-container">
-            <img id="album-show-image" 
-              onError={this.handleImageError} 
-              src={image_url || defaultImage} 
-            />
-          </div>
-          <div className="album-show-header-info-container">
-            <span>Album</span>
-            <h1>{title}</h1>
-            <h2>
-              <Link to={`/artists/${artist.id}`}>
-                {artist.name}
-              </Link>
-            </h2>
+          <div id="album-show-hero-center">
+            <div className="album-show-image-container">
+              <div className="content">
+                <img id="album-show-image"
+                  onError={this.handleImageError}
+                  src={image_url || defaultImage}
+                />
+              </div>
+            </div>
+            <div className="album-show-header-info-container">
+              <span>Album</span>
+              <h1>{title}</h1>
+              <h2>
+                <Link to={`/artists/${artist.id}`}>
+                  {artist.name}
+                </Link>
+              </h2>
+            </div>
           </div>
         </header>
         <main>

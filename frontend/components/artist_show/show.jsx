@@ -60,7 +60,7 @@ class ArtistShow extends React.Component {
 
     let descParagraphs
     if (description) descParagraphs = description.split(/\r?\n/).map((paragraph, i) => {
-      return <p key={500+i}>paragraph</p>
+      return <p key={500+i}>{paragraph}</p>
     });
 
     const trackLis = tracks.map(track => <ArtistTrackLi track={track} key={track.id}/>);
@@ -69,13 +69,16 @@ class ArtistShow extends React.Component {
     return(
       <section className="artist-show-page">
         <header className="artist-show-header" id="artist-hero-image" style={heroStyle}>
-
+          <div id="artist-show-header-center">
+            <div>
+              <div className="artist-show-image-container">
+                <img id="artist-show-image" onError={this.handleImageError} src={`${image_url || defaultImage}`} />
+              </div>
+            </div>
+          </div>
         </header>
         <main className="artist-show-main">
           <div className="artist-show-column-first">
-            <div className="artist-show-image-container">
-              <img id="artist-show-image" onError={this.handleImageError} src={`${image_url || defaultImage}`} />
-            </div>
             <div className="artist-show-main-info">
               <h1>{name}</h1>
               { this.props.loggedIn && <button onClick={this.openModal} className='artist-edit-button'>Edit Artist</button> }

@@ -9,7 +9,11 @@ const ArtistAlbumLi = props => {
   return (
     <li className="artist-album-li">
       <Link to={`/albums/${id}`}>
-        <img src={image_url || null} alt=""/>
+        <div className="artist-album-li-image-container">
+          <div className="content">
+            <img src={image_url || null} alt=""/>
+          </div>
+        </div>
         <h3>{title}</h3>
         { year && <span>{year}</span> }
       </Link>

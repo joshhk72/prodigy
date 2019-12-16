@@ -5,7 +5,8 @@
 }
 
 .track-show-header {
-  min-height: 300px;
+  padding-top: 2.2em;
+  padding-bottom: 1.2em;
 }
 
 .track-show-main {
@@ -16,6 +17,7 @@
   display: grid;
   padding-bottom: 4em;
   grid-template-columns: 55% 45%;
+  padding-top: 1.2em;
 }
 
 .no-tracks-shown {

@@ -91,12 +91,22 @@
 }
 .annotation-show-bottom {
   display: flex;
-  justify-content: space-between;
-  .annotation-show-buttons{
-    margin-right: 1.6em;
+  flex-direction: column;
+  @include md {
+    justify-content: space-between;
+    flex-direction: row;
   }
   .annotation-show-upvotes {
     margin-top: 15px;
+    margin-bottom: 15px;
+    @include md {
+      margin-bottom: 0;
+    }
+  }
+  .annotation-show-buttons{
+    @include md {
+      margin-right: 1.6em;
+    }
   }
 }
 

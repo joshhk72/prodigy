@@ -50,7 +50,7 @@
     background-color: white;
     border: 2px solid $input-border-gray;
     width: 100%;
-    padding: 5px 3px;
+    padding: 0.3em 0.2em;
     box-sizing: border-box;
   }
   .comment-input {
@@ -58,7 +58,7 @@
     border: 2px solid $input-border-gray;
     width: 100%;
     resize: none;
-    padding: 5px;
+    padding: 0.3em;
     box-sizing: border-box;
   }
   .comment-input:focus {
