@@ -9,7 +9,7 @@ const tracksReducer = (state = {}, action) => {
     case CLEAR_TRACKS:
       return {};
     case RECEIVE_TRACKS:
-      return merge({}, state, action.tracks)
+      return merge({}, state, action.tracks.tracks)
     default:
       return state;
   }

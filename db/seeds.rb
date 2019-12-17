@@ -807,15 +807,6 @@ We're holdin' on, we'll keep holdin' on
 Who's letting go? Not you, not you
 Ooh, oh, ain't nobody can)
 
-Track.create!({ 
-    name: "Cute Thing",
-    youtube_url: "https://www.youtube.com/watch?v=fj8H_ZXLgio",
-    artist_id: artists[0].id,
-    lyrics: lyrics_1,
-    album_id: albums[0].id,
-    date: albums[0].date,
-    image_url: "https://e-cdns-images.dzcdn.net/images/cover/19af256a3e05dd7b640dd1140bd97b6e/500x500-000000-80-0-0.jpg"
-  })
 tracks = Track.create!([
   { 
     name: "Cute Thing",

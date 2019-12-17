@@ -3,8 +3,10 @@ class Api::TracksController < ApplicationController
   def index
     if params[:page]
       @tracks = Track.all.order(created_at: :desc).page(params[:page]).per(5);
+      @max_page = Track.page(params[:page]).per(5).last_page?
     else
       @tracks = Track.all
+      @max_page = true
     end
     render :index
   end
