@@ -2,10 +2,15 @@ import React from 'react';
 import TrackPanel from './track_panel';
 
 class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { pages: {} };
+  }
 
   componentDidMount() {
     this.props.clearTracks();
-    this.props.fetchTracks();
+    this.props.fetchPageTracks(1)
+      .then(({ tracks }) => this.setState( { pages: { '1': tracks } }));
   }
 
   componentWillUnmount() {

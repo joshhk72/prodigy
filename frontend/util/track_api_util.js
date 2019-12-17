@@ -12,10 +12,10 @@ export const fetchTracks = () => {
   });
 };
 
-export const fetchRecentTracks = () => {
+export const fetchPageTracks = page => {
   return $.ajax({
     method: "GET",
-    url: "api/tracks?recent=true"
+    url: `api/tracks?page=${page}`
   })
 };
 
