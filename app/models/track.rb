@@ -20,8 +20,8 @@ class Track < ApplicationRecord
   tracked owner: Proc.new{ |controller, model| controller ? controller.current_user : nil }
 
   validates :name, :lyrics, :length, :artist_id, presence: true
-
   before_validation :set_lyrics_length
+  
   after_create :create_default_questions
   after_update :set_lyrics_length, :check_annotations
 

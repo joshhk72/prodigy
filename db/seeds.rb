@@ -807,7 +807,15 @@ We're holdin' on, we'll keep holdin' on
 Who's letting go? Not you, not you
 Ooh, oh, ain't nobody can)
 
-
+Track.create!({ 
+    name: "Cute Thing",
+    youtube_url: "https://www.youtube.com/watch?v=fj8H_ZXLgio",
+    artist_id: artists[0].id,
+    lyrics: lyrics_1,
+    album_id: albums[0].id,
+    date: albums[0].date,
+    image_url: "https://e-cdns-images.dzcdn.net/images/cover/19af256a3e05dd7b640dd1140bd97b6e/500x500-000000-80-0-0.jpg"
+  })
 tracks = Track.create!([
   { 
     name: "Cute Thing",
@@ -910,30 +918,30 @@ tracks = Track.create!([
   },
 ])
 
-# tracks[0].producers.create!(name: "Will Toledo")
-# will = tracks[0].producers.find_by(name: "Will Toledo")
-# tracks[0].writers = [will]
+tracks[0].producers.create!(name: "Will Toledo")
+will = tracks[0].producers.find_by(name: "Will Toledo")
+tracks[0].writers = [will]
 
-# annotations = Annotation.create([
-#   { track_id: tracks[0].id, start_idx: 10, end_idx: 47, body: "Will got too romantic, so he apologizes.", author_id: users[0].id },
-#   { track_id: tracks[0].id, start_idx: 48, end_idx: 74, body: "He will light your cigarette.", author_id: users[0].id }
-# ])
+annotations = Annotation.create([
+  { track_id: tracks[0].id, start_idx: 10, end_idx: 47, body: "Will got too romantic, so he apologizes.", author_id: users[0].id },
+  { track_id: tracks[0].id, start_idx: 48, end_idx: 74, body: "He will light your cigarette.", author_id: users[0].id }
+])
 
-# comments = Comment.create([
-#   { track_id: tracks[0].id, author_id: users[0].id, body: "This song sucks." },
-#   { track_id: tracks[0].id, author_id: users[1].id, body: "This song rocks." }
-# ])
+comments = Comment.create([
+  { track_id: tracks[0].id, author_id: users[0].id, body: "This song sucks." },
+  { track_id: tracks[0].id, author_id: users[1].id, body: "This song rocks." }
+])
 
-# upvotes = Upvote.create!([
-#   { value: 1, user_id: users[1].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
-#   { value: -1, user_id: users[2].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
-#   { value: 1, user_id: users[0].id, upvotable_id: comments[1].id, upvotable_type: "Comment" },
-#   { value: 1, user_id: users[1].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" },
-#   { value: 1, user_id: users[2].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" }
-# ])
+upvotes = Upvote.create!([
+  { value: 1, user_id: users[1].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
+  { value: -1, user_id: users[2].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
+  { value: 1, user_id: users[0].id, upvotable_id: comments[1].id, upvotable_type: "Comment" },
+  { value: 1, user_id: users[1].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" },
+  { value: 1, user_id: users[2].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" }
+])
 
-# answers = Answer.create!([
-#   { body: "[https://twitter.com/carseatheadrest/status/846419969638383616]", question_id: tracks[3].questions[1].id, user_id: users[0].id },
-# ])
+answers = Answer.create!([
+  { body: "[https://twitter.com/carseatheadrest/status/846419969638383616]", question_id: tracks[3].questions[1].id, user_id: users[0].id },
+])
 
 PublicActivity.enabled = true
