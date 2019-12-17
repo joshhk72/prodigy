@@ -1,10 +1,12 @@
 class Api::TracksController < ApplicationController
   before_action :authenticate_user, only: [:create, :update]
   def index
-    if params[:recent]
-      @tracks = Track.all.order(created_at: :desc).limit(10);
+    if params[:page]
+      @tracks = Track.all.order(created_at: :desc).page(params[:page]).per(5);
+      @max_page = Track.page(params[:page]).per(5).last_page?
     else
       @tracks = Track.all
+      @max_page = true
     end
     render :index
   end

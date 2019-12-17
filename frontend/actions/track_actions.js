@@ -28,8 +28,8 @@ export const fetchTracks = () => dispatch => {
     .then(tracks => dispatch(receiveTracks(tracks)));
 };
 
-export const fetchRecentTracks = () => dispatch => {
-  return TrackUtil.fetchRecentTracks()
+export const fetchPageTracks = page => dispatch => {
+  return TrackUtil.fetchPageTracks(page)
     .then(tracks => dispatch(receiveTracks(tracks)));
 };
 

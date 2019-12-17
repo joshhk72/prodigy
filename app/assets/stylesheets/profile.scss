@@ -1,7 +1,6 @@
 .profile-grid-container {
   width: 100%;
   display: grid;
-  min-height: 360px;
   grid-template-columns: auto minmax(16%, 20em) 4em minmax(20%, 26em) auto;
   grid-template-rows: max-content auto;
   position: relative;
@@ -52,6 +51,7 @@
 .profile-column-1 {
   position: relative;
   padding-top: 3.2em;
+  padding-bottom: 8em;
   grid-row-start: 2;
   grid-column-start: 2;
   grid-column-end: 3;

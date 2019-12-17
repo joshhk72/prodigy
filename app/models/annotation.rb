@@ -17,7 +17,7 @@ class Annotation < ApplicationRecord
   tracked owner: Proc.new{ |controller, model| controller ? controller.current_user : nil }
   
   validates :track_id, :start_idx, :end_idx, :body, presence: true
-  before_validation :check_for_spaces
+
 
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
   has_many :upvotes, as: :upvotable, dependent: :destroy
