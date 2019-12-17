@@ -28,6 +28,7 @@ gem 'jquery-rails'
 gem 'ransack'
 gem 'haml'
 gem 'public_activity'
+gem 'kaminari'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

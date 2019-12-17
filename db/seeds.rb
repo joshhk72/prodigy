@@ -28,9 +28,9 @@ end
 
 
 users = User.create([
-  { username: "user1", 
-    password: 555555, 
-    email: "user1@user.com", 
+  { username: "user1",
+    password: 555555,
+    email: "user1@user.com",
     image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMr_Ky37u_30imoav7-kzi01LCBOh88WP6hu2r3IkXUJaQsWexdA&s",
     description: "I am the demo user for this app!"},
   { username: "user2", password: 666666, email: "user2@user.com", image_url: "https://s3.amazonaws.com/37assets/svn/1065-IMG_2529.jpg" },
@@ -38,46 +38,105 @@ users = User.create([
 ])
 
 artists = Artist.create([
-  { name: "Car Seat Headrest", 
+  {
+    name: "Car Seat Headrest",
     image_url: "https://pbs.twimg.com/profile_images/459401939529134080/ZPooDfQ0_400x400.jpeg",
     banner_image_url: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p640x640/40095711_2176917312381348_6504233799444856832_o.jpg?_nc_cat=109&_nc_ohc=ULaBjFI5mfIAQnM735_K2CdWi9lE104pnMgzCQ4WaX6H7RkxXlzq3U4hw&_nc_ht=scontent-lga3-1.xx&oh=ef566fb0176f3c43c1f458474c14df35&oe=5E4E7A38",
     description: %Q(Will Toledo is an upstanding young man who has upheld the letter of the law to the fullest extent of his abilities.
-      
+
       He passed through his school years and through college without any evidence of criminal wrongdoings being attached to him, indeed becoming a role model and a guiltless beacon of hope to his peer group, members of whom might have otherwise been terribly misled.
-      
+
       He has no identifying marks or scars.)
   },
-  { name: "Joanna Newsom",
+  {
+    name: "Joanna Newsom",
     image_url: "https://media.pitchfork.com/photos/5d7c07438699b30008f1b0ad/2:1/w_790/Joanna-Newsom.jpg",
     banner_image_url: "https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Ff3a4e9cc-87ab-11e5-90de-f44762bf9896?fit=scale-down&source=next&width=700",
     description: "Newsom is a singer-songwriter whose uniqueness is defined by her voice, her lyrics, her instrument of choice (the pedal harp), and her manner of composition (long songs owing more to modern classical music than pop song formats)."
   },
-  { name: "Laura Marling",
+  {
+    name: "Laura Marling",
     image_url: "https://www.thetimes.co.uk/imageserver/image/methode%2Ftimes%2Fprod%2Fweb%2Fbin%2F4cc7a56c-5f0b-11e6-829b-372b3909db3d.jpg?crop=2028%2C1141%2C58%2C32&resize=685",
-    banner_image_url: "https://cdn.cherwell.org/wp-content/uploads/2017/02/09070647/LM-Conference-3-e1487946942627.jpg" }
+    banner_image_url: "https://cdn.cherwell.org/wp-content/uploads/2017/02/09070647/LM-Conference-3-e1487946942627.jpg"
+  },
+  {
+    name: "M.Ward",
+    image_url: "https://www.rollingstone.com/wp-content/uploads/2018/06/rs-143221-rectangle.jpg",
+    banner_image_url: "http://acltv.com/wp-content/uploads/2012/06/mward.jpg",
+    description: "M. Ward is an American musician, perhaps most famous for his collaboration with Zooey Deschanel in the band She & Him, which he provides the music for."
+  },
+  {
+    name: "Natalie Prass",
+    image_url: "https://cdn.albumoftheyear.org/artists/sq/natalie-prass_1519864190.jpg",
+    banner_image_url: "https://images.squarespace-cdn.com/content/v1/56858337cbced60d3b293aef/1536803629883-8V8TPLEA4WIL1LQUY4EE/ke17ZwdGBToddI8pDm48kLtpqB6kVHXkiemRg4JLCL5Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIe72J8h1NHI3a274XhZOnpF485W8QFyZD-MOGIJwbHpwKMshLAGzx4R3EDFOm1kBS/Albumism_NataliePrass_MainImage1.jpg",
+    description: "Prass’s debut was shelved by Spacebomb Records after it was recorded in 2012. In the time between finishing recording and the release of the record in January 2015, she played in Jenny Lewis’s touring band."
+  }
 ])
 
 albums = Album.create([
-  { title: "Twin Fantasy", artist_id: artists[0].id, date: Date.new(2011, 11, 2), 
-    image_url: "https://f4.bcbits.com/img/a0202599159_10.jpg", 
+  { title: "Twin Fantasy", artist_id: artists[0].id,
+    date: Date.new(2011, 11, 2),
+    image_url: "https://f4.bcbits.com/img/a0202599159_10.jpg",
     banner_image_url: "https://www.angryyoungandpoor.com/store/pc/catalog/products/lp/mtd11330lp.jpg"
   },
-  { title: "Teens of Denial", artist_id: artists[0].id, date: Date.new(2016, 5, 20), 
-    image_url: "https://f4.bcbits.com/img/a2165492760_10.jpg"},
-  { title: "Ys", artist_id: artists[1].id, date: Date.new(2006, 11, 6),
+  { title: "Teens of Denial", artist_id: artists[0].id,
+    date: Date.new(2016, 5, 20),
+    image_url: "https://f4.bcbits.com/img/a2165492760_10.jpg"
+  },
+  {
+    title: "Ys", artist_id: artists[1].id, date: Date.new(2006, 11, 6),
     image_url: "https://upload.wikimedia.org/wikipedia/en/4/4d/Ys_cover.jpg",
     description: "Ys is the second studio album by harpist, singer and songwriter Joanna Newsom. The album title refers to the mythical city of Ys, supposedly located on the coast of Brittany before it ended up sinking beneath an ocean flood."
   },
-  { title: "Divers", artist_id: artists[1].id, date: Date.new(2015, 10, 23),
+  {
+    title: "Divers",
+    artist_id: artists[1].id,
+    date: Date.new(2015, 10, 23),
     image_url: "https://midnightpunk.files.wordpress.com/2015/11/joannanewsom_divers_mini-400x400.jpg",
-    banner_image_url: "https://i.ytimg.com/vi/WY1uzXMKsOE/maxresdefault.jpg"},
-  { title: "I Speak Because I Can", artist_id: artists[2].id, date: Date.new(2010, 3, 22),
-    image_url: "https://upload.wikimedia.org/wikipedia/en/a/a1/Ispeakbecauseican.jpg"},
-  { title: "Semper Femina", artist_id: artists[2].id, date: Date.new(2017, 3, 10),
-    image_url: "https://upload.wikimedia.org/wikipedia/en/7/72/Semper_Femina_-_Laura_Marling.jpg"},
-  { title: "Have One on Me", artist_id: artists[1].id, date: Date.new(2010, 02, 23), 
+    banner_image_url: "https://i.ytimg.com/vi/WY1uzXMKsOE/maxresdefault.jpg"
+  },
+  {
+    title: "I Speak Because I Can",
+    artist_id: artists[2].id,
+    date: Date.new(2010, 3, 22),
+    image_url: "https://upload.wikimedia.org/wikipedia/en/a/a1/Ispeakbecauseican.jpg"
+  },
+  {
+    title: "Semper Femina",
+    artist_id: artists[2].id,
+    date: Date.new(2017, 3, 10),
+    image_url: "https://upload.wikimedia.org/wikipedia/en/7/72/Semper_Femina_-_Laura_Marling.jpg"
+  },
+  {
+    title: "Have One on Me",
+    artist_id: artists[1].id,
+    date: Date.new(2010, 2, 23),
     image_url: "https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2Fe2f790a4752e38a734e9a107bbcb3f5c.452x452x1.jpg",
     banner_image_url: "https://static.stereogum.com/uploads/2011/12/joanna-newsom-good-intentions-paving-company-608x450.jpg"
+  },
+  {
+    title: "Post-War",
+    artist_id: artists[3].id,
+    date: Date.new(2006, 8, 22),
+    image_url: "https://www.mergerecords.com/stuff/contentmgr/files/0/0a797cfb20796db825f32af6c6b4c115/image/_resized/10_700_700_mrg280.jpg",
+  },
+  {
+    title: "More Rain",
+    artist_id: artists[3].id,
+    date: Date.new(2016, 3, 4),
+    image_url: "http://dis.resized.images.s3.amazonaws.com/540x540/102433.png",
+  },
+  {
+    title: "Natalie Prass",
+    artist_id: artists[4].id,
+    date: Date.new(2015, 1, 27),
+    image_url: "https://upload.wikimedia.org/wikipedia/en/thumb/8/81/Natalie_Prass.png/220px-Natalie_Prass.png",
+  },
+  {
+    title: "The Future and the Past",
+    artist_id: artists[4].id,
+    date: Date.new(2018, 6, 1),
+    image_url: "https://media.pitchfork.com/photos/5ae09c2680a91d204f0b399b/1:1/w_320/Natalie%20Prass:%20The%20Future%20and%20the%20Past.jpg",
   }
 ])
 
@@ -499,68 +558,382 @@ Lord, you know it's a shame
 When I only want for you to pull over and hold me
 'Til I can't remember my own name)
 
-tracks = Track.create([
-  { name: "Cute Thing", 
-    youtube_url: "https://www.youtube.com/watch?v=fj8H_ZXLgio", 
-    artist_id: artists[0].id, 
-    lyrics: lyrics_1, 
-    album_id: albums[0].id, 
-    date: albums[0].date, 
-    image_url: "https://e-cdns-images.dzcdn.net/images/cover/19af256a3e05dd7b640dd1140bd97b6e/500x500-000000-80-0-0.jpg" },
-  { name: "Emily", 
-    youtube_url: "https://www.youtube.com/watch?v=UGoNCvoZuYA", 
-    artist_id: artists[1].id, 
-    lyrics: lyrics_2, 
-    album_id: albums[2].id, 
-    date: albums[2].date, 
-    image_url: "https://nofoodjustwax.files.wordpress.com/2018/10/img_9126.jpg?w=560" },
-  { name: "Darkness Descends", 
-    youtube_url: "https://www.youtube.com/watch?v=rKQzY3HYFhE", 
-    artist_id: artists[2].id, 
-    lyrics: lyrics_3, 
-    album_id: albums[4].id, 
-    date: albums[4].date, 
-    image_url: "http://simg.mysound.jp/img/disc/657/120_EMI5099962781657.jpg" },
-  { name: "Drunk Drivers/Killer Whales", 
-    youtube_url: "https://www.youtube.com/watch?v=ccztRby3FAk", 
-    artist_id: artists[0].id, 
-    lyrics: lyrics_4, 
-    album_id: albums[1].id, 
-    date: albums[1].date, 
-    image_url: "https://e.snmc.io/i/300/w/55bb15d208fa0138018c6fd6f172952a/6168909" },
-  { name: "Good Intentions Paving Co.", 
+lyrics_6 = %Q([Verse 1]
+Well, he stormed with his feet
+And he clapped with his hands
+He summoned all of his joy when he laughed
+
+It suffered all of his joy when he cried
+And sometimes when he got into talking
+Man, he could rattle on and on
+
+[Refrain]
+He was a good man and now he's gone
+
+[Verse 2]
+Well, in war he was a tiger
+When it was over, like a dove
+He summoned all of his strength in the climb
+
+It suffered all of his strength in the fall
+And sometimes when he got into fighting
+Man, he could fight with you all day long
+
+[Refrain]
+He was a good man and now he's gone
+
+[Verse 3]
+He put his trust in a higher power
+He held his power like a Holy Grail
+He summoned all of his faith in the lifting
+
+It suffered all of his faith in the fail
+His heart was stronger than a heavy metal bullet
+And that's why I dedicate this song
+
+[Refrain]
+He was a good man and now he's gone
+
+[Outro]
+His heart was stronger than a heavy metal bullet
+And that's why I dedicate this song)
+
+lyrics_7 = %Q([Verse 1]
+I sailed a wild, wild sea
+Climbed up a tall, tall mountain
+I met an old, old man
+Beneath a weeping willow tree
+He said, "Now if you got some questions
+Go and lay them at my feet
+But my time here is brief
+So you'll have to pick just three"
+
+[Verse 2]
+And I said, "What do you do
+With the pieces of a broken heart?
+And how can a man like me
+Remain in the light?
+And if life is really as short as they say
+Then why is the night so long?"
+And then the sun went down
+And he sang for me this song
+
+[Bridge]
+See, I once was a young fool like you
+Afraid to do the things that I knew I had to do
+So I played an escapade, just like you
+I played an escapade, just like you
+
+[Verse 3]
+I sailed a wild, wild sea
+Climbed up a tall, tall mountain
+I met an old, old man
+He sat beneath a sapling tree
+He said, "Now if you got some questions
+Go and lay them at my feet
+But my time here is brief
+So you'll have to pick just three"
+
+[Verse 4]
+And I said, "What do you do
+With the pieces of a broken heart?
+And how can a man like me
+Remain in the light?
+And if life is really as short as they say
+Then why is the night so long?"
+And then the sun went down
+And he played for me this song)
+
+lyrics_8 = %Q(Everything is old in the world
+Except for the baby
+Little baby, ah little baby
+
+And nothing's sun isn't seen
+Except for the baby
+Little baby, ah little baby
+
+And I say child, be my teacher
+Would ya could ya baby yeah?
+Little baby, ah little baby
+
+And everyone is too big to cry
+Except for the baby
+Little baby, ah little baby
+
+And everyone knows how to lie
+Except for the baby
+Little baby, ah little baby
+
+So I say child, be my teacher
+Would ya could ya baby yeah?
+Little baby, ah little baby
+
+So I said talk to me baby (talk to me baby)
+Talk to me baby (talk to me baby)
+Talk to me baby (talk to me baby)
+Talk to me baby (talk to me baby)
+Talk to me baby tell me everything's all right
+
+So I say child, be my teacher
+Would ya could ya baby yeah?
+Little baby, ah little baby
+Little baby, ah little baby
+Little baby, ah little baby
+Little baby, ah little baby)
+
+lyrics_9 = %Q([Verse 1]
+I remember you told me
+You'd love me only
+And now you've gone and treated me like a fool
+You never say where you're going
+Stay out until the morning
+And I know you've been treating me like a fool
+
+[Chorus]
+All the loving that I made
+All the promises that I gave
+Then you let me down
+And every story and every lie
+It won't save you from me saying goodbye
+
+[Verse 2]
+So tonight when you're out
+You'll come back to an empty house
+With a note signed "Sincerely, Your Fool"
+
+[Chorus]
+All the loving that I made
+All the promises that I gave
+Then you let me down
+And every story and every lie
+It won't save you from me saying goodbye
+
+[Verse 3]
+Built this new life before me
+But you fill up my memory
+And they haunt me like memories often do
+And they tell me I'll always be your fool
+Oh, I guess I'll always be your fool)
+
+lyrics_10 = %Q(There are trees, there are clouds
+Many shadows and crowds
+There are dreams, there are doubts
+There are whispers and shouts
+And the snow, it formed a crown
+Upon the silvered mountain king
+But there's only one thing that I need
+
+Sandy glass, stained with red
+Birds with porcelain wings
+In a house filled with books
+That nobody reads
+So many things will fill my life
+But only one will do
+It is you, it is you, it is you
+
+And the Sun will sing its song
+And the Moon will always mellow
+And each day as my life goes on
+It has all been a ruin without you
+
+Broken bells, try to chime
+Guitar with no strings
+Pearls in the sea
+That will never see rings
+All the answers of the world
+They need a reason to be true
+It is you
+It is you
+
+Do my best on my own
+To see the beauty abound
+Glass of wine on my desk
+When you're not around
+I've learned that there's a key
+Inside and only one will do
+It is you
+It is you
+It is you)
+
+lyrics_11 = %Q([Verse 1]
+Ooh ooh ooh, time has chosen
+We need to feel this, we need to feel this
+Ooh ooh ooh, like an ocean
+No-one can steal this, nobody can take this, yeah
+Nobody can
+
+[Chorus]
+Oh, ain't nobody can
+Take this from our hands
+And I know, and I know, I know, I know
+We're holdin' on, keep holdin' on
+Who's letting go? Not you, not you
+Ooh, oh, ain't nobody can
+
+[Verse 2]
+Ooh ooh ooh, sing out your voices
+This kind of noise is, one that rejoices
+Ooh ooh ooh, stand like a rock
+I am the sources of my body's choices now
+Oh, and nobody can
+
+[Chorus]
+Oh, ain't nobody can take this from our hands
+And I know, and I know, I know, I know
+We're holdin' on, we'll keep holdin' on
+Who's letting go? Not you, not you
+Ooh, oh, ain't nobody can
+
+[Bridge]
+Ain't nobody here is givin' it up
+Ain't nobody here is givin' it up
+No ain't nobody here is givin' it up
+Ain't nobody here is givin' it up
+Oh, ain't nobody can take this from our hands
+Oh, ain't nobody here is givin' it up
+Oh, ain't nobody can take this from our hands
+Oh, no, ain't nobody here is givin' it up
+
+[Chorus]
+Oh, ain't nobody can take this from our hands
+And I know, and I know, I know, I know
+We're holdin' on, keep holdin' on
+Who's letting go? Not you, not you
+Ooh, oh, ain't nobody can
+
+Ain't nobody can take this from our hands
+And I know, and I know, I know, I know
+We're holdin' on, we'll keep holdin' on
+Who's letting go? Not you, not you
+Ooh, oh, ain't nobody can)
+
+
+tracks = Track.create!([
+  { 
+    name: "Cute Thing",
+    youtube_url: "https://www.youtube.com/watch?v=fj8H_ZXLgio",
+    artist_id: artists[0].id,
+    lyrics: lyrics_1,
+    album_id: albums[0].id,
+    date: albums[0].date,
+    image_url: "https://e-cdns-images.dzcdn.net/images/cover/19af256a3e05dd7b640dd1140bd97b6e/500x500-000000-80-0-0.jpg"
+  },
+  { 
+    name: "Emily",
+    youtube_url: "https://www.youtube.com/watch?v=UGoNCvoZuYA",
+    artist_id: artists[1].id,
+    lyrics: lyrics_2,
+    album_id: albums[2].id,
+    date: albums[2].date,
+    image_url: "https://nofoodjustwax.files.wordpress.com/2018/10/img_9126.jpg?w=560"
+  },
+  { 
+    name: "Darkness Descends",
+    youtube_url: "https://www.youtube.com/watch?v=rKQzY3HYFhE",
+    artist_id: artists[2].id,
+    lyrics: lyrics_3,
+    album_id: albums[4].id,
+    date: albums[4].date,
+    image_url: "http://simg.mysound.jp/img/disc/657/120_EMI5099962781657.jpg"
+  },
+  { 
+    name: "Drunk Drivers/Killer Whales",
+    youtube_url: "https://www.youtube.com/watch?v=ccztRby3FAk",
+    artist_id: artists[0].id,
+    lyrics: lyrics_4,
+    album_id: albums[1].id,
+    date: albums[1].date,
+    image_url: "https://e.snmc.io/i/300/w/55bb15d208fa0138018c6fd6f172952a/6168909"
+  },
+  {
+    name: "Good Intentions Paving Co.",
     youtube_url: "https://www.youtube.com/watch?v=eBa3QSycc0c",
     artist_id: artists[1].id,
     lyrics: lyrics_5,
     album_id: albums[6].id,
     date: albums[6].date,
-    image_url: "https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2Fe2f790a4752e38a734e9a107bbcb3f5c.452x452x1.jpg"}
+    image_url: "https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2Fe2f790a4752e38a734e9a107bbcb3f5c.452x452x1.jpg"
+  },
+  {
+    name: "Requiem",
+    artist_id: artists[3].id,
+    lyrics: lyrics_6,
+    album_id: albums[7].id,
+    date: albums[7].date,
+    image_url: albums[7].image_url,
+    youtube_url: "https://www.youtube.com/watch?v=AIMVxQy0mCU"
+  },
+  {
+    name: "Chinese Translation",
+    artist_id: artists[3].id,
+    lyrics: lyrics_7,
+    album_id: albums[7].id,
+    date: albums[7].date,
+    image_url: albums[7].image_url,
+    youtube_url: "https://www.youtube.com/watch?v=ToEPFDIzhNA"
+  },
+  {
+    name: "Little Baby",
+    artist_id: artists[3].id,
+    lyrics: lyrics_8,
+    album_id: albums[8].id,
+    date: albums[8].date,
+    image_url: albums[8].image_url,
+    youtube_url: "https://www.youtube.com/watch?v=gIeOCM8e25c"
+  },
+  {
+    name: "Your Fool",
+    artist_id: artists[4].id,
+    lyrics: lyrics_9,
+    album_id: albums[9].id,
+    date: albums[9].date,
+    image_url: albums[9].image_url,
+    youtube_url: "https://www.youtube.com/watch?v=_iw9yzbUWGM"
+  },
+  {
+    name: "It is You",
+    artist_id: artists[4].id,
+    lyrics: lyrics_10,
+    album_id: albums[9].id,
+    date: albums[9].date,
+    image_url: albums[9].image_url,
+    youtube_url: "https://www.youtube.com/watch?v=Kl3yVWnP8AY"
+  },
+  {
+    name: "Ain't Nobody",
+    artist_id: artists[4].id,
+    lyrics: lyrics_11,
+    album_id: albums[10].id,
+    date: albums[10].date,
+    image_url: albums[10].image_url,
+    youtube_url: "https://www.youtube.com/watch?v=9K1CnOKYgKA"
+  },
 ])
 
-tracks[0].producers.create!(name: "Will Toledo")
-will = tracks[0].producers.find_by(name: "Will Toledo")
-tracks[0].writers = [will]
+# tracks[0].producers.create!(name: "Will Toledo")
+# will = tracks[0].producers.find_by(name: "Will Toledo")
+# tracks[0].writers = [will]
 
-annotations = Annotation.create([
-  { track_id: tracks[0].id, start_idx: 10, end_idx: 47, body: "Will got too romantic, so he apologizes.", author_id: users[0].id },
-  { track_id: tracks[0].id, start_idx: 48, end_idx: 74, body: "He will light your cigarette.", author_id: users[0].id }
-])
+# annotations = Annotation.create([
+#   { track_id: tracks[0].id, start_idx: 10, end_idx: 47, body: "Will got too romantic, so he apologizes.", author_id: users[0].id },
+#   { track_id: tracks[0].id, start_idx: 48, end_idx: 74, body: "He will light your cigarette.", author_id: users[0].id }
+# ])
 
-comments = Comment.create([
-  { track_id: tracks[0].id, author_id: users[0].id, body: "This song sucks." },
-  { track_id: tracks[0].id, author_id: users[1].id, body: "This song rocks." }
-])
+# comments = Comment.create([
+#   { track_id: tracks[0].id, author_id: users[0].id, body: "This song sucks." },
+#   { track_id: tracks[0].id, author_id: users[1].id, body: "This song rocks." }
+# ])
 
-upvotes = Upvote.create!([
-  { value: 1, user_id: users[1].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
-  { value: -1, user_id: users[2].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
-  { value: 1, user_id: users[0].id, upvotable_id: comments[1].id, upvotable_type: "Comment" },
-  { value: 1, user_id: users[1].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" },
-  { value: 1, user_id: users[2].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" }
-])
+# upvotes = Upvote.create!([
+#   { value: 1, user_id: users[1].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
+#   { value: -1, user_id: users[2].id, upvotable_id: comments[0].id, upvotable_type: "Comment" },
+#   { value: 1, user_id: users[0].id, upvotable_id: comments[1].id, upvotable_type: "Comment" },
+#   { value: 1, user_id: users[1].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" },
+#   { value: 1, user_id: users[2].id, upvotable_id: annotations[0].id, upvotable_type: "Annotation" }
+# ])
 
-answers = Answer.create!([
-  { body: "[https://twitter.com/carseatheadrest/status/846419969638383616]", question_id: tracks[3].questions[1].id, user_id: users[0].id },
-])
+# answers = Answer.create!([
+#   { body: "[https://twitter.com/carseatheadrest/status/846419969638383616]", question_id: tracks[3].questions[1].id, user_id: users[0].id },
+# ])
 
 PublicActivity.enabled = true
