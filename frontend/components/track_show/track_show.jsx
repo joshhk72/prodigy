@@ -62,7 +62,6 @@ class TrackShow extends React.Component {
   componentWillUnmount() {
     this.clearInfo()
     document.removeEventListener("mousedown", this.closeAnnotationPrompt);
-    //document.removeEventListener("click", this.handleSpanClick);
   }
 
   clearInfo() {
@@ -129,13 +128,15 @@ class TrackShow extends React.Component {
     const annotationNodes = document.getElementsByClassName('annotated-lyrics');
     if (AnnotateUtil.annotationsNotSelected(annotationNodes)) {
       const lyricsContainer = document.getElementById("lyrics-container");
+      const firstColumn = document.getElementById("track-show-column-first");
       const { i1, i2, j1, j2 } = AnnotateUtil.getIndices(lyricsContainer); 
       // I could've deconstructed for these methods, but I wanted them to be easy to remember for the future!
       const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
       const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, { i1, i2, j1, j2 });
-      const top1 = lyricsContainer.getBoundingClientRect().top;
+      const top1 = firstColumn.getBoundingClientRect().top;
       const top2 = selection.getRangeAt(0).getBoundingClientRect().top;
-      const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 354;
+      // const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 354;
+      const top = top2 - top1 - 10;
       this.setState({ startIdx, endIdx, top });
       this.showAnnotationPrompt(startIdx, endIdx);
     };
@@ -268,7 +269,7 @@ class TrackShow extends React.Component {
           </header>
         </FadeIn>
         <main className="track-show-main">
-          <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
+          <div id="track-show-column-first" className="track-show-column-first" onMouseUp={this.handleHighlight}>
             <section id="lyrics-rect" className="track-show-lyrics-container">
               { lyricsButtons }
               { !this.state.editLyrics ? 
