@@ -1,37 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTrackComments, clearComments } from '../../../actions/comment_actions';
 import CommentListItemContainer from './list_item_container';
 import CommentForm from './form';
 
-class CommentColumn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const CommentColumn = props => {
+  const dispatch = useDispatch();
+  const comments = useSelector(state => state.entities.comments);
+  const currentUser = useSelector(state => state.entities.users[state.session.id]);
 
-  componentDidMount() {
-    this.props.clearComments();
-    this.props.fetchTrackComments(this.props.currentTrack.id);
-  }
+  useEffect(() => {
+    dispatch(clearComments());
+    dispatch(fetchTrackComments(props.currentTrack.id));
+  }, [])
 
-  render() {
-    const commentLis = Object.values(this.props.comments).map(comment => {
-      return <CommentListItemContainer 
-        comment={comment}
-        key={comment.id} />
-    });
+  const commentLis = Object.values(comments).map(comment => {
+    return <CommentListItemContainer 
+      comment={comment}
+      key={comment.id} />
+  });
 
-    return (
-      <div className="comments-column">
-        { this.props.currentUser && <CommentForm 
-          trackId={this.props.currentTrack.id}
-          author={this.props.currentUser}
-          submitComment={this.props.createComment}
-        /> }
-        <ul className="comments-list">
-          {commentLis}
-        </ul>
-      </div>
-    )
-  }
+  return (
+    <div className="comments-column">
+      { currentUser && <CommentForm 
+        trackId={props.currentTrack.id}
+        author={currentUser}
+      /> }
+      <ul className="comments-list">
+        {commentLis}
+      </ul>
+    </div>
+  )
 };
 
 export default CommentColumn;

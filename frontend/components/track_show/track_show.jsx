@@ -1,7 +1,7 @@
 import React from 'react';
 import * as AnnotateUtil from '../../util/annotate_util';
 import InfoColumnContainer from './second_column/info_column_container';
-import CommentColumnContainer from './comments/column_container';
+import CommentColumn from './comments/column';
 import FadeIn from 'react-fade-in';
 import ReactLoading from "react-loading";
 import { Link } from 'react-router-dom';
@@ -276,7 +276,7 @@ class TrackShow extends React.Component {
                 editArea 
               }
             </section>
-            <CommentColumnContainer currentTrack={this.props.currentTrack} />
+            <CommentColumn currentTrack={this.props.currentTrack} />
           </div>
           <div className="track-show-column-second" id="second-col">
             <InfoColumnContainer
