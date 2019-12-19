@@ -1,6 +1,7 @@
 import React from 'react';
 import ActivitySection from './activity_section'
 import FadeIn from 'react-fade-in';
+import defaultImage from 'assets/images/default-profile.jpg';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class UserProfile extends React.Component {
       .then(res => this.props.fetchUserActivities(res.user.id));
     const image = document.getElementById('profile-picture');
     image.onerror = function () {
-      this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+      this.src = defaultImage;
     };
   }
 
@@ -44,7 +45,7 @@ class UserProfile extends React.Component {
           <div id="profile-picture-container">
             <div className="content">
               <img id="profile-picture"
-                src={this.props.user.image_url || "https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"}
+                src={this.props.user.image_url || defaultImage}
               />
             </div>
           </div>

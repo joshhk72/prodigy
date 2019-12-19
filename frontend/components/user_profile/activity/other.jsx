@@ -1,18 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import defaultImage from 'assets/images/no_image.png';
 
 const OtherActivityPanel = props => {
   const { activity, username } = props;
   const trackable = activity.trackable;
   const track = trackable.track;
-  let style;
-  if (track.image_url) {
-    style = {
-      backgroundImage: `url(${track.image_url})`
-    };
-  } else {
-    style = null;
-  }
+  const style = {
+    backgroundImage: `url(${track.image_url || defaultImage})`
+  };
 
   let textComponent;
   switch (activity.key) {

@@ -1,17 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import defaultImage from 'assets/images/no_image.png';
 
 const AlbumActivityPanel = props => {
   const { activity, username } = props;
   const album = activity.trackable;
-  let style;
-  if (album.image_url) {
-    style = {
-      backgroundImage: `url(${album.image_url})`
-    };
-  } else {
-    style = null;
-  }
+  const style = {
+    backgroundImage: `url(${album.image_url || defaultImage})`
+  };
   return (
     <li className="activity-panel">
       <Link to={`/albums/${album.id}`}>

@@ -6,6 +6,7 @@ import FadeIn from 'react-fade-in';
 import ReactLoading from "react-loading";
 import { Link } from 'react-router-dom';
 import TrackArtistLink from './artist_link';
+import defaultImage from 'assets/images/no_image.png';
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -145,7 +146,7 @@ class TrackShow extends React.Component {
   }
 
   handleImageError() {
-    this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    this.src = defaultImage;
   };
 
   submitLyrics() {
@@ -237,7 +238,7 @@ class TrackShow extends React.Component {
             <div className="track-show-header-center">
               <div className="track-show-image-container">
                 <div className="content">
-                  <img onError={handleImageError.bind(this)} src={ image_url } />
+                  <img onError={handleImageError.bind(this)} src={ image_url || defaultImage } />
                 </div>
               </div>
               <div className="track-show-header-info-container">
