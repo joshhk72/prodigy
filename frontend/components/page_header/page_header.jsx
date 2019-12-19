@@ -38,12 +38,12 @@ class PageHeader extends React.Component {
   }
 
   render() {
-    if (this.props.currentUser) {
-      return (
-        <div className="page-header">
-          <SearchForm searchTracks={this.props.searchTracks} searchedTracks={this.props.searchedTracks} />
-          <Link to='/'><span id="logo">Prodigy</span></Link>
-          <div className="header-actions">
+    return (
+      <div className="page-header">
+        <SearchForm searchTracks={this.props.searchTracks} searchedTracks={this.props.searchedTracks} />
+        <Link to='/'><span id="logo">Prodigy</span></Link>
+        <div className="header-actions">
+          { this.props.currentUser && <>
             <Link to="/tracks/new"><i className="fas fa-thumbtack"></i> Add Track</Link>
             <div className="dropdown-container">
               <a className="dropdown-btn dropdown" onClick={this.handleDropDown}>
@@ -56,21 +56,16 @@ class PageHeader extends React.Component {
                 <a href="#" onClick={this.logout}>Sign Out</a>
               </div>
             </div>
-          </div>
+          </> }
+          { !this.props.currentUser &&
+            <>
+              <Link to='/signup'>Sign Up</Link>
+              <Link to='/login'>Log In</Link>
+            </>
+          }
         </div>
-      );
-    } else {
-      return (
-        <div className="page-header">
-          <SearchForm searchTracks={this.props.searchTracks} searchedTracks={this.props.searchedTracks} />
-          <Link to='/'><span id="logo">Prodigy</span></Link>
-          <div className="header-actions">
-            <Link to='/signup'>Sign Up</Link>
-            <Link to='/login'>Log In</Link>
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 }
 export default PageHeader;

@@ -17,11 +17,27 @@ module.exports = {
         query: {
           presets: ['@babel/env', '@babel/react']
         }
-      }
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name][md5:hash].[ext]',
+              outputPath: 'webpack-assets/',
+              publicPath: '/assets/webpack-assets/'
+            }
+          },
+        ],
+      },
     ]
   },
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '*'],
+    alias: {
+      assets: path.resolve(__dirname, 'app', 'assets'),
+    },
   }
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import defaultImage from 'assets/images/no_image.png';
 
 const TrackActivityPanel = props => {
   const { activity, username } = props;
@@ -9,14 +10,9 @@ const TrackActivityPanel = props => {
     <p>{username} updated the track page for <span>{track.name}</span>.</p>
 
 
-  let style;
-  if (track.image_url) {
-    style = {
-      backgroundImage: `url(${track.image_url})`
-    };
-  } else {
-    style = null;
-  }
+  const style = {
+    backgroundImage: `url(${track.image_url || defaultImage})`
+  };
 
   return (
     <li className="activity-panel">

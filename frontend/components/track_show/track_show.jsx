@@ -1,11 +1,12 @@
 import React from 'react';
 import * as AnnotateUtil from '../../util/annotate_util';
 import InfoColumnContainer from './second_column/info_column_container';
-import CommentColumnContainer from './comments/column_container';
+import CommentColumn from './comments/column';
 import FadeIn from 'react-fade-in';
 import ReactLoading from "react-loading";
 import { Link } from 'react-router-dom';
 import TrackArtistLink from './artist_link';
+import defaultImage from 'assets/images/no_image.png';
 
 function handleImageError() {
   this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -61,7 +62,6 @@ class TrackShow extends React.Component {
   componentWillUnmount() {
     this.clearInfo()
     document.removeEventListener("mousedown", this.closeAnnotationPrompt);
-    //document.removeEventListener("click", this.handleSpanClick);
   }
 
   clearInfo() {
@@ -128,13 +128,15 @@ class TrackShow extends React.Component {
     const annotationNodes = document.getElementsByClassName('annotated-lyrics');
     if (AnnotateUtil.annotationsNotSelected(annotationNodes)) {
       const lyricsContainer = document.getElementById("lyrics-container");
+      const firstColumn = document.getElementById("track-show-column-first");
       const { i1, i2, j1, j2 } = AnnotateUtil.getIndices(lyricsContainer); 
       // I could've deconstructed for these methods, but I wanted them to be easy to remember for the future!
       const mappedNodeList = AnnotateUtil.mapNodeList(lyricsContainer.childNodes);
       const { startIdx, endIdx } = AnnotateUtil.getStartAndEndIndices(mappedNodeList, { i1, i2, j1, j2 });
-      const top1 = lyricsContainer.getBoundingClientRect().top;
+      const top1 = firstColumn.getBoundingClientRect().top;
       const top2 = selection.getRangeAt(0).getBoundingClientRect().top;
-      const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 354;
+      // const top = selection.getRangeAt(0).getBoundingClientRect().top + window.scrollY - 354;
+      const top = top2 - top1 - 10;
       this.setState({ startIdx, endIdx, top });
       this.showAnnotationPrompt(startIdx, endIdx);
     };
@@ -145,7 +147,7 @@ class TrackShow extends React.Component {
   }
 
   handleImageError() {
-    this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    this.src = defaultImage;
   };
 
   submitLyrics() {
@@ -237,7 +239,7 @@ class TrackShow extends React.Component {
             <div className="track-show-header-center">
               <div className="track-show-image-container">
                 <div className="content">
-                  <img onError={handleImageError.bind(this)} src={ image_url } />
+                  <img onError={handleImageError.bind(this)} src={ image_url || defaultImage } />
                 </div>
               </div>
               <div className="track-show-header-info-container">
@@ -267,7 +269,7 @@ class TrackShow extends React.Component {
           </header>
         </FadeIn>
         <main className="track-show-main">
-          <div className="track-show-column-first" onMouseUp={this.handleHighlight}>
+          <div id="track-show-column-first" className="track-show-column-first" onMouseUp={this.handleHighlight}>
             <section id="lyrics-rect" className="track-show-lyrics-container">
               { lyricsButtons }
               { !this.state.editLyrics ? 
@@ -275,7 +277,7 @@ class TrackShow extends React.Component {
                 editArea 
               }
             </section>
-            <CommentColumnContainer currentTrack={this.props.currentTrack} />
+            <CommentColumn currentTrack={this.props.currentTrack} />
           </div>
           <div className="track-show-column-second" id="second-col">
             <InfoColumnContainer

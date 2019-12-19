@@ -39,7 +39,7 @@ export const currentUpvote = (upvotes, currentUser) => {
   return upvotes.find(upvote => upvote.user_id === currentUser.id);
 };
 
-export const determineCallbacks = (currentUpvote, currentUser, up, down, erase, reverse, blank) => {
+export const determineCallbacks = (currentUpvote, currentUser, up, down, erase, reverse) => {
   let leftCb, rightCb;
   if (currentUpvote) {
     [leftCb, rightCb] = currentUpvote.value === 1 ? 
@@ -47,7 +47,7 @@ export const determineCallbacks = (currentUpvote, currentUser, up, down, erase, 
   } else if (currentUser) {
     [leftCb, rightCb] = [up, down];
   } else {
-    [leftCb, rightCb] = [blank, blank];
+    [leftCb, rightCb] = [() => {}, () => {}];
   }
   return [leftCb, rightCb];
 };

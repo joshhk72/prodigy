@@ -1,6 +1,8 @@
 import React from 'react';
 import ActivitySection from './activity_section'
 import FadeIn from 'react-fade-in';
+import ReactLoading from 'react-loading';
+import defaultImage from 'assets/images/default-profile.jpg';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -8,23 +10,25 @@ class UserProfile extends React.Component {
     this.handleModal = this.handleModal.bind(this);
     this.state = { 
       username: "User Does Not Exist",
-      image_url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-      description: undefined
+      description: undefined,
+      done: false
     }
   }
 
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userId)
-      .then(res => this.props.fetchUserActivities(res.user.id));
-    const image = document.getElementById('profile-picture');
-    image.onerror = function () {
-      this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
-    };
+      .then(res => {
+        this.props.fetchUserActivities(res.user.id);
+        this.setState({ done: true });
+      }, () => this.setState({ done: true }))
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.userId !== prevProps.match.params.userId) {
-      this.props.fetchUser(this.props.match.params.userId);
+      this.setState({ done: false }, () => {
+        this.props.fetchUser(this.props.match.params.userId)
+          .then(() => this.setState({ done: true }), () => this.setState({ done: true }))
+      })
     }
   }
 
@@ -34,57 +38,48 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    const { user, activities } = this.props;
+    if (!this.state.done) {
+      return <ReactLoading type={"bars"} color={"white"} />;
+    } else if (this.props.user === undefined) {
+      return <div className="no-tracks-shown"><h2>Error!</h2><p>The user you are looking for does not exist!</p></div>
+    };
 
-    if (user) {
-      const bannerStyle = { backgroundImage: `url(${this.props.user.image_url})` };
-      return (
-        <div className="profile-grid-container">
-          <div className="profile-banner" style={this.props.user.image_url ? bannerStyle : null}/>
-          <div id="profile-picture-container">
-            <div className="content">
-              <img id="profile-picture"
-                src={this.props.user.image_url || "https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"}
-              />
-            </div>
-          </div>
-          <div className="profile-column-1">
-            <span className="profile-name">@{this.props.user.username}</span>
-            {this.props.currentUserPage === true ?
-              <button 
-                onClick={this.handleModal} 
-                className="profile-button modal">
-                <i className="fas fa-pencil-alt" /> Edit
-              </button>
-              : (this.props.currentUser ? <button className="profile-button">Follow</button> : null)
-            }
-            <span className="profile-description"></span>
-            <p id="profile-description">{this.props.user.description}</p>
-          </div>
-          <div className="profile-column-2">
-            { activities && activities.length > 0 &&
-              <ActivitySection activities={activities} username={user.username}/>
-            }
-            { activities.length === 0 && 
-              <p className="no-activities">The user has no activities yet.</p>
-            }
+    const { user, activities } = this.props; 
+    const bannerStyle = { backgroundImage: `url(${this.props.user.image_url})` };
+    return (
+      <div className="profile-grid-container">
+        <div className="profile-banner" style={this.props.user.image_url ? bannerStyle : null}/>
+        <div id="profile-picture-container">
+          <div className="content">
+            <img id="profile-picture"
+              src={this.props.user.image_url || defaultImage}
+              onError={e => e.target.src = defaultImage}
+            />
           </div>
         </div>
-      )
-    } else {
-      return (
-        <div className="profile-grid-container">
-          <div className="profile-banner"></div>
-          <div className="profile-column-1">
-            <img id="profile-picture" src={this.state.image_url} />
-            <span className="profile-name">{this.state.username}</span>
-            <span className="profile-description"></span>
-            <p id="profile-description">{this.state.description}</p>
-          </div>
-          <div className="profile-column-2"></div>
+        <div className="profile-column-1">
+          <span className="profile-name">@{this.props.user.username}</span>
+          {this.props.currentUserPage === true ?
+            <button 
+              onClick={this.handleModal} 
+              className="profile-button modal">
+              <i className="fas fa-pencil-alt" /> Edit
+            </button>
+            : (this.props.currentUser ? <button className="profile-button">Follow</button> : null)
+          }
+          <span className="profile-description"></span>
+          <p id="profile-description">{this.props.user.description}</p>
         </div>
-      )
-    }
+        <div className="profile-column-2">
+          { activities && activities.length > 0 &&
+            <ActivitySection activities={activities} username={user.username}/>
+          }
+          { activities.length === 0 && 
+            <p className="no-activities">The user has no activities yet.</p>
+          }
+        </div>
+      </div>
+    )
   }
 }
 

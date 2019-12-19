@@ -3,6 +3,7 @@ import { FadeIn } from 'react-fade-in';
 import ReactLoading from "react-loading";
 import ArtistTrackLi from './track_li';
 import ArtistAlbumLi from './album_li';
+import defaultImage from 'assets/images/no_image.png';
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class ArtistShow extends React.Component {
     this.props.clearArtists();
     this.props.fetchArtist(this.props.match.params.artistId).then(
       () => this.setState({ done: true }),
-      () => this.setState({ done: true }) 
     );
   }
 
@@ -24,13 +24,12 @@ class ArtistShow extends React.Component {
       this.props.clearArtists();
       this.props.fetchArtist(this.props.match.params.artistId).then(
         () => this.setState({ done: true }),
-        () => this.setState({ done: true })
       );
     };
   }
 
   handleImageError(e) {
-    e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    e.target.src = defaultImage;
   }
 
   openModal() {
@@ -45,7 +44,6 @@ class ArtistShow extends React.Component {
     };
 
     const { albums, tracks, name, description, image_url, banner_image_url } = this.props.currentArtist;
-    const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
 
     let bannerImage;
     if (banner_image_url) {

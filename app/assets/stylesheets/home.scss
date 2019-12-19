@@ -25,6 +25,7 @@
     border-top: 2px solid $home-border-gray;
     .home-track-list-index {
       margin-right: 30px;
+      width: 30px;
     }
     .home-track-list-main {
       display: flex;
@@ -47,6 +48,7 @@
   height: 65px;
   width: 65px;
   margin-right: 30px;
+  border: 1px solid gray;
 }
 
 .home-track-list-artist {

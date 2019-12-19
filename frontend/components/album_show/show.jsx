@@ -2,6 +2,7 @@ import React from 'react';
 import ReactLoading from "react-loading";
 import { Link } from 'react-router-dom';
 import TrackPanel from './track_panel';
+import defaultImage from 'assets/images/no_image.png';
 
 class AlbumShow extends React.Component {
   constructor(props) {
@@ -15,12 +16,11 @@ class AlbumShow extends React.Component {
     this.props.clearAlbums();
     this.props.fetchAlbum(this.props.match.params.albumId).then(
       () => this.setState({ done: true }),
-      () => this.setState({ done: true })
     );
   }
 
   handleImageError(e) {
-    e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    e.target.src = defaultImage;
   }
 
   openModal() {
@@ -34,7 +34,6 @@ class AlbumShow extends React.Component {
       return <div className="no-tracks-shown"><h2>Error!</h2><p>The album you are looking for does not exist!</p></div>
     };
 
-    const defaultImage = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
     const { image_url, banner_image_url, description, artist, title, tracks } = this.props.currentAlbum;
 
     let bannerImage;

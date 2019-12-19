@@ -5,7 +5,17 @@ import SuggestedInput from './suggested_input';
 class TrackForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { artist: undefined, name: undefined, lyrics: undefined, features: undefined, producers: undefined, writers: undefined, date: undefined, album: undefined, track: undefined };
+    this.state = { 
+      artist: undefined, 
+      name: undefined, 
+      lyrics: undefined, 
+      features: undefined, 
+      producers: undefined, 
+      writers: undefined, 
+      date: undefined, 
+      album: undefined, 
+      track: undefined 
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -70,7 +80,7 @@ class TrackForm extends React.Component {
           </div>
           <div className="form-secondary-column">
             <div className="track-form-additional-div">
-              <h3 id="track-form-additional">Additional Metadata</h3>
+              <h3 id="track-form-additional">Additional <span>Metadata</span></h3>
               <small>* required</small>
             </div>
             <div>

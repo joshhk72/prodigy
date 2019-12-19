@@ -1,64 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { createComment } from '../../../actions/comment_actions';
 
-class CommentForm extends React.Component {
+const CommentForm = props => {
+  const [commenting, setCommenting] = useState(false);
+  const [body, setBody] = useState("");
+  const { author, trackId } = props;
+  const dispatch = useDispatch();
+  const area = React.createRef();
 
-  constructor(props) {
-    super(props);
-    this.state = { 
-      commenting: false, 
-      body: "", 
-      author_id: props.author.id, 
-      track_id: props.trackId 
-    };
-    this.startComment = this.startComment.bind(this);
-    this.submitComment = this.submitComment.bind(this);
-  }
+  useEffect(() => {
+    if (area.current) area.current.focus();
+  },[commenting])
 
-  submitComment(e) {
+  const submitComment = e => {
     e.preventDefault();
-    this.props.submitComment(this.state)
-      .then(() => this.setState({ body: "", commenting: false }));
+    dispatch(createComment({ body, author_id: author.id, track_id: trackId }))
+      .then(() => setBody(''));
   }
 
-  startComment() {
-    this.setState({ commenting: true });
-  }
+  const preform = (
+    <div className="comment-form-container">
+      <input
+        placeholder="Add a comment"
+        className="comment-pre" 
+        type="text"
+        onMouseDown={() => {
+          setCommenting(true);
+          setBody('');
+        }} />
+    </div>
+  )
 
-  update(field) {
-    return e => {
-      this.setState({ [field]: e.target.value });
-    };
-  }
+  const form = (
+    <div className="comment-form-container">
+      <form onSubmit={submitComment}>
+        <textarea
+          placeholder="Add a comment"
+          className="comment-input"
+          onChange={e => setBody(e.target.value)}
+          ref={area}
+          value={body} />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
 
-  render() {
-    const preform = (
-      <div className="comment-form-container">
-        <input 
-          placeholder="Add a comment" 
-          className="comment-pre" type="text" 
-          onMouseDown={ this.startComment }/>
-      </div>
-    )
-
-    const form = (
-      <div className="comment-form-container">
-        <form onSubmit={this.submitComment}>
-          <textarea
-            placeholder="Add a comment" 
-            className="comment-input"
-            onChange={ this.update("body") } 
-            value={ this.state.body }/>
-          <button>Submit</button>
-        </form>
-      </div>
-    );
-
-    const renderedForm = this.state.commenting ? form : preform;
-
-    return (
-      renderedForm
-    )
-  }
+  return commenting ? form : preform
 }
 
 export default CommentForm;
