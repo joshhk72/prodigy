@@ -16,7 +16,6 @@ class AlbumShow extends React.Component {
     this.props.clearAlbums();
     this.props.fetchAlbum(this.props.match.params.albumId).then(
       () => this.setState({ done: true }),
-      () => this.setState({ done: true })
     );
   }
 
@@ -34,8 +33,6 @@ class AlbumShow extends React.Component {
     } else if (this.props.currentAlbum === undefined) {
       return <div className="no-tracks-shown"><h2>Error!</h2><p>The album you are looking for does not exist!</p></div>
     };
-
-    console.log(defaultImage);
 
     const { image_url, banner_image_url, description, artist, title, tracks } = this.props.currentAlbum;
 

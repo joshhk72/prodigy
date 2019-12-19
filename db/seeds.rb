@@ -67,7 +67,7 @@ artists = Artist.create([
   },
   {
     name: "Natalie Prass",
-    image_url: "https://cdn.albumoftheyear.org/artists/sq/natalie-prass_1519864190.jpg",
+    image_url: "https://media.pitchfork.com/photos/592c618713d197565213fab1/2:1/w_648/0ac15845.jpg",
     banner_image_url: "https://images.squarespace-cdn.com/content/v1/56858337cbced60d3b293aef/1536803629883-8V8TPLEA4WIL1LQUY4EE/ke17ZwdGBToddI8pDm48kLtpqB6kVHXkiemRg4JLCL5Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIe72J8h1NHI3a274XhZOnpF485W8QFyZD-MOGIJwbHpwKMshLAGzx4R3EDFOm1kBS/Albumism_NataliePrass_MainImage1.jpg",
     description: "Prass’s debut was shelved by Spacebomb Records after it was recorded in 2012. In the time between finishing recording and the release of the record in January 2015, she played in Jenny Lewis’s touring band."
   }

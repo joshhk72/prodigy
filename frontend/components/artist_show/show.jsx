@@ -16,7 +16,6 @@ class ArtistShow extends React.Component {
     this.props.clearArtists();
     this.props.fetchArtist(this.props.match.params.artistId).then(
       () => this.setState({ done: true }),
-      () => this.setState({ done: true }) 
     );
   }
 
@@ -25,7 +24,6 @@ class ArtistShow extends React.Component {
       this.props.clearArtists();
       this.props.fetchArtist(this.props.match.params.artistId).then(
         () => this.setState({ done: true }),
-        () => this.setState({ done: true })
       );
     };
   }

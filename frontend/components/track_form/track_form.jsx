@@ -70,7 +70,7 @@ class TrackForm extends React.Component {
           </div>
           <div className="form-secondary-column">
             <div className="track-form-additional-div">
-              <h3 id="track-form-additional">Additional Metadata</h3>
+              <h3 id="track-form-additional">Additional <span>Metadata</span></h3>
               <small>* required</small>
             </div>
             <div>
