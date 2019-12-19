@@ -5,7 +5,17 @@ import SuggestedInput from './suggested_input';
 class TrackForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { artist: undefined, name: undefined, lyrics: undefined, features: undefined, producers: undefined, writers: undefined, date: undefined, album: undefined, track: undefined };
+    this.state = { 
+      artist: undefined, 
+      name: undefined, 
+      lyrics: undefined, 
+      features: undefined, 
+      producers: undefined, 
+      writers: undefined, 
+      date: undefined, 
+      album: undefined, 
+      track: undefined 
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
