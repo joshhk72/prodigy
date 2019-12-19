@@ -34,9 +34,6 @@ class CommentListItem extends React.Component {
     this.props.deleteUpvote(this.currentUpvote.id);
   }
 
-  handleNothing() {
-  }
-
   render() {
     const { username, body, profile_img, date, id, author_id } = this.props.comment
     const { currentUser, deleteComment, upvotes } = this.props;
@@ -52,7 +49,7 @@ class CommentListItem extends React.Component {
     const upvoteCount = UpvoteUtil.count(commentUpvotes);
     const sign = UpvoteUtil.determineSign(upvoteCount);
     this.currentUpvote = UpvoteUtil.currentUpvote(commentUpvotes, currentUser);
-    const [leftCb, rightCb] = UpvoteUtil.determineCallbacks(this.currentUpvote, currentUser, this.upvote, this.downvote, this.deleteUpvote, this.reverseUpvote, this.handleNothing);
+    const [leftCb, rightCb] = UpvoteUtil.determineCallbacks(this.currentUpvote, currentUser, this.upvote, this.downvote, this.deleteUpvote, this.reverseUpvote);
     const [leftClass, rightClass] = UpvoteUtil.determineClasses(this.currentUpvote);
 
     return (
