@@ -13,7 +13,6 @@ function Modal({ modal, closeModal }) {
   let component;
   switch (modal) {
     case 'trackEdit':
-      // <Route path="/tracks/:trackId" component={TrackEditFormContainer} />
       component = <TrackEditFormContainer />;
       break;
     case 'userEdit':
