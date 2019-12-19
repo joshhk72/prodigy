@@ -7,6 +7,7 @@
     "@babel/preset-react": "^7.0.0",
     "autosize": "^4.0.2",
     "babel-loader": "^8.0.6",
+    "file-loader": "^5.0.2",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-fade-in": "^0.1.6",
@@ -43,7 +44,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "file-loader": "^5.0.2"
-  }
+  "devDependencies": {}
 }
