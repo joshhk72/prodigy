@@ -39,7 +39,9 @@
   }
   img {
     height: 80px;
-    width: 80px; 
+    width: 80px;
+    object-fit: cover;
+    object-position: center;
   }
   div {
     height: 100%;
