@@ -1,5 +1,6 @@
 import React from 'react';
 import * as UpvoteUtil from '../../../util/upvote_util';
+import defaultProfileImage from 'assets/images/default-profile.jpg';
 
 class CommentListItem extends React.Component {
   constructor(props) {
@@ -58,8 +59,8 @@ class CommentListItem extends React.Component {
           <div className="comment-meta-row">
             <div className="comment-user-meta">
               <img className="comment-profile-img" 
-                onError={function () { this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}}
-                src={profile_img || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'}
+                onError={function () { this.src = defaultProfileImage}}
+                src={profile_img || defaultProfileImage}
               />
               <span>{username}</span>
             </div>
