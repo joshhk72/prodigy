@@ -17,9 +17,9 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount() {
+    this.props.clearActivities();
     this.props.fetchUser(this.props.match.params.userId)
       .then(res => {
-        this.props.clearActivities();
         this.props.fetchActivityPage(res.user.id, 1)
           .then(action => this.setState({ done: true, last: action.res.last }));
       }, () => this.setState({ done: true }))
@@ -30,7 +30,10 @@ class UserProfile extends React.Component {
       this.props.clearActivities();
       this.setState({ done: false }, () => {
         this.props.fetchUser(this.props.match.params.userId)
-          .then(() => this.setState({ done: true }), () => this.setState({ done: true }))
+          .then(res => {
+            this.props.fetchActivityPage(res.user.id, 1)
+              .then(action => this.setState({ done: true, last: action.res.last }));
+          }, () => this.setState({ done: true }))
       })
     }
   }
