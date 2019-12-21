@@ -1,6 +1,6 @@
-export const fetchUserActivities = userId => {
+export const fetchActivityPage = (userId, page) => {
   return $.ajax({
     method: "GET",
-    url: `api/activities?user_id=${userId}`
-  })
+    url: `api/activities?user_id=${userId}&page=${page}`
+  }); 
 };

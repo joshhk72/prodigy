@@ -33,3 +33,5 @@ json.activities do
     end
   end
 end
+
+json.last @last

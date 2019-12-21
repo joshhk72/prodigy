@@ -3,13 +3,17 @@ import * as ActivityAPIUtil from '../util/activity_api_util';
 export const RECEIVE_ACTIVITIES = "RECEIVE_ACTIVITIES";
 export const CLEAR_ACTIVITIES = "CLEAR_ACTIVITIES";
 
-const receiveActivities = activities => ({
+const receiveActivities = res => ({
   type: RECEIVE_ACTIVITIES,
-  activities
+  res
 });
 
-export const fetchUserActivities = userId => dispatch => {
-  return ActivityAPIUtil.fetchUserActivities(userId)
-    .then(res => dispatch(receiveActivities(res.activities)));
+export const clearActivities = () => ({
+  type: CLEAR_ACTIVITIES
+});
+
+export const fetchActivityPage = (userId, page) => dispatch => {
+  return ActivityAPIUtil.fetchActivityPage(userId, page)
+    .then(res => dispatch(receiveActivities(res)));
 };
 

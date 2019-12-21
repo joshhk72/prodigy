@@ -3,7 +3,7 @@ import Panel from './activity/panel';
 
 const DatePanel = props => {
   const { activities, date, username } = props;
-  const activityPanels = activities.map(activity => {
+  const activityPanels = activities.sort((a,b) => new Date(a.created_at) - new Date(b.created_at)).map(activity => {
     return <Panel username={username} activity={activity} key={activity.id + 300}/>
   }).reverse();
 
