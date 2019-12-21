@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import UserProfile from './user_profile';
-import { fetchUserActivities } from '../../actions/activity_actions';
+import { fetchActivityPage, clearActivities } from '../../actions/activity_actions';
 import { fetchUser } from '../../actions/user_actions'
 import { openModal } from '../../actions/modal_actions';
 
@@ -14,7 +14,8 @@ const mapStateToProps = ({ entities, session }, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchUserActivities: userId => dispatch(fetchUserActivities(userId)),
+  fetchActivityPage: (userId, page) => dispatch(fetchActivityPage(userId, page)),
+  clearActivities: () => dispatch(clearActivities()),
   fetchUser: id => dispatch(fetchUser(id)),
   openModal: modal => dispatch(openModal(modal))
 });

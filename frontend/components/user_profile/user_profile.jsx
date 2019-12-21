@@ -13,18 +13,21 @@ class UserProfile extends React.Component {
       description: undefined,
       done: false
     }
+    this.fetchPage = this.fetchPage.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userId)
       .then(res => {
-        this.props.fetchUserActivities(res.user.id);
-        this.setState({ done: true });
+        this.props.clearActivities();
+        this.props.fetchActivityPage(res.user.id, 1)
+          .then(action => this.setState({ done: true, last: action.res.last }));
       }, () => this.setState({ done: true }))
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.userId !== prevProps.match.params.userId) {
+      this.props.clearActivities();
       this.setState({ done: false }, () => {
         this.props.fetchUser(this.props.match.params.userId)
           .then(() => this.setState({ done: true }), () => this.setState({ done: true }))
@@ -32,9 +35,19 @@ class UserProfile extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.clearActivities();
+  }
+
   handleModal(e) {
     e.preventDefault();
     this.props.openModal('userEdit');
+  }
+
+  fetchPage(page) {
+    if (this.state.last) return; 
+    this.props.fetchActivityPage(this.props.match.params.userId, page)
+      .then(action => this.setState({ last: action.res.last }));
   }
 
   render() {
@@ -72,7 +85,11 @@ class UserProfile extends React.Component {
         </div>
         <div className="profile-column-2">
           { activities && activities.length > 0 &&
-            <ActivitySection activities={activities} username={user.username}/>
+            <ActivitySection 
+              activities={activities} 
+              username={user.username}
+              fetchPage={this.fetchPage}
+              last={this.state.last}/>
           }
           { activities.length === 0 && 
             <p className="no-activities">The user has no activities yet.</p>

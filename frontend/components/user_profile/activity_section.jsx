@@ -1,5 +1,7 @@
 import React from 'react';
 import DatePanel from './date_panel';
+import InfiniteScroll from 'react-infinite-scroller';
+import ReactLoading from 'react-loading';
 
 const ActivitySection = props => {
   const { activities, username } = props;
@@ -21,9 +23,25 @@ const ActivitySection = props => {
 
   return (
     <div className="activity-section">
-      <ul className="activities-date-list">
+      <InfiniteScroll
+        pageStart={1}
+        initialLoad={false}
+        loadMore={props.fetchPage}
+        hasMore={!props.last}
+        loader={
+          <ReactLoading 
+            className="activity-loading" 
+            type={"spin"} 
+            color={"black"} 
+            height={50} 
+            width={50}/>
+          }
+        element='ul'
+        className='activities-date-list'
+        threshold={0}
+      >
         {datePanels}
-      </ul>
+      </InfiniteScroll>
     </div>
   )
 };
