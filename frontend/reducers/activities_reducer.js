@@ -1,5 +1,4 @@
 import { RECEIVE_ACTIVITIES, CLEAR_ACTIVITIES } from '../actions/activity_actions';
-import { merge } from 'lodash';
 
 const activitiesReducer = (state = [], action) => {
   Object.freeze(state);

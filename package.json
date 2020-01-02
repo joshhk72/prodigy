@@ -8,6 +8,7 @@
     "autosize": "^4.0.2",
     "babel-loader": "^8.0.6",
     "file-loader": "^5.0.2",
+    "newsapi": "^2.4.0",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-fade-in": "^0.1.6",
