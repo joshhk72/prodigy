@@ -1,5 +1,6 @@
 import React from 'react';
 import TrackPanel from './track_panel';
+import NewsSection from './news_section';
 import { ClipLoader } from 'react-spinners';
 
 class HomePage extends React.Component {
@@ -29,6 +30,10 @@ class HomePage extends React.Component {
     const trackLis = this.props.tracks.map((track, i) => <TrackPanel key={track.id} track={track} num={i + 1} />);
     return (
       <section className="home">
+        <h2 className="news-header">
+          News <span>(powered by <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a>)</span>
+        </h2>
+        <NewsSection />
         <div className="home-track-list-container">
           <div><h2>Recent Songs</h2></div>
           <ul className="home-track-list">
