@@ -1,21 +1,18 @@
 import React from "react";
-import loadable from "@loadable/component";
 import PageHeaderContainer from './page_header/page_header_container';
 import HomePageContainer from './home_page/home_container';
+import LoginFormContainer from './session_form/login_form_container';
+import SignupFormContainer from './session_form/signup_form_container';
+import TrackFormContainer from './track_form/track_form_container';
+import TrackShowContainer from './track_show/track_show_container';
+import UserProfileContainer from './user_profile/user_profile_container';
+import ArtistShowContainer from './artist_show/show_container';
+import AlbumShowContainer from './album_show/show_container';
+import FormatHelpPage from './format_page';
+import Footer from './footer';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-
-const Modal = loadable(() => import('./modals/modal'));
-const FormatHelpPage = loadable(() => import('./format_page'));
-const SignupFormContainer = loadable(() => import('./session_form/signup_form_container'));
-const LoginFormContainer = loadable(() => import('./session_form/login_form_container'));
-const TrackFormContainer = loadable(() => import('./track_form/track_form_container'));
-const TrackShowContainer = loadable(() => import('./track_show/track_show_container'));
-const UserProfileContainer = loadable(() => import('./user_profile/user_profile_container'));
-const ArtistShowContainer = loadable(() => import('./artist_show/show_container'));
-const AlbumShowContainer = loadable(() => import('./album_show/show_container'));
-const Footer = loadable(() => import('./footer'));
-
+import Modal from './modals/modal';
 
 const App = () => (
   <div className="app">
