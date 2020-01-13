@@ -47,6 +47,12 @@ class Track < ApplicationRecord
     through: :track_writers,
     source: :artist
 
+  def self.cached
+    Rails.cache.fetch("recent-tracks") do
+      self.all
+    end
+  end
+
   def set_lyrics_length
     self.length = self.lyrics.length
   end

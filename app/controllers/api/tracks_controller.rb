@@ -2,7 +2,7 @@ class Api::TracksController < ApplicationController
   before_action :authenticate_user, only: [:create, :update]
   def index
     if params[:page]
-      @tracks = Track.all.order(created_at: :desc).page(params[:page]).per(5);
+      @tracks = Track.cached.order(created_at: :desc).page(params[:page]).per(5);
       @max_page = Track.page(params[:page]).per(5).last_page?
     else
       @tracks = Track.all
@@ -20,6 +20,7 @@ class Api::TracksController < ApplicationController
     @track = Track.new(track_params)
 
     if @track.save
+      Rails.cache.delete("recent-tracks")
       render :show
     else
       errors = @track.errors.full_messsages
