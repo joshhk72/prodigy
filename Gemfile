@@ -29,6 +29,7 @@ gem 'ransack'
 gem 'haml'
 gem 'public_activity'
 gem 'kaminari'
+gem 'redis'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
